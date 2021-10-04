@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class UserJobInfo extends AppCompatActivity {
@@ -21,10 +24,235 @@ String[] work_sector= {"لا ينطبق","تجاري","صناعي"};
 String[] work_type= {"لا ينطبق","حكومي","خاص"};
 String[] speciality= {"طب","هندسة","تجارة"};
 Button add_info_btn;
+String value="";
+
+EditText etext1,etext2,etext7,etext9,etext13,etext14,etext15,etext16,etext17,etext18;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_job_info);
+
+        /*
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            value =value+ extras.getString("key1");
+
+        }
+
+///////////////////////////////////////EditTexts////////////////////////////////////////////////////////////////////////////////////////////
+        etext1=findViewById(R.id.etext1);
+        etext2=findViewById(R.id.etext2);
+        etext7=findViewById(R.id.etext7);
+        etext9=findViewById(R.id.etext9);
+        etext13=findViewById(R.id.etext13);
+        etext14=findViewById(R.id.etext14);
+        etext15=findViewById(R.id.etext15);
+        etext16=findViewById(R.id.etext16);
+        etext17=findViewById(R.id.etext17);
+        etext18=findViewById(R.id.etext18);
+
+
+
+        etext1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext1.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext2.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext7.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext9.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext13.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext13.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext14.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext14.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext15.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext15.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext16.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext16.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext17.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext17.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+        etext18.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value1=etext18.getText().toString();
+                value=value+value1+" ";
+            }
+
+        });
+
+///////////////////////////////////////////////////Spinners//////////////////////////////////////////////////////////////////////
         s1=findViewById(R.id.s1);
         s2=findViewById(R.id.s2);
         s3=findViewById(R.id.s3);
@@ -34,6 +262,12 @@ Button add_info_btn;
         s7=findViewById(R.id.s7);
         s8=findViewById(R.id.s8);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            value =value+ extras.getString("key1");
+
+        }
+
         //Custom Spinner Districts
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item,districts);
@@ -41,7 +275,10 @@ Button add_info_btn;
         s1.setAdapter(adapter);
         s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                if(value1.equals("اختر المحافظة")){
+                value=value+value1+" ";
+                }
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -56,7 +293,10 @@ Button add_info_btn;
         s2.setAdapter(adapter1);
         s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                if(value1.equals("اختر المركز")){
+                    value=value+value1+" ";
+                }
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -71,7 +311,10 @@ Button add_info_btn;
         s3.setAdapter(adapter2);
         s3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                if(value1.equals("اختر القرية")){
+                    value=value+value1+" ";
+                }
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -86,6 +329,8 @@ Button add_info_btn;
         s4.setAdapter(adapter3);
         s4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                value=value+value1+" ";
 
             }
 
@@ -101,7 +346,8 @@ Button add_info_btn;
         s5.setAdapter(adapter4);
         s5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                value=value+value1+" ";
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -116,7 +362,8 @@ Button add_info_btn;
         s6.setAdapter(adapter5);
         s6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                value=value+value1+" ";
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -131,7 +378,8 @@ Button add_info_btn;
         s7.setAdapter(adapter6);
         s7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                value=value+value1+" ";
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -146,20 +394,25 @@ Button add_info_btn;
         s8.setAdapter(adapter7);
         s8.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                value=value+value1+" ";
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
+         */
         //button for additional info
         add_info_btn=findViewById(R.id.btnAddData);
         add_info_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent add_info_intent = new Intent(UserJobInfo.this, UserAdditionalInfo.class);
+               // add_info_intent.putExtra("key2",value);
                 startActivity(add_info_intent);
+
             }
         });
 

@@ -12,7 +12,7 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
     Spinner spin_gender,spin_type;
-    Button user_info_btn,job_btn,add_info_btn;
+    Button user_info_btn,add_info_btn;
     String[] type_of_user= {"أختر النوع الحساب","فردي","مجموعة","عضو في مجموعة"};
     String[] gender_of_user= {"أختر النوع","ذكر","أنثى"};
     Integer[] images = { 0, R.drawable.single, R.drawable.group, R.drawable.member_of_group_1};
@@ -31,25 +31,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //button for job or work info
-        job_btn=findViewById(R.id.btnWorkData);
-        job_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent job_info_intent = new Intent(MainActivity.this, UserJobInfo.class);
-                startActivity(job_info_intent);
-            }
-        });
 
-        //button for additional info
-        add_info_btn=findViewById(R.id.btnAddData);
-        add_info_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent add_info_intent = new Intent(MainActivity.this, UserAdditionalInfo.class);
-                startActivity(add_info_intent);
-            }
-        });
+
 
         //spinner for gender
         spin_gender = (Spinner) findViewById(R.id.spinnerGender);

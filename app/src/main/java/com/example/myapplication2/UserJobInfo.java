@@ -2,10 +2,12 @@ package com.example.myapplication2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class UserJobInfo extends AppCompatActivity {
@@ -18,6 +20,7 @@ String[] dist_code={"01","02","03"};
 String[] work_sector= {"لا ينطبق","تجاري","صناعي"};
 String[] work_type= {"لا ينطبق","حكومي","خاص"};
 String[] speciality= {"طب","هندسة","تجارة"};
+Button add_info_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +151,15 @@ String[] speciality= {"طب","هندسة","تجارة"};
 
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+        //button for additional info
+        add_info_btn=findViewById(R.id.btnAddData);
+        add_info_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent add_info_intent = new Intent(UserJobInfo.this, UserAdditionalInfo.class);
+                startActivity(add_info_intent);
             }
         });
 

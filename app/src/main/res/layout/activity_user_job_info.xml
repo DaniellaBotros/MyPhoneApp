@@ -479,6 +479,22 @@
             android:gravity="center"
             />
     </TableRow>
+    <TableRow
+
+        android:id="@+id/rw19"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddData"
+            android:background="@drawable/btn_design"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_gravity="right"
+            android:text="الصفحة التالية" />
+
+    </TableRow>
 
 </TableLayout>
 

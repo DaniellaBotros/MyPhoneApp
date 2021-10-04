@@ -2,10 +2,12 @@ package com.example.myapplication2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class UserAdditionalInfo extends AppCompatActivity {
@@ -14,6 +16,7 @@ public class UserAdditionalInfo extends AppCompatActivity {
     String[] delegates={"أختر المندوب","داليا محمد","رفعة اسماعيل","نادين عمر","اندرو رأفت"};
     String[] social_stat={"أختر الحالة الاجتماعية","أعزب","متزوج","متزوج و يعول","مطلق","ارمل"};
     String[] education={"أختر التعليم","تعليم عالي","تعليم فوق المتوسط","تعليم متوسط","تعليم أساسي","أمي"};
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +81,15 @@ public class UserAdditionalInfo extends AppCompatActivity {
 
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+        //button for Home
+        btn=findViewById(R.id.btn_home);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent add_info_intent = new Intent(UserAdditionalInfo.this, MainActivity.class);
+                startActivity(add_info_intent);
             }
         });
 

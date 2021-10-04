@@ -257,7 +257,8 @@
 
         android:id="@+id/row10"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
 
         <TextView
             android:id="@+id/etxt10"
@@ -280,4 +281,39 @@
             android:gravity="center"
             />
     </TableRow>
+    <TableRow
+
+        android:id="@+id/rw11"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_home"
+            android:background="@drawable/btn_design"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_gravity="right"
+            android:text="عودة للصفحة الرئيسية" />
+
+    </TableRow>
+    <TableRow
+
+    android:id="@+id/rw12"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/submit"
+        android:background="@drawable/btn_design"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="right"
+        android:text="Submit" />
+
+</TableRow>
+
 </TableLayout>

@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPostalAddress"
-            android:hint="ادخل اسم العمل"
+            android:hint="ادخل عنوان العمل"
             android:layout_marginLeft="30dp"
             android:gravity="center"
             />
@@ -106,7 +106,7 @@
             android:id="@+id/text3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="الحافظه"
+            android:text="المحافظه"
             android:gravity="center"
             />
 

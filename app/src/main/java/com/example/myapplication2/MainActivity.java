@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Spinner spin_gender,spin_type;
@@ -26,54 +27,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*
         user_name=findViewById(R.id.name);
-        user_name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String value1=user_name.getText().toString();
-                value=value+value1+" ";
-            }
-
-        });*/
-
-
+///////////////////////////////////////////////////////////////////////////////////////
 
         //button for user info
         user_info_btn=findViewById(R.id.btnPersonalInfo);
         user_info_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent user_info_intent = new Intent(MainActivity.this, UserPersonalInfo.class);
+                String test=user_name.getText().toString();
+                value=value+test+" ";
+               // System.out.println(value);
+                Intent i = new Intent(MainActivity.this,UserPersonalInfo.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("key", value);
+                i.putExtras(bundle);
+                startActivity(i);
 
-                user_info_intent.putExtra("key",value);
-                startActivity(user_info_intent);
             }
         });
 
 
-/*
+
 
         //spinner for gender
         spin_gender = (Spinner) findViewById(R.id.spinnerGender);
         spin_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = adapterView.getItemAtPosition(i).toString();
-                if(!selectedItem.equals("أختر النوع")){
-                value=value+selectedItem+" ";
+                if(i!=0){
+                Toast.makeText(getApplicationContext(),gender_of_user[i], Toast.LENGTH_SHORT).show();
+                value=value+gender_of_user[i]+" ";
                 }
-                else{value=value+"";}
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -88,11 +74,10 @@ public class MainActivity extends AppCompatActivity {
         spin_type = (Spinner) findViewById(R.id.spinnerType);
         spin_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = adapterView.getItemAtPosition(i).toString();
-                if(!selectedItem.equals("أختر نوع الحساب")){
-                    value=value+selectedItem+" ";
+                if(i!=0){
+                Toast.makeText(getApplicationContext(),type_of_user[i], Toast.LENGTH_SHORT).show();
+                value=value+type_of_user[i]+" ";
                 }
-                else{value=value+"";}
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -100,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         CustomAdapterUserType customAdapter=new CustomAdapterUserType(getApplicationContext(),images,type_of_user);
-        spin_type.setAdapter(customAdapter);*/
+        spin_type.setAdapter(customAdapter);
 
 
     }

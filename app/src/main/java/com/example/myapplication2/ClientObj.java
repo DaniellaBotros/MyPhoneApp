@@ -1,6 +1,9 @@
 package com.example.myapplication2;
 
+import android.icu.text.SimpleDateFormat;
+
 import java.util.Calendar;
+import java.util.Locale;
 
 enum Gender{
     female{ @Override public String toString() { return "Female"; } }
@@ -11,7 +14,7 @@ enum UserType{
     , group{ @Override public String toString() { return "Group"; } }
     , groupMember{ @Override public String toString() { return "Member Of A Group"; } }
 }
-public class ClientObj {
+public class ClientObj implements ClientPlanner {
 private String id;
 private Gender gender;
 private UserType user_type;
@@ -60,7 +63,7 @@ private String cell_code;
     private String district;
     private String center;
     private String village;
-    private String district_code;
+    private String district_code_work;
     private String work_sector;
     private String job_type;
     private String speciality;
@@ -68,6 +71,10 @@ private String cell_code;
 
 
     ///////////////////////////Constructors////////////////////////////////////////////////////////////////////
+
+public ClientObj(){
+//Empty Constructor
+}
 
 public ClientObj(Gender gender,UserType user_type,String name,String name_lang_other,
                  String national_id,Calendar b_date,Calendar national_id_date,String[] address,String postal,
@@ -119,7 +126,7 @@ this.cell_code=cell_code;
     this.industrial_record=industrial_record;
     this.tax_card=tax_card;
     this.district=district;
-    this.district_code=district_code;
+    this.district_code_work =district_code;
     this.center=center;
     this.village=village;
     this.work_sector=work_sector;
@@ -151,10 +158,447 @@ this.b_date=b_date;
     this.job_type=job_type;
 
 }
-public String get_id(){
-    return this.id;
-}
-public void set_id(int id){
-    this.id=Integer.toString(id);
-}
+
+    ///////////////////////////////////////////////////////////Setters////////////////////////////////////////////////////
+    @Override
+    public void setID(int id) {
+        this.id=Integer.toString(id);
+    }
+
+    @Override
+    public void setClientName(String name) {
+        this.name=name;
+    }
+
+    @Override
+    public void setClientGender(Gender g) {
+        this.gender=g;
+    }
+
+    @Override
+    public void setClientType(UserType ut) {
+        this.user_type=ut;
+    }
+
+    @Override
+    public void setClientOtherLangName(String n) {
+        this.name_lang_other=n;
+    }
+
+    @Override
+    public void setClientNationalID(String id) {
+        this.national_id=id;
+    }
+
+    @Override
+    public void setClientBirthdate(Calendar date) {
+       this.b_date=date;
+    }
+
+    @Override
+    public void setClientNationalIdDate(Calendar date) {
+        this.national_id_date=date;
+    }
+
+    @Override
+    public void setClientAddress(String[] a) {
+        this.address=a;
+    }
+
+    @Override
+    public void setClientPostal(String p) {
+        this.postal=p;
+    }
+
+    @Override
+    public void setClientCell(String c) {
+        this.cell=c;
+    }
+
+    @Override
+    public void setClientHomePhone(String home) {
+        this.phone_home=home;
+    }
+
+    @Override
+    public void setClientEmail(String[] email) {
+        this.email=email;
+    }
+
+    @Override
+    public void setClientWebsite(String[] w) {
+        this.websites=w;
+    }
+
+    @Override
+    public void setClientDistrictCode(String dc) {
+        this.dist_code=dc;
+    }
+
+    @Override
+    public void setClientCellCode(String cc) {
+        this.cell_code=cc;
+    }
+
+    @Override
+    public void setClientNumFullTimeWorkers(int n) {
+        this.num_of_full_time_workers=n;
+    }
+
+    @Override
+    public void setClientNumTempWorkers(int n) {
+        this.num_of_temp_workers=n;
+    }
+
+    @Override
+    public void setClientActiveAccountNum(String n) {
+        active_account_num=n;
+    }
+
+    @Override
+    public void setClientAccountBranch(String account_Branch) {
+        this.account_Branch=account_Branch;
+    }
+
+    @Override
+    public void setClientNotice(String n) {
+        this.notice=n;
+    }
+
+    @Override
+    public void setClientRegistrationDate(Calendar date) {
+        this.registration_date=date;
+    }
+
+    @Override
+    public void setClientDelegate(String deleg) {
+        this.delegate=deleg;
+    }
+
+    @Override
+    public void setClientSocialStatus(String social_stat) {
+        this.social_stat=social_stat;
+    }
+
+    @Override
+    public void setClientEducation(String e) {
+        this.education=e;
+    }
+
+    @Override
+    public void setClientElectronicWallet(String ew) {
+        this.electronic_wallet=ew;
+    }
+
+    @Override
+    public void setClientGeographicSector(String g) {
+        this.geographic_sector=g;
+    }
+
+    @Override
+    public void setClientJobName(String job) {
+        this.jname=job;
+    }
+
+    @Override
+    public void setClientJobAddress(String[] ja) {
+        this.address_job=ja;
+    }
+
+    @Override
+    public void setClientIsFromCity(Boolean f) {
+        this.is_from_city=f;
+    }
+
+    @Override
+    public void setClientWorkEmail(String we) {
+        this.work_email=we;
+    }
+
+    @Override
+    public void setClientWorkPhone(String wp) {
+        this.work_Phone=wp;
+    }
+
+    @Override
+    public void setClientLicenseNum(String ln) {
+        this.license_num=ln;
+    }
+
+    @Override
+    public void setClientLicenseRegistrationDate(Calendar date) {
+        this.license_reg_Date=date;
+    }
+
+    @Override
+    public void setClientCommercialRecord(String cr) {
+        this.commercial_record=cr;
+    }
+
+    @Override
+    public void setClientIndustrialRecord(String ir) {
+        this.industrial_record=ir;
+    }
+
+    @Override
+    public void setClientTaxCard(String tc) {
+        this.tax_card=tc;
+    }
+
+    @Override
+    public void setClientDistrict(String district) {
+        this.district=district;
+    }
+
+    @Override
+    public void setClientCenter(String c) {
+        this.center=c;
+    }
+
+    @Override
+    public void setClientVillage(String v) {
+        this.village=v;
+    }
+
+    @Override
+    public void setClientDistrictCodeWork(String dcw) {
+        this.district_code_work=dcw;
+    }
+
+    @Override
+    public void setClientWorkSector(String ws) {
+        this.work_sector=ws;
+    }
+
+    @Override
+    public void setClientJobType(String jt) {
+        this.job_type=jt;
+    }
+
+    @Override
+    public void setClientSpeciality(String s) {
+        this.speciality=s;
+    }
+
+    ///////////////////////////////////////////////////////////Getters////////////////////////////////////////////////////
+
+    @Override
+    public String getID() {
+        return id;
+    }
+
+    @Override
+    public String getClientName() {
+        return name;
+    }
+
+    @Override
+    public String getClientGender() {
+        return gender.toString();
+    }
+
+    @Override
+    public String getClientType() {
+        return user_type.toString();
+    }
+
+    @Override
+    public String getClientOtherLangName() {
+        return name_lang_other;
+    }
+
+    @Override
+    public String getClientNationalID() {
+        return national_id;
+    }
+
+    @Override
+    public Calendar getClientBirthdate() {
+        return b_date;
+    }
+
+    @Override
+    public Calendar getClientNationalIdDate() {
+        return national_id_date;
+    }
+
+    @Override
+    public String[] getClientAddress() {
+        return address;
+    }
+
+    @Override
+    public String getClientPostal() {
+        return postal;
+    }
+
+    @Override
+    public String getClientCell() {
+        return cell;
+    }
+
+    @Override
+    public String getClientHomePhone() {
+        return phone_home;
+    }
+
+    @Override
+    public String[] getClientEmail() {
+        return email;
+    }
+
+    @Override
+    public String[] getClientWebsite() {
+        return websites;
+    }
+
+    @Override
+    public String getClientDistrictCode() {
+        return dist_code;
+    }
+
+    @Override
+    public String getClientCellCode() {
+        return cell_code;
+    }
+
+    @Override
+    public int getClientNumFullTimeWorkers() {
+        return num_of_full_time_workers;
+    }
+
+    @Override
+    public int getClientNumTempWorkers() {
+        return num_of_temp_workers;
+    }
+
+    @Override
+    public String getClientActiveAccountNum() {
+        return active_account_num;
+    }
+
+    @Override
+    public String getClientAccountBranch() {
+        return account_Branch;
+    }
+
+    @Override
+    public String getClientNotice() {
+        return notice;
+    }
+
+    @Override
+    public Calendar getClientRegistrationDate() {
+        return registration_date;
+    }
+
+    @Override
+    public String getClientDelegate() {
+        return delegate;
+    }
+
+    @Override
+    public String getClientSocialStatus() {
+        return social_stat;
+    }
+
+    @Override
+    public String getClientEducation() {
+        return education;
+    }
+
+    @Override
+    public String getClientElectronicWallet() {
+        return electronic_wallet;
+    }
+
+    @Override
+    public String getClientGeographicSector() {
+        return geographic_sector;
+    }
+
+    @Override
+    public String getClientJobName() {
+        return jname;
+    }
+
+    @Override
+    public String[] getClientJobAddress() {
+        return address_job;
+    }
+
+    @Override
+    public Boolean getClientIsFromCity() {
+        return is_from_city;
+    }
+
+    @Override
+    public String getClientWorkEmail() {
+        return work_email;
+    }
+
+    @Override
+    public String getClientWorkPhone() {
+        return work_Phone;
+    }
+
+    @Override
+    public String getClientLicenseNum() {
+        return license_num;
+    }
+
+    @Override
+    public Calendar getClientLicenseRegistrationDate() {
+        return license_reg_Date;
+    }
+
+    @Override
+    public String getClientCommercialRecord() {
+        return commercial_record;
+    }
+
+    @Override
+    public String getClientIndustrialRecord() {
+        return industrial_record;
+    }
+
+    @Override
+    public String getClientTaxCard() {
+        return tax_card;
+    }
+
+    @Override
+    public String getClientDistrict() {
+        return district;
+    }
+
+    @Override
+    public String getClientCenter() {
+        return center;
+    }
+
+    @Override
+    public String getClientVillage() {
+        return village;
+    }
+
+    @Override
+    public String getClientDistrictCodeWork() {
+        return district_code_work;
+    }
+
+    @Override
+    public String getClientWorkSector() {
+        return work_sector;
+    }
+
+    @Override
+    public String getClientJobType() {
+        return job_type;
+    }
+
+    @Override
+    public String getClientSpeciality() {
+        return speciality;
+    }
 }

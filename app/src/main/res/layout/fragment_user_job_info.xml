@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UserJobInfo">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/scroll1"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintRight_toRightOf="parent"
+           >
+           <TableLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               >
+
+               <TableRow
+                   android:id="@+id/r0">
+                   <TextView
+
+                       android:id="@+id/text0"
+                       android:layout_height="wrap_content"
+                       android:layout_width="wrap_content"
+                       android:layout_marginBottom="20dp"
+                       android:layout_span="2"
+                       android:text="بيانات العمل"
+                       android:gravity="center_horizontal"
+                       android:layout_marginLeft="70dp"
+                       android:textColor="@color/black"
+                       android:textSize="25sp"
+                       android:textStyle="bold" />
+
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r1"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="text"
+                       android:hint="ادخل اسم العمل"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="اسم العمل"
+                       android:gravity="center"
+                       />
+               </TableRow>
+               <TableRow
+
+                   android:id="@+id/r2"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext2"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="textPostalAddress"
+                       android:hint="ادخل عنوان العمل"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text2"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="عنوان العمل العمل"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r3"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <Spinner
+                       android:id="@+id/s1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       android:drawSelectorOnTop="true"
+                       />
+                   <TextView
+                       android:id="@+id/text3"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="المحافظه"
+                       android:gravity="center"
+                       />
+
+               </TableRow>
+               <TableRow
+
+                   android:id="@+id/r4"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <Spinner
+                       android:id="@+id/s2"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       android:drawSelectorOnTop="true"
+                       />
+                   <TextView
+                       android:id="@+id/text4"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="المركز"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r5"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <Spinner
+                       android:id="@+id/s3"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       android:drawSelectorOnTop="true"
+                       />
+                   <TextView
+                       android:id="@+id/text5"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="القرية"
+                       android:gravity="center"
+                       />
+
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r6"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <Spinner
+                       android:id="@+id/s4"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       android:drawSelectorOnTop="true"
+                       />
+                   <TextView
+                       android:id="@+id/text6"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="حضري / ريفي"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r7"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext7"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="number"
+                       android:hint="ادخل الرقم البريدي للعمل"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text7"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="الرقم البريدي للعمل"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r8"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <Spinner
+                       android:id="@+id/s5"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       android:drawSelectorOnTop="true"
+                       />
+                   <TextView
+                       android:id="@+id/text8"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="كود المحافظة"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r9"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext9"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="phone"
+                       android:hint="ادخل رقم تليفون العمل"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text9"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="تليفون العمل"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r10"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <Spinner
+                       android:id="@+id/s6"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       android:drawSelectorOnTop="true"
+                       />
+                   <TextView
+                       android:id="@+id/text10"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="قطاع العمل"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r11"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <Spinner
+                       android:id="@+id/s7"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       android:drawSelectorOnTop="true"
+                       />
+                   <TextView
+                       android:id="@+id/text11"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="نوع النشاط"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r12"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <Spinner
+                       android:id="@+id/s8"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       android:drawSelectorOnTop="true"
+                       />
+                   <TextView
+                       android:id="@+id/text12"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="التخصص"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r13"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext13"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="number"
+                       android:hint="ادخل الرقم رقم الترخيص "
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text13"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="رقم الترخيص"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r14"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext14"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="text"
+                       android:hint="ادخل مكان إصدار الترخيص "
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text14"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="مكان إصدار الترخيص"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r15"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext15"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="date"
+                       android:hint="DD/MM/YYYY"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text15"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="تاريخ إصدار الترخيص"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r16"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext16"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="text"
+                       android:hint="ادخل السجل التجاري"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text16"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="السجل التجاري"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r17"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext17"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="text"
+                       android:hint="ادخل السجل الصناعي"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text17"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="السجل الصناعي"
+                       android:gravity="center"
+                       />
+               </TableRow>
+
+               <TableRow
+
+                   android:id="@+id/r18"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content">
+
+                   <EditText
+                       android:id="@+id/etext18"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="text"
+                       android:hint="ادخل البطاقة الضريبية"
+                       android:layout_marginLeft="30dp"
+                       android:gravity="center"
+                       />
+                   <TextView
+                       android:id="@+id/text18"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="البطاقة الضريبية"
+                       android:gravity="center"
+                       />
+               </TableRow>
+               <TableRow
+
+                   android:id="@+id/rw19"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_horizontal">
+                   <androidx.appcompat.widget.AppCompatButton
+                       android:id="@+id/btnAddData"
+                       android:background="@drawable/btn_design"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="25dp"
+                       android:layout_gravity="right"
+                       android:text="الصفحة التالية" />
+
+               </TableRow>
+
+           </TableLayout>
+
+       </ScrollView>
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

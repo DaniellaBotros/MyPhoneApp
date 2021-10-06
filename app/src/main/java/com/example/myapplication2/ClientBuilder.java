@@ -1,5 +1,6 @@
 package com.example.myapplication2;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 ////////////////////////////////////////////////////Explanation of use///////////////////////////////
@@ -9,7 +10,7 @@ import java.util.Calendar;
 
 
 
-public interface ClientBuilder {
+public interface ClientBuilder extends Serializable {
     ////////////////////////////////////Getters or getBuilders////////////////////////////////////////////////////////////////////////
     public ClientObj getClient();
 
@@ -19,8 +20,8 @@ public interface ClientBuilder {
     public String getBuilderClientType();
     public String getBuilderClientOtherLangName();
     public String getBuilderClientNationalID();
-    public Calendar getBuilderClientBirthdate();
-    public Calendar getBuilderClientNationalIdDate();
+    public String getBuilderClientBirthdate();
+    public String getBuilderClientNationalIdDate();
     public String[] getBuilderClientAddress();
     public String getBuilderClientPostal();
     public String getBuilderClientCell();
@@ -34,7 +35,7 @@ public interface ClientBuilder {
     public String getBuilderClientActiveAccountNum();
     public String getBuilderClientAccountBranch();
     public String getBuilderClientNotice();
-    public Calendar getBuilderClientRegistrationDate();
+    public String getBuilderClientRegistrationDate();
     public String getBuilderClientDelegate();
     public String getBuilderClientSocialStatus();
     public String getBuilderClientEducation();
@@ -46,7 +47,7 @@ public interface ClientBuilder {
     public String getBuilderClientWorkEmail();
     public String getBuilderClientWorkPhone();
     public String getBuilderClientLicenseNum();
-    public Calendar getBuilderClientLicenseRegistrationDate();
+    public String getBuilderClientLicenseRegistrationDate();
     public String getBuilderClientCommercialRecord();
     public String getBuilderClientIndustrialRecord();
     public String getBuilderClientTaxCard();
@@ -57,7 +58,8 @@ public interface ClientBuilder {
     public String getBuilderClientWorkSector();
     public String getBuilderClientJobType();
     public String getBuilderClientSpeciality();
-
+    public String getBuilderClientFaxNum();
+    public String getBuilderClientAdmissionDate();
     //////////////////////////////////////////Builders or Setters//////////////////////////////////////////////////////
     public void BuildID(int id);
     public void BuildClientName(String name);
@@ -65,8 +67,8 @@ public interface ClientBuilder {
     public void BuildClientType(UserType ut);
     public void BuildClientOtherLangName(String n);
     public void BuildClientNationalID(String id);
-    public void BuildClientBirthdate(Calendar date);
-    public void BuildClientNationalIdDate(Calendar date);
+    public void BuildClientBirthdate(String date);
+    public void BuildClientNationalIdDate(String date);
     public void BuildClientAddress(String[] a);
     public void BuildClientPostal(String p);
     public void BuildClientCell(String c);
@@ -80,7 +82,7 @@ public interface ClientBuilder {
     public void BuildClientActiveAccountNum(String n);
     public void BuildClientAccountBranch(String account_branch);
     public void BuildClientNotice(String n);
-    public void BuildClientRegistrationDate(Calendar date);
+    public void BuildClientRegistrationDate(String date);
     public void BuildClientDelegate(String deleg);
     public void BuildClientSocialStatus(String social_stat);
     public void BuildClientEducation(String e);
@@ -92,7 +94,7 @@ public interface ClientBuilder {
     public void BuildClientWorkEmail(String we);
     public void BuildClientWorkPhone(String wp);
     public void BuildClientLicenseNum(String ln);
-    public void BuildClientLicenseRegistrationDate(Calendar date);
+    public void BuildClientLicenseRegistrationDate(String date);
     public void BuildClientCommercialRecord(String cr);
     public void BuildClientIndustrialRecord(String ir);
     public void BuildClientTaxCard(String tc);
@@ -103,4 +105,6 @@ public interface ClientBuilder {
     public void BuildClientWorkSector(String ws);
     public void BuildClientJobType(String jt);
     public void BuildClientSpeciality(String s);
+    public void BuildClientFaxNum(String s);
+    public void BuildClientAdmissionDate(String s);
 }

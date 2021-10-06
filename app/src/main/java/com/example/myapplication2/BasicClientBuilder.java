@@ -1,7 +1,5 @@
 package com.example.myapplication2;
 
-import java.util.Calendar;
-
 public class BasicClientBuilder implements  ClientBuilder{
     private ClientObj client;
 
@@ -49,12 +47,12 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public Calendar getBuilderClientBirthdate() {
+    public String getBuilderClientBirthdate() {
         return client.getClientBirthdate();
     }
 
     @Override
-    public Calendar getBuilderClientNationalIdDate() {
+    public String getBuilderClientNationalIdDate() {
         return client.getClientNationalIdDate();
     }
 
@@ -124,7 +122,7 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public Calendar getBuilderClientRegistrationDate() {
+    public String getBuilderClientRegistrationDate() {
         return client.getClientRegistrationDate();
     }
 
@@ -184,7 +182,7 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public Calendar getBuilderClientLicenseRegistrationDate() {
+    public String getBuilderClientLicenseRegistrationDate() {
         return client.getClientLicenseRegistrationDate();
     }
 
@@ -238,6 +236,16 @@ public class BasicClientBuilder implements  ClientBuilder{
         return client.getClientSpeciality();
     }
 
+    @Override
+    public String getBuilderClientFaxNum() {
+        return client.getClientFaxNum();
+    }
+
+    @Override
+    public String getBuilderClientAdmissionDate() {
+        return client.getClientAdmissionDate();
+    }
+
     /////////////////////////////////////////////Setters or Builders//////////////////////////////////////////////////////
     @Override
     public void BuildID(int id) {
@@ -270,12 +278,12 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public void BuildClientBirthdate(Calendar date) {
+    public void BuildClientBirthdate(String date) {
         this.client.setClientBirthdate(date);
     }
 
     @Override
-    public void BuildClientNationalIdDate(Calendar date) {
+    public void BuildClientNationalIdDate(String date) {
         this.client.setClientNationalIdDate(date);
     }
 
@@ -345,7 +353,7 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public void BuildClientRegistrationDate(Calendar date) {
+    public void BuildClientRegistrationDate(String date) {
         this.client.setClientRegistrationDate(date);
     }
 
@@ -405,7 +413,7 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public void BuildClientLicenseRegistrationDate(Calendar date) {
+    public void BuildClientLicenseRegistrationDate(String date) {
         this.client.setClientLicenseRegistrationDate(date);
     }
 
@@ -457,5 +465,15 @@ public class BasicClientBuilder implements  ClientBuilder{
     @Override
     public void BuildClientSpeciality(String s) {
         this.client.setClientSpeciality(s);
+    }
+
+    @Override
+    public void BuildClientFaxNum(String s) {
+        this.client.setClientFaxNum(s);
+    }
+
+    @Override
+    public void BuildClientAdmissionDate(String s) {
+        this.client.setClientAdmissionDate(s);
     }
 }

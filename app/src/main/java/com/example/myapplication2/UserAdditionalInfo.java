@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class UserAdditionalInfo extends Fragment {
-    ClientObj[] clients;
     Spinner spin_geo,spin_deleg,spin_social_stat,spin_edu;
     String[] geo={"أختر المكان","لا ينطبق","فرع امبابا","تقسيم أول","أخر"};
     String[] delegates={"أختر المندوب","داليا محمد","رفعة اسماعيل","نادين عمر","اندرو رأفت"};
@@ -24,6 +23,7 @@ public class UserAdditionalInfo extends Fragment {
     String[] education={"أختر التعليم","تعليم عالي","تعليم فوق المتوسط","تعليم متوسط","تعليم أساسي","أمي"};
     Button btn,btn_submit;
     String value="";
+    BasicClientBuilder client;
 
     TextView etxt10;
 
@@ -35,6 +35,8 @@ public class UserAdditionalInfo extends Fragment {
 
         ////////////////////////////////Bundle////////////////////////////////////////////////
         value=getArguments().getString("df3");
+        Bundle bundle = getArguments();
+        client=(BasicClientBuilder) bundle.getSerializable("obj3");
         ///////////////////////////////EditTexts//////////////////////////////////////////////
         etxt3=view.findViewById(R.id.etxt3);
         etxt4=view.findViewById(R.id.etxt4);
@@ -58,6 +60,7 @@ public class UserAdditionalInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientGeographicSector(value1);
                     value=value+value1+" ";
                 }
             }
@@ -78,6 +81,7 @@ public class UserAdditionalInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientDelegate(value1);
                     value=value+value1+" ";
                 }
             }
@@ -96,6 +100,7 @@ public class UserAdditionalInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientSocialStatus(value1);
                     value=value+value1+" ";
                 }
             }
@@ -114,6 +119,7 @@ public class UserAdditionalInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientEducation(value1);
                     value=value+value1+" ";
                 }
             }
@@ -128,17 +134,6 @@ public class UserAdditionalInfo extends Fragment {
             @Override
             public void onClick(View view) {
 
-
-            }
-        });
-
-        //button for Submit
-
-        btn=view.findViewById(R.id.btn_home);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
                 IntroFrag nextFrag= new IntroFrag();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(UserAdditionalInfo.this)
@@ -147,6 +142,10 @@ public class UserAdditionalInfo extends Fragment {
                         .commit();
             }
         });
+
+        //button for Submit
+
+
         btn_submit=view.findViewById(R.id.submit);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,5 +156,15 @@ public class UserAdditionalInfo extends Fragment {
         });
 
         return view;
+    }
+    public void fillEdits(){
+        client.BuildClientNumFullTimeWorkers(Integer.parseInt(etxt4.getText().toString()));
+        client.BuildClientNumTempWorkers(Integer.parseInt(etxt5.getText().toString()));
+        client.BuildClientActiveAccountNum( etxt6.getText().toString());
+        client.BuildClientAccountBranch(etxt7.getText().toString());
+        client.BuildClientNotice( etxt10.getText().toString());
+        client.BuildClientAdmissionDate(etxt3.getText().toString());
+
+
     }
 }

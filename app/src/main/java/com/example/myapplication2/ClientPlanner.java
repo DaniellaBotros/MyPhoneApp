@@ -11,8 +11,8 @@ public interface ClientPlanner {
     public void setClientType(UserType ut);
     public void setClientOtherLangName(String n);
     public void setClientNationalID(String id);
-    public void setClientBirthdate(Calendar date);
-    public void setClientNationalIdDate(Calendar date);
+    public void setClientBirthdate(String date);
+    public void setClientNationalIdDate(String date);
     public void setClientAddress(String[] a);
     public void setClientPostal(String p);
     public void setClientCell(String c);
@@ -26,7 +26,7 @@ public interface ClientPlanner {
     public void setClientActiveAccountNum(String n);
     public void setClientAccountBranch(String account_branch);
     public void setClientNotice(String n);
-    public void setClientRegistrationDate(Calendar date);
+    public void setClientRegistrationDate(String date);
     public void setClientDelegate(String deleg);
     public void setClientSocialStatus(String social_stat);
     public void setClientEducation(String e);
@@ -38,7 +38,7 @@ public interface ClientPlanner {
     public void setClientWorkEmail(String we);
     public void setClientWorkPhone(String wp);
     public void setClientLicenseNum(String ln);
-    public void setClientLicenseRegistrationDate(Calendar date);
+    public void setClientLicenseRegistrationDate(String date);
     public void setClientCommercialRecord(String cr);
     public void setClientIndustrialRecord(String ir);
     public void setClientTaxCard(String tc);
@@ -49,6 +49,8 @@ public interface ClientPlanner {
     public void setClientWorkSector(String ws);
     public void setClientJobType(String jt);
     public void setClientSpeciality(String s);
+    public void setClientFaxNum(String s);
+    public void setClientAdmissionDate(String s);
 
     ////////////////////////////////////////////////////////Getters////////////////////////////////////////////////////////////
     public String getID();
@@ -57,8 +59,8 @@ public interface ClientPlanner {
     public String getClientType();
     public String getClientOtherLangName();
     public String getClientNationalID();
-    public Calendar getClientBirthdate();
-    public Calendar getClientNationalIdDate();
+    public String getClientBirthdate();
+    public String getClientNationalIdDate();
     public String[] getClientAddress();
     public String getClientPostal();
     public String getClientCell();
@@ -72,7 +74,7 @@ public interface ClientPlanner {
     public String getClientActiveAccountNum();
     public String getClientAccountBranch();
     public String getClientNotice();
-    public Calendar getClientRegistrationDate();
+    public String getClientRegistrationDate();
     public String getClientDelegate();
     public String getClientSocialStatus();
     public String getClientEducation();
@@ -84,7 +86,7 @@ public interface ClientPlanner {
     public String getClientWorkEmail();
     public String getClientWorkPhone();
     public String getClientLicenseNum();
-    public Calendar getClientLicenseRegistrationDate();
+    public String getClientLicenseRegistrationDate();
     public String getClientCommercialRecord();
     public String getClientIndustrialRecord();
     public String getClientTaxCard();
@@ -95,5 +97,7 @@ public interface ClientPlanner {
     public String getClientWorkSector();
     public String getClientJobType();
     public String getClientSpeciality();
+    public String getClientFaxNum();
+    public String getClientAdmissionDate();
 
 }

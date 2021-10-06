@@ -28,6 +28,7 @@ public class UserJobInfo extends Fragment {
     String value="";
 
     EditText etext1,etext2,etext7,etext9,etext13,etext14,etext15,etext16,etext17,etext18;
+    BasicClientBuilder client;
 
 
     @Override
@@ -38,6 +39,8 @@ public class UserJobInfo extends Fragment {
         ///////////////////Bundle/////////////////////////////////////////////////////
 
         value=getArguments().getString("df2");
+        Bundle bundle = getArguments();
+        client=(BasicClientBuilder) bundle.getSerializable("obj2");
 
 
 ///////////////////////////////////////EditTexts////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,6 +76,7 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientDistrict(value1);
                     value=value+value1+" ";
                 }
             }
@@ -91,6 +95,7 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientCenter(value1);
                     value=value+value1+" ";
                 }
             }
@@ -110,6 +115,7 @@ public class UserJobInfo extends Fragment {
 
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientVillage(value1);
                     value=value+value1+" ";
                 }
             }
@@ -129,6 +135,12 @@ public class UserJobInfo extends Fragment {
 
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    Boolean flag=false;
+                    if(value1.equals("حضري")){
+                        flag=true;
+                    }
+
+                    client.BuildClientIsFromCity(flag);
                     value=value+value1+" ";}
 
             }
@@ -147,6 +159,7 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientDistrictCodeWork(value1);
                     value=value+value1+" ";
                 }
             }
@@ -165,6 +178,7 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientWorkSector(value1);
                     value=value+value1+" ";
                 }
             }
@@ -183,6 +197,7 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientJobType(value1);
                     value=value+value1+" ";
                 }
             }
@@ -201,6 +216,7 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    client.BuildClientSpeciality(value1);
                     value=value+value1+" ";
                 }
             }
@@ -221,6 +237,10 @@ public class UserJobInfo extends Fragment {
                 Bundle args = new Bundle();
                 args.putString("df3", value);
                 nextFrag.setArguments(args);
+
+                Bundle b = new Bundle();
+                b.putSerializable("obj3", client);
+                nextFrag.setArguments(b);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(UserJobInfo.this)
                         .replace(((ViewGroup)getView().getParent()).getId(), nextFrag, "findThisFragment")

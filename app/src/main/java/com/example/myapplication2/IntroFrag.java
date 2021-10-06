@@ -18,18 +18,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Objects;
+import java.util.UUID;
 
 
 public class IntroFrag extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    BasicClientBuilder client;
     View view;
     Spinner spin_gender,spin_type;
     String value="";
@@ -46,7 +40,7 @@ public class IntroFrag extends Fragment {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_intro, container, false);
 
-
+        client=new BasicClientBuilder();
 
         //////////////////////////EditText//////////////////////////
         user_name=view.findViewById(R.id.name);
@@ -59,6 +53,15 @@ public class IntroFrag extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     value=value+gender_of_user[i]+" ";
+                    Gender g;
+                    if(gender_of_user[i].equals("أنثى")){
+                        g=Gender.female;
+                    }
+                    else{
+                        g=Gender.male;
+                    }
+
+                    client.BuildClientGender(g);
                 }
             }
 
@@ -74,6 +77,17 @@ public class IntroFrag extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     value=value+type_of_user[i]+" ";
+                    UserType ut;
+                    if(type_of_user[i].equals("فردي")){
+                        ut=UserType.single;
+                    }
+                    else if(type_of_user[i].equals("مجموعة")){
+                        ut=UserType.group;
+                    }
+                    else{
+                        ut=UserType.groupMember;
+                    }
+                    client.BuildClientType(ut);
                 }
             }
 
@@ -93,11 +107,17 @@ public class IntroFrag extends Fragment {
             public void onClick(View v) {
 
                 value=value+user_name.getText().toString()+" ";
+                client.BuildClientName(user_name.getText().toString());
 
                 UserPersonalInfo nextFrag= new UserPersonalInfo();
                 Bundle args = new Bundle();
                 args.putString("df1", value);
                 nextFrag.setArguments(args);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("obj1", client);
+                nextFrag.setArguments(bundle);
+
 
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(IntroFrag.this)

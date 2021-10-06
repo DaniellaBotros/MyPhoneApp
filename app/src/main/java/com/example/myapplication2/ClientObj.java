@@ -21,8 +21,8 @@ private UserType user_type;
 private String name;
 private String name_lang_other;
 private String national_id;
-private Calendar b_date;
-private Calendar national_id_date;
+private String b_date;
+private String national_id_date;
 private String[] address;
 private String postal;
 private String cell;
@@ -32,6 +32,8 @@ private String[] websites;
 //// may change the bottom option's data type
 private String dist_code;
 private String cell_code;
+private String fax;
+private String admission_date;
 //////////////////////////////////////////////////DataObj/////////////////////////////////////////////////////////////////////
 
     private int num_of_full_time_workers;
@@ -39,7 +41,7 @@ private String cell_code;
     private String active_account_num;
     private String account_Branch;
     private String notice;
-    Calendar registration_date;
+    String registration_date;
     //// may change the bottom option's data type
     private String delegate;
     private String social_stat;
@@ -55,7 +57,7 @@ private String cell_code;
     private String work_email;
     private String work_Phone;
     private String license_num;
-    private Calendar license_reg_Date;
+    private String license_reg_Date;
     private String commercial_record;
     private String industrial_record;
     private String tax_card;
@@ -76,14 +78,14 @@ public ClientObj(){
 //Empty Constructor
 }
 
-public ClientObj(Gender gender,UserType user_type,String name,String name_lang_other,
-                 String national_id,Calendar b_date,Calendar national_id_date,String[] address,String postal,
+public ClientObj(Gender gender,UserType user_type,String name,String name_lang_other, String fax,String admission_date,
+                 String national_id,String b_date,String national_id_date,String[] address,String postal,
                  String cell,String phone_home,String[] email,String[] websites,String dist_code,String cell_code,
                  int num_of_full_time_workers,int num_of_temp_workers,String active_account_num,String account_Branch,
                  String notice,String delegate,String socialStat,String electronic_wallet,String geographic_sector,
-                 Calendar registration_date, String education,String jname, String[] address_job, Boolean is_from_city,
+                 String registration_date, String education,String jname, String[] address_job, Boolean is_from_city,
                  String work_email, String work_Phone, String license_num,
-                 Calendar license_reg_Date, String commercial_record, String industrial_record, String tax_card,
+                 String license_reg_Date, String commercial_record, String industrial_record, String tax_card,
                  String district, String center, String village, String district_code, String work_sector, String job_type, String speciality){
 
 this.gender=gender;
@@ -101,6 +103,8 @@ this.email=email;
 this.websites=websites;
 this.dist_code=dist_code;
 this.cell_code=cell_code;
+this.fax=fax;
+this.admission_date=admission_date;
 
     this.num_of_full_time_workers=num_of_full_time_workers;
     this.num_of_temp_workers=num_of_temp_workers;
@@ -135,8 +139,8 @@ this.cell_code=cell_code;
 
 
 }
-public ClientObj(String name, UserType user_type,Gender gender, String national_id,Calendar national_id_date,Calendar b_date,
-                 String geographic_sector, String delegate, Calendar registration_date,String social_stat, String education,
+public ClientObj(String name, UserType user_type,Gender gender, String national_id,String national_id_date,String b_date,
+                 String geographic_sector, String delegate, String registration_date,String social_stat, String education,
                  String district,String center, String village, String work_sector, String job_type){
 this.name=name;
 this.user_type=user_type;
@@ -191,12 +195,12 @@ this.b_date=b_date;
     }
 
     @Override
-    public void setClientBirthdate(Calendar date) {
+    public void setClientBirthdate(String date) {
        this.b_date=date;
     }
 
     @Override
-    public void setClientNationalIdDate(Calendar date) {
+    public void setClientNationalIdDate(String date) {
         this.national_id_date=date;
     }
 
@@ -266,7 +270,7 @@ this.b_date=b_date;
     }
 
     @Override
-    public void setClientRegistrationDate(Calendar date) {
+    public void setClientRegistrationDate(String date) {
         this.registration_date=date;
     }
 
@@ -326,7 +330,7 @@ this.b_date=b_date;
     }
 
     @Override
-    public void setClientLicenseRegistrationDate(Calendar date) {
+    public void setClientLicenseRegistrationDate(String date) {
         this.license_reg_Date=date;
     }
 
@@ -380,6 +384,16 @@ this.b_date=b_date;
         this.speciality=s;
     }
 
+    @Override
+    public void setClientFaxNum(String s) {
+        this.fax=s;
+    }
+
+    @Override
+    public void setClientAdmissionDate(String s) {
+        this.admission_date=s;
+    }
+
     ///////////////////////////////////////////////////////////Getters////////////////////////////////////////////////////
 
     @Override
@@ -413,12 +427,12 @@ this.b_date=b_date;
     }
 
     @Override
-    public Calendar getClientBirthdate() {
+    public String getClientBirthdate() {
         return b_date;
     }
 
     @Override
-    public Calendar getClientNationalIdDate() {
+    public String getClientNationalIdDate() {
         return national_id_date;
     }
 
@@ -488,7 +502,7 @@ this.b_date=b_date;
     }
 
     @Override
-    public Calendar getClientRegistrationDate() {
+    public String getClientRegistrationDate() {
         return registration_date;
     }
 
@@ -548,7 +562,7 @@ this.b_date=b_date;
     }
 
     @Override
-    public Calendar getClientLicenseRegistrationDate() {
+    public String getClientLicenseRegistrationDate() {
         return license_reg_Date;
     }
 
@@ -600,5 +614,15 @@ this.b_date=b_date;
     @Override
     public String getClientSpeciality() {
         return speciality;
+    }
+
+    @Override
+    public String getClientFaxNum() {
+        return fax;
+    }
+
+    @Override
+    public String getClientAdmissionDate() {
+        return admission_date;
     }
 }

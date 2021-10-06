@@ -10,15 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication2">
         <activity
-            android:name=".UserAdditionalInfo"
-            android:exported="true" />
-        <activity
-            android:name=".UserJobInfo"
-            android:exported="true" />
-        <activity
-            android:name=".UserPersonalInfo"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

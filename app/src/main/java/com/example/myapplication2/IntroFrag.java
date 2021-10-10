@@ -27,9 +27,11 @@ public class IntroFrag extends Fragment {
     View view;
     Spinner spin_gender,spin_type;
     String value="";
+    String value1="";
+    String value2="";
     Button next;
-    String[] type_of_user= {"أختر نوع الحساب","فردي","مجموعة","عضو في مجموعة"};
-    String[] gender_of_user= {"أختر النوع","ذكر","أنثى"};
+    String[] type_of_user= {"أختر نوع الحساب*","فردي","مجموعة","عضو في مجموعة"};
+    String[] gender_of_user= {"أختر النوع*","ذكر","أنثى"};
     Integer[] images = { 0, R.drawable.single, R.drawable.group, R.drawable.member_of_group_1};
     EditText user_name;
 
@@ -52,7 +54,7 @@ public class IntroFrag extends Fragment {
         spin_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    value=value+gender_of_user[i]+" ";
+                    value=gender_of_user[i]+" ";
                     Gender g;
                     if(gender_of_user[i].equals("أنثى")){
                         g=Gender.female;
@@ -76,7 +78,7 @@ public class IntroFrag extends Fragment {
         spin_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    value=value+type_of_user[i]+" ";
+                    value1=type_of_user[i]+" ";
                     UserType ut;
                     if(type_of_user[i].equals("فردي")){
                         ut=UserType.single;
@@ -106,14 +108,14 @@ public class IntroFrag extends Fragment {
             @Override
             public void onClick(View v) {
 
-                value=value+user_name.getText().toString()+" ";
+                value2=user_name.getText().toString()+" ";
                 client.BuildClientName(user_name.getText().toString());
 
                 UserPersonalInfo nextFrag= new UserPersonalInfo();
-                //Bundle args = new Bundle();
-                //args.putString("df1", value);
-                //nextFrag.setArguments(args);
-
+                if(value.equals("")||value1.equals("")||value2.equals("")) {
+                    Toast.makeText(getContext(),"All entries in this page must be filled!!", Toast.LENGTH_SHORT).show();
+                }
+                else{
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("obj1", client);
                 nextFrag.setArguments(bundle);
@@ -127,6 +129,8 @@ public class IntroFrag extends Fragment {
 
 
             }
+            }
+
         });
         return view;
     }

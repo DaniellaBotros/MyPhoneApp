@@ -17,11 +17,19 @@ import android.widget.Toast;
 
 public class UserAdditionalInfo extends Fragment {
     Spinner spin_geo,spin_deleg,spin_social_stat,spin_edu;
-    String[] geo={"أختر المكان","لا ينطبق","فرع امبابا","تقسيم أول","أخر"};
-    String[] delegates={"أختر المندوب","داليا محمد","رفعة اسماعيل","نادين عمر","اندرو رأفت"};
-    String[] social_stat={"أختر الحالة الاجتماعية","أعزب","متزوج","متزوج و يعول","مطلق","ارمل"};
-    String[] education={"أختر التعليم","تعليم عالي","تعليم فوق المتوسط","تعليم متوسط","تعليم أساسي","أمي"};
+    String[] geo={"أختر المكان*","لا ينطبق","فرع امبابا","تقسيم أول","أخر"};
+    String[] delegates={"أختر المندوب*","داليا محمد","رفعة اسماعيل","نادين عمر","اندرو رأفت"};
+    String[] social_stat={"أختر الحالة الاجتماعية*","أعزب","متزوج","متزوج و يعول","مطلق","ارمل"};
+    String[] education={"أختر التعليم*","تعليم عالي","تعليم فوق المتوسط","تعليم متوسط","تعليم أساسي","أمي"};
     Button btn,btn_submit;
+
+    String value="";
+    String value1="";
+    String value2="";
+    String value3="";
+    String value4="";
+
+    Boolean is_submitted=false;
 
     BasicClientBuilder client;
 
@@ -59,8 +67,9 @@ public class UserAdditionalInfo extends Fragment {
         spin_geo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientGeographicSector(value1);
+                    String value11 = String.valueOf(adapterView.getItemAtPosition(i));
+                    value=value11;
+                    client.BuildClientGeographicSector(value11);
                 }
             }
 
@@ -79,8 +88,9 @@ public class UserAdditionalInfo extends Fragment {
         spin_deleg.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientDelegate(value1);
+                    String value11 = String.valueOf(adapterView.getItemAtPosition(i));
+                    value1=value11;
+                    client.BuildClientDelegate(value11);
 
                 }
             }
@@ -98,8 +108,9 @@ public class UserAdditionalInfo extends Fragment {
         spin_social_stat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientSocialStatus(value1);
+                    String value11 = String.valueOf(adapterView.getItemAtPosition(i));
+                    value2=value11;
+                    client.BuildClientSocialStatus(value11);
 
                 }
             }
@@ -117,8 +128,9 @@ public class UserAdditionalInfo extends Fragment {
         spin_edu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientEducation(value1);
+                    String value11 = String.valueOf(adapterView.getItemAtPosition(i));
+                    value3=value11;
+                    client.BuildClientEducation(value11);
 
                 }
             }
@@ -133,6 +145,13 @@ public class UserAdditionalInfo extends Fragment {
             @Override
             public void onClick(View view) {
 
+                if(!(is_submitted)){
+                    Toast.makeText(getContext(),"Submit First!!", Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+
+
                 IntroFrag nextFrag= new IntroFrag();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(UserAdditionalInfo.this)
@@ -140,30 +159,48 @@ public class UserAdditionalInfo extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
+            }
         });
 
         //button for Submit
 
 
         btn_submit=view.findViewById(R.id.submit);
+
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
+                if(etxt4.getText().toString().equals("")){
+                    client.BuildClientNumFullTimeWorkers(0);
+                }
+                else {
+                    client.BuildClientNumFullTimeWorkers(Integer.parseInt(etxt4.getText().toString()));
+                }
+                if(etxt5.getText().toString().equals("")){
+                    client.BuildClientNumTempWorkers(0);
+                }
+                else {
+                    client.BuildClientNumFullTimeWorkers(Integer.parseInt(etxt5.getText().toString()));
+                }
+                client.BuildClientActiveAccountNum( etxt6.getText().toString());
+                client.BuildClientAccountBranch(etxt7.getText().toString());
+                client.BuildClientNotice( etxt10.getText().toString());
+                client.BuildClientAdmissionDate(etxt3.getText().toString());
+                value4=etxt3.getText().toString();
+
+
+                if(value.equals("")||value1.equals("")||value2.equals("")||value3.equals("")||value4.equals("")){
+                    Toast.makeText(getContext(),"You must fill the entries marked with *!!", Toast.LENGTH_SHORT).show();
+                }
+                else{
                 System.out.println(client.toString());
                 Toast.makeText(getContext(),"Form Submitted!! :)", Toast.LENGTH_SHORT).show();
+                is_submitted=true;
+            }
             }
         });
 
         return view;
     }
-    public void fillEdits(){
-        client.BuildClientNumFullTimeWorkers(Integer.parseInt(etxt4.getText().toString()));
-        client.BuildClientNumTempWorkers(Integer.parseInt(etxt5.getText().toString()));
-        client.BuildClientActiveAccountNum( etxt6.getText().toString());
-        client.BuildClientAccountBranch(etxt7.getText().toString());
-        client.BuildClientNotice( etxt10.getText().toString());
-        client.BuildClientAdmissionDate(etxt3.getText().toString());
 
-
-    }
 }

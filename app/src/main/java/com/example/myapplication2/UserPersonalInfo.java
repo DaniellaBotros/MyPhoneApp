@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 public class UserPersonalInfo extends Fragment {
@@ -20,6 +21,10 @@ public class UserPersonalInfo extends Fragment {
     String[] phone_code={" ","010","012","011"};
     Button to_job;
     BasicClientBuilder client;
+
+    String value="";
+    String value1="";
+    String value2="";
 
     EditText etextv1,etextv2,etextv3,etextv4,etextv5,etextv6,etextv8,etextv10,etextv11,etextv12,etextv13;
 
@@ -104,13 +109,14 @@ public class UserPersonalInfo extends Fragment {
 
 
                 client.BuildClientNationalID(etextv2.getText().toString());
+                value = etextv2.getText().toString();
 
 
                 client.BuildClientNationalIdDate(etextv3.getText().toString());
-
+                value1 = etextv3.getText().toString();
 
                 client.BuildClientBirthdate(etextv4.getText().toString());
-
+                value2 = etextv4.getText().toString();
 
                 String[] address = {etextv5.getText().toString()};
                 client.BuildClientAddress(address);
@@ -128,28 +134,34 @@ public class UserPersonalInfo extends Fragment {
                 client.BuildClientFaxNum(etextv11.getText().toString());
 
 
-                String[] email={etextv12.getText().toString()};
+                String[] email = {etextv12.getText().toString()};
                 client.BuildClientEmail(email);
 
 
-                String[] web={etextv13.getText().toString()};
+                String[] web = {etextv13.getText().toString()};
                 client.BuildClientWebsite(web);
 
+                if (value.equals("")||value1.equals("")||value2.equals("")) {
+                    Toast.makeText(getContext(),"You must fill the الرقم القومي entry, the تاريخ اصدار البطاقة entry, and the تاريخ الميلاد!!", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
 
 
-                UserJobInfo nextFrag= new UserJobInfo();
+                    UserJobInfo nextFrag = new UserJobInfo();
 
-                Bundle b = new Bundle();
-                b.putSerializable("obj2", client);
-                nextFrag.setArguments(b);
+                    Bundle b = new Bundle();
+                    b.putSerializable("obj2", client);
+                    nextFrag.setArguments(b);
 
-               // nextFrag.setArguments(args);
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .remove(UserPersonalInfo.this)
-                        .replace(((ViewGroup)getView().getParent()).getId(), nextFrag, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
+                    // nextFrag.setArguments(args);
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .remove(UserPersonalInfo.this)
+                            .replace(((ViewGroup) getView().getParent()).getId(), nextFrag, "findThisFragment")
+                            .addToBackStack(null)
+                            .commit();
 
+                }
             }
         });
 

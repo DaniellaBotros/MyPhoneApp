@@ -12,18 +12,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 public class UserJobInfo extends Fragment {
     Spinner s1,s2,s3,s4,s5,s6,s7,s8;
-    String[] districts= {"اختر المحافظة","القاهرة","كفر الشيخ"};
-    String[] centers={"اختر المركز","النزها","الجيزة"};
-    String[] village={"اختر القرية","شبرا","الساحل"};
+    String[] districts= {"اختر المحافظة*","القاهرة","كفر الشيخ"};
+    String[] centers={"اختر المركز*","النزها","الجيزة"};
+    String[] village={"اختر القرية*","شبرا","الساحل"};
     String[] is_from_city={" ","حضري","ريفي"};
     String[] dist_code={" ","01","02","03"};
-    String[] work_sector= {" ","لا ينطبق","تجاري","صناعي"};
-    String[] work_type= {" ","لا ينطبق","حكومي","خاص"};
+    String[] work_sector= {"*","لا ينطبق","تجاري","صناعي"};
+    String[] work_type= {"*","لا ينطبق","حكومي","خاص"};
     String[] speciality= {" ","طب","هندسة","تجارة"};
+    String value="";
+    String value1="";
+    String value2="";
+    String value3="";
+    String value4="";
     Button add_info_btn;
 
 
@@ -75,7 +81,7 @@ public class UserJobInfo extends Fragment {
         s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-
+                    value=districts[i];
                     client.BuildClientDistrict(districts[i]);
                 }
             }
@@ -93,6 +99,7 @@ public class UserJobInfo extends Fragment {
         s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
+                    value1=centers[i];
                     client.BuildClientCenter(centers[i]);
 
                 }
@@ -112,7 +119,7 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if(i!=0){
-
+                    value2=village[i];
                     client.BuildClientVillage(village[i]);
 
                 }
@@ -176,7 +183,7 @@ public class UserJobInfo extends Fragment {
         s6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-
+                    value3=work_sector[i];
                     client.BuildClientWorkSector(work_sector[i]);
 
                 }
@@ -195,7 +202,7 @@ public class UserJobInfo extends Fragment {
         s7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-
+                    value4=work_type[i];
                     client.BuildClientJobType(work_type[i]);
 
                 }
@@ -246,7 +253,12 @@ public class UserJobInfo extends Fragment {
 
 
 
+                if(value.equals("")||value1.equals("")||value2.equals("")||value3.equals("")||value4.equals("")){
 
+                    Toast.makeText(getContext(),"You must fill the entries marked with *!!", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
 
 
                 UserAdditionalInfo nextFrag= new UserAdditionalInfo();
@@ -261,6 +273,7 @@ public class UserJobInfo extends Fragment {
                         .addToBackStack(null)
                         .commit();
 
+            }
             }
         });
 

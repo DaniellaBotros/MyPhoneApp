@@ -149,7 +149,7 @@ public class UserAdditionalInfo extends Fragment {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-
+                System.out.println(client.toString());
                 Toast.makeText(getContext(),"Form Submitted!! :)", Toast.LENGTH_SHORT).show();
             }
         });

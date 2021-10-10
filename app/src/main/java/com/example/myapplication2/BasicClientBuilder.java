@@ -486,4 +486,16 @@ public class BasicClientBuilder implements  ClientBuilder{
     public void BuildClientLicensingAddress(String s) {
         client.setClientLicensingAddress(s);
     }
+
+    /////////////////////////Print Functions//////////////////////////
+    @Override
+    public String toString(){
+        return "Client Name: "+client.getClientName()+"\n"+"User Account Type: "+client.getClientType()+"\n"+"Gender: "+client.getClientGender()+"\n"+
+                "National ID: "+client.getClientNationalID()+"\n"+"National ID Registration Date: "+client.getClientNationalIdDate()+"\n"+"Birthdate: "+client.getClientBirthdate()
+                +"District: "+client.getClientDistrict()+"\n"+"Center: "+client.getClientCenter()+"\n"+client.getClientVillage()+"\n"+
+                "Work Sector: "+client.getClientWorkSector()+'\n'+"Work Type: "+client.getClientJobType()+"\n"+"Geographic Sector: "+client.getClientGeographicSector()+"\n"+
+                "Delegate: "+client.getClientDelegate()+"\n"+"Social Status: "+client.getClientSocialStatus()+"\n"+"Education: "+client.getClientEducation()+"\n";
+    }
+
+
 }

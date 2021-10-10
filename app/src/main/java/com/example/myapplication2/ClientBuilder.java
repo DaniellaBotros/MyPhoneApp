@@ -109,4 +109,6 @@ public interface ClientBuilder extends Serializable {
     public void BuildClientFaxNum(String s);
     public void BuildClientAdmissionDate(String s);
     public void BuildClientLicensingAddress(String s);
+
+    /////////////////////////Print Functions/////////////////////////////
 }

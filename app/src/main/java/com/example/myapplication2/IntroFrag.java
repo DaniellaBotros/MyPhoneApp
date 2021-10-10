@@ -110,9 +110,9 @@ public class IntroFrag extends Fragment {
                 client.BuildClientName(user_name.getText().toString());
 
                 UserPersonalInfo nextFrag= new UserPersonalInfo();
-                Bundle args = new Bundle();
-                args.putString("df1", value);
-                nextFrag.setArguments(args);
+                //Bundle args = new Bundle();
+                //args.putString("df1", value);
+                //nextFrag.setArguments(args);
 
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("obj1", client);

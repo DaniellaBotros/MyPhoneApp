@@ -25,7 +25,7 @@ public class UserJobInfo extends Fragment {
     String[] work_type= {" ","لا ينطبق","حكومي","خاص"};
     String[] speciality= {" ","طب","هندسة","تجارة"};
     Button add_info_btn;
-    String value="";
+
 
     EditText etext1,etext2,etext7,etext9,etext13,etext14,etext15,etext16,etext17,etext18;
     BasicClientBuilder client;
@@ -38,7 +38,7 @@ public class UserJobInfo extends Fragment {
 
         ///////////////////Bundle/////////////////////////////////////////////////////
 
-        value=getArguments().getString("df2");
+       // value=getArguments().getString("df2");
         Bundle bundle = getArguments();
         client=(BasicClientBuilder) bundle.getSerializable("obj2");
 
@@ -75,9 +75,8 @@ public class UserJobInfo extends Fragment {
         s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientDistrict(value1);
-                    value=value+value1+" ";
+
+                    client.BuildClientDistrict(districts[i]);
                 }
             }
 
@@ -94,9 +93,8 @@ public class UserJobInfo extends Fragment {
         s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientCenter(value1);
-                    value=value+value1+" ";
+                    client.BuildClientCenter(centers[i]);
+
                 }
             }
 
@@ -114,9 +112,9 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientVillage(value1);
-                    value=value+value1+" ";
+
+                    client.BuildClientVillage(village[i]);
+
                 }
             }
 
@@ -134,14 +132,15 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
+                    String value1 = is_from_city[i];
+                            //String.valueOf(adapterView.getItemAtPosition(i));
                     Boolean flag=false;
                     if(value1.equals("حضري")){
                         flag=true;
                     }
 
                     client.BuildClientIsFromCity(flag);
-                    value=value+value1+" ";}
+                    }
 
             }
 
@@ -158,9 +157,9 @@ public class UserJobInfo extends Fragment {
         s5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientDistrictCodeWork(value1);
-                    value=value+value1+" ";
+
+                    client.BuildClientDistrictCodeWork( dist_code[i]);
+
                 }
             }
 
@@ -177,9 +176,9 @@ public class UserJobInfo extends Fragment {
         s6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientWorkSector(value1);
-                    value=value+value1+" ";
+
+                    client.BuildClientWorkSector(work_sector[i]);
+
                 }
             }
 
@@ -196,9 +195,9 @@ public class UserJobInfo extends Fragment {
         s7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientJobType(value1);
-                    value=value+value1+" ";
+
+                    client.BuildClientJobType(work_type[i]);
+
                 }
             }
 
@@ -215,9 +214,9 @@ public class UserJobInfo extends Fragment {
         s8.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    String value1 = String.valueOf(adapterView.getItemAtPosition(i));
-                    client.BuildClientSpeciality(value1);
-                    value=value+value1+" ";
+
+                    client.BuildClientSpeciality(speciality[i]);
+
                 }
             }
 
@@ -232,11 +231,26 @@ public class UserJobInfo extends Fragment {
         add_info_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //System.out.println(value);
+
+                client.BuildClientJobName(etext1.getText().toString());
+                String[] arr={etext2.getText().toString()};
+                client.BuildClientJobAddress(arr);
+                client.BuildClientWorkEmail(etext7.getText().toString());
+                client.BuildClientWorkPhone(etext9.getText().toString());
+                client.BuildClientLicenseNum(etext13.getText().toString());
+                client.BuildClientLicensingAddress(etext14.getText().toString());
+                client.BuildClientLicenseRegistrationDate(etext15.getText().toString());
+                client.BuildClientCommercialRecord(etext16.getText().toString());
+                client.BuildClientIndustrialRecord(etext17.getText().toString());
+                client.BuildClientTaxCard(etext18.getText().toString());
+
+
+
+
+
+
                 UserAdditionalInfo nextFrag= new UserAdditionalInfo();
-                Bundle args = new Bundle();
-                args.putString("df3", value);
-                nextFrag.setArguments(args);
+
 
                 Bundle b = new Bundle();
                 b.putSerializable("obj3", client);

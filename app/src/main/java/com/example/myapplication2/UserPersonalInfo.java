@@ -19,7 +19,6 @@ public class UserPersonalInfo extends Fragment {
     String[] dist_code={" ","01","02","03"};
     String[] phone_code={" ","010","012","011"};
     Button to_job;
-    String value="";
     BasicClientBuilder client;
 
     EditText etextv1,etextv2,etextv3,etextv4,etextv5,etextv6,etextv8,etextv10,etextv11,etextv12,etextv13;
@@ -34,7 +33,7 @@ public class UserPersonalInfo extends Fragment {
         spinn2=view.findViewById(R.id.spinn2);
 
         /////////////Bundle//////////////////////////
-        value =getArguments().getString("df1");
+
         Bundle bundle = getArguments();
         client=(BasicClientBuilder) bundle.getSerializable("obj1");
 
@@ -65,7 +64,7 @@ public class UserPersonalInfo extends Fragment {
         spinn1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    value=value+dist_code[i]+" ";
+
                 client.BuildClientDistrictCode(dist_code[i]);
                 }
             }
@@ -85,7 +84,7 @@ public class UserPersonalInfo extends Fragment {
         spinn2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
-                    value=value+phone_code[i]+" ";
+
                     client.BuildClientCellCode(phone_code[i]);
                 }
             }
@@ -100,52 +99,51 @@ public class UserPersonalInfo extends Fragment {
         to_job.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                value=value+etextv1.getText().toString()+" ";
+
                 client.BuildClientOtherLangName(etextv1.getText().toString());
 
-                value=value+etextv2.getText().toString()+" ";
+
                 client.BuildClientNationalID(etextv2.getText().toString());
 
-                value=value+etextv3.getText().toString()+" ";
+
                 client.BuildClientNationalIdDate(etextv3.getText().toString());
 
-                value=value+etextv4.getText().toString()+" ";
+
                 client.BuildClientBirthdate(etextv4.getText().toString());
 
-                value=value+etextv5.getText().toString()+" ";
+
                 String[] address = {etextv5.getText().toString()};
                 client.BuildClientAddress(address);
 
-                value=value+etextv6.getText().toString()+" ";
+
                 client.BuildClientPostal(etextv6.getText().toString());
 
-                value=value+etextv8.getText().toString()+" ";
+
                 client.BuildClientHomePhone(etextv8.getText().toString());
 
-                value=value+etextv10.getText().toString()+" ";
+
                 client.BuildClientCell(etextv10.getText().toString());
 
-                value=value+etextv11.getText().toString()+" ";
+
                 client.BuildClientFaxNum(etextv11.getText().toString());
 
-                value=value+etextv12.getText().toString()+" ";
+
                 String[] email={etextv12.getText().toString()};
                 client.BuildClientEmail(email);
 
-                value=value+etextv13.getText().toString()+" ";
+
                 String[] web={etextv13.getText().toString()};
                 client.BuildClientWebsite(web);
 
-                //System.out.println(value);
+
 
                 UserJobInfo nextFrag= new UserJobInfo();
-                Bundle args = new Bundle();
-                args.putString("df2", value);
+
                 Bundle b = new Bundle();
                 b.putSerializable("obj2", client);
                 nextFrag.setArguments(b);
 
-                nextFrag.setArguments(args);
+               // nextFrag.setArguments(args);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(UserPersonalInfo.this)
                         .replace(((ViewGroup)getView().getParent()).getId(), nextFrag, "findThisFragment")

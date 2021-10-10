@@ -69,6 +69,7 @@ private String admission_date;
     private String work_sector;
     private String job_type;
     private String speciality;
+    private String licensing_address;
 
 
 
@@ -86,7 +87,7 @@ public ClientObj(Gender gender,UserType user_type,String name,String name_lang_o
                  String registration_date, String education,String jname, String[] address_job, Boolean is_from_city,
                  String work_email, String work_Phone, String license_num,
                  String license_reg_Date, String commercial_record, String industrial_record, String tax_card,
-                 String district, String center, String village, String district_code, String work_sector, String job_type, String speciality){
+                 String district, String center, String village, String district_code, String work_sector, String job_type, String speciality,String licensing_address){
 
 this.gender=gender;
 this.user_type=user_type;
@@ -136,6 +137,7 @@ this.admission_date=admission_date;
     this.work_sector=work_sector;
     this.job_type=job_type;
     this.speciality=speciality;
+    this.licensing_address=licensing_address;
 
 
 }
@@ -394,6 +396,11 @@ this.b_date=b_date;
         this.admission_date=s;
     }
 
+    @Override
+    public void setClientLicensingAddress(String s) {
+        this.licensing_address=s;
+    }
+
     ///////////////////////////////////////////////////////////Getters////////////////////////////////////////////////////
 
     @Override
@@ -624,5 +631,10 @@ this.b_date=b_date;
     @Override
     public String getClientAdmissionDate() {
         return admission_date;
+    }
+
+    @Override
+    public String getClientLicensingAddress() {
+        return licensing_address;
     }
 }

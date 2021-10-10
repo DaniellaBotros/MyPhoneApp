@@ -22,7 +22,7 @@ public class UserAdditionalInfo extends Fragment {
     String[] social_stat={"أختر الحالة الاجتماعية","أعزب","متزوج","متزوج و يعول","مطلق","ارمل"};
     String[] education={"أختر التعليم","تعليم عالي","تعليم فوق المتوسط","تعليم متوسط","تعليم أساسي","أمي"};
     Button btn,btn_submit;
-    String value="";
+
     BasicClientBuilder client;
 
     TextView etxt10;
@@ -34,7 +34,7 @@ public class UserAdditionalInfo extends Fragment {
         View view= inflater.inflate(R.layout.fragment_user_aditional_info, container, false);
 
         ////////////////////////////////Bundle////////////////////////////////////////////////
-        value=getArguments().getString("df3");
+
         Bundle bundle = getArguments();
         client=(BasicClientBuilder) bundle.getSerializable("obj3");
         ///////////////////////////////EditTexts//////////////////////////////////////////////
@@ -61,7 +61,6 @@ public class UserAdditionalInfo extends Fragment {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
                     client.BuildClientGeographicSector(value1);
-                    value=value+value1+" ";
                 }
             }
 
@@ -82,7 +81,7 @@ public class UserAdditionalInfo extends Fragment {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
                     client.BuildClientDelegate(value1);
-                    value=value+value1+" ";
+
                 }
             }
 
@@ -101,7 +100,7 @@ public class UserAdditionalInfo extends Fragment {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
                     client.BuildClientSocialStatus(value1);
-                    value=value+value1+" ";
+
                 }
             }
 
@@ -120,7 +119,7 @@ public class UserAdditionalInfo extends Fragment {
                 if(i!=0){
                     String value1 = String.valueOf(adapterView.getItemAtPosition(i));
                     client.BuildClientEducation(value1);
-                    value=value+value1+" ";
+
                 }
             }
 
@@ -150,7 +149,7 @@ public class UserAdditionalInfo extends Fragment {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                System.out.println(value);
+
                 Toast.makeText(getContext(),"Form Submitted!! :)", Toast.LENGTH_SHORT).show();
             }
         });

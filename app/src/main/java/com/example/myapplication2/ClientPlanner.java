@@ -51,6 +51,7 @@ public interface ClientPlanner {
     public void setClientSpeciality(String s);
     public void setClientFaxNum(String s);
     public void setClientAdmissionDate(String s);
+    public void setClientLicensingAddress(String s);
 
     ////////////////////////////////////////////////////////Getters////////////////////////////////////////////////////////////
     public String getID();
@@ -99,5 +100,6 @@ public interface ClientPlanner {
     public String getClientSpeciality();
     public String getClientFaxNum();
     public String getClientAdmissionDate();
+    public String getClientLicensingAddress();
 
 }

@@ -60,6 +60,7 @@ public interface ClientBuilder extends Serializable {
     public String getBuilderClientSpeciality();
     public String getBuilderClientFaxNum();
     public String getBuilderClientAdmissionDate();
+    public String getBuilderClientLicensingAddress();
     //////////////////////////////////////////Builders or Setters//////////////////////////////////////////////////////
     public void BuildID(int id);
     public void BuildClientName(String name);
@@ -107,4 +108,5 @@ public interface ClientBuilder extends Serializable {
     public void BuildClientSpeciality(String s);
     public void BuildClientFaxNum(String s);
     public void BuildClientAdmissionDate(String s);
+    public void BuildClientLicensingAddress(String s);
 }

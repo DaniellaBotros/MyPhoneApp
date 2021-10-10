@@ -246,6 +246,11 @@ public class BasicClientBuilder implements  ClientBuilder{
         return client.getClientAdmissionDate();
     }
 
+    @Override
+    public String getBuilderClientLicensingAddress() {
+        return client.getClientLicensingAddress();
+    }
+
     /////////////////////////////////////////////Setters or Builders//////////////////////////////////////////////////////
     @Override
     public void BuildID(int id) {
@@ -475,5 +480,10 @@ public class BasicClientBuilder implements  ClientBuilder{
     @Override
     public void BuildClientAdmissionDate(String s) {
         this.client.setClientAdmissionDate(s);
+    }
+
+    @Override
+    public void BuildClientLicensingAddress(String s) {
+        client.setClientLicensingAddress(s);
     }
 }

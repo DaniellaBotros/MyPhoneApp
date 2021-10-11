@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +16,27 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
+import com.example.myapplication2.RepeatedRetroItems.RetroItem;
+import com.example.myapplication2.RepeatedRetroItems.RetroItemContent;
+import com.example.myapplication2.RepeatedRetroItems.RetroItemInterface;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class UserAdditionalInfo extends Fragment {
     Spinner spin_geo,spin_deleg,spin_social_stat,spin_edu;
     String[] geo={"أختر المكان*","لا ينطبق","فرع امبابا","تقسيم أول","أخر"};
     String[] delegates={"أختر المندوب*","داليا محمد","رفعة اسماعيل","نادين عمر","اندرو رأفت"};
-    String[] social_stat={"أختر الحالة الاجتماعية*","أعزب","متزوج","متزوج و يعول","مطلق","ارمل"};
-    String[] education={"أختر التعليم*","تعليم عالي","تعليم فوق المتوسط","تعليم متوسط","تعليم أساسي","أمي"};
+    String[] social_stat;
+    String[] education;
     Button btn,btn_submit;
-
     String value="";
     String value1="";
     String value2="";
@@ -36,6 +50,25 @@ public class UserAdditionalInfo extends Fragment {
     TextView etxt10;
 
     EditText etxt3,etxt4,etxt5,etxt6,etxt7;
+
+
+
+
+
+
+
+///////////////////////////////Retrofit Constants//////////////////////////////////////////////////////////////////
+
+    Retrofit.Builder builder=new Retrofit.Builder().baseUrl("http://192.168.255.19:1233/MohassilService.svc/").addConverterFactory(GsonConverterFactory.create());
+    Retrofit retrofit=builder.build();
+    String username="x";
+    String password="x";
+    String base=username+":"+password;
+    String auth="Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -100,45 +133,121 @@ public class UserAdditionalInfo extends Fragment {
             }
         });
 
-//Custom Spinner Social Status
+/////////////////////////////////////////////////////////Custom Spinner Social Status
         spin_social_stat = view.findViewById(R.id.spin3);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin_social_stat.setAdapter(new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,social_stat));
-        spin_social_stat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
-                    String value11 = String.valueOf(adapterView.getItemAtPosition(i));
-                    value2=value11;
-                    client.BuildClientSocialStatus(value11);
+
+        ///////Retrofit//////////////////////////////////////////////////////////////////////
+        RetroItemInterface retroClient=retrofit.create(RetroItemInterface.class);
+        Call<RetroItem> call=retroClient.getAllMartialStatus(auth);
+
+        call.enqueue(new Callback<RetroItem>() {
+            @Override
+            public void onResponse(Call<RetroItem> call, Response<RetroItem> response) {
+                if(response.isSuccessful()) {
+                    RetroItem changesList = response.body();
+
+                    //System.out.println("It worked !!:)");
+                    //System.out.println(changesList);
+                    List<RetroItemContent> l=changesList.getList();
+                    social_stat=new String[l.size()+1];
+                    social_stat[0]="أختر الحالة الاجتماعية*";
+                    for(int i=0;i<l.size();i++){
+                        social_stat[i+1]=l.get(i).getDescription();
+
+                    }
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin_social_stat.setAdapter(new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_spinner_item,social_stat));
+                    spin_social_stat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            if(i!=0){
+                                String value11 = String.valueOf(adapterView.getItemAtPosition(i));
+                                value2=value11;
+                                client.BuildClientSocialStatus(value11);
+
+                            }
+                        }
+
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                } else {
+                    System.out.println(response.errorBody());
 
                 }
             }
 
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            @Override
+            public void onFailure(Call<RetroItem> call, Throwable t) {
+                System.out.println("I failed!!:(");
+                t.printStackTrace();
             }
         });
-        //Custom Spinner Education
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////Custom Spinner Education
         spin_edu = view.findViewById(R.id.spin4);
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,education);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin_edu.setAdapter(adapter3);
-        spin_edu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
-                    String value11 = String.valueOf(adapterView.getItemAtPosition(i));
-                    value3=value11;
-                    client.BuildClientEducation(value11);
+///////Retrofit//////////////////////////////////////////////////////////////////////
+
+        RetroItemInterface retroClient1 =retrofit.create(RetroItemInterface.class);
+        Call<RetroItem> call1=retroClient.getAllEducation(auth);
+        call1.enqueue(new Callback<RetroItem>() {
+            @Override
+            public void onResponse(Call<RetroItem> call, Response<RetroItem> response) {
+                if(response.isSuccessful()) {
+                    RetroItem changesList = response.body();
+
+                    //System.out.println("It worked !!:)");
+                    //System.out.println(changesList);
+                    List<RetroItemContent> l=changesList.getList();
+                    education=new String[l.size()+1];
+                    education[0]="أختر التعليم*";
+                    for(int i=0;i<l.size();i++){
+                        education[i+1]=l.get(i).getDescription();
+                    }
+                    ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_spinner_item,education);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin_edu.setAdapter(adapter3);
+                    spin_edu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            if(i!=0){
+                                String value11 = String.valueOf(adapterView.getItemAtPosition(i));
+                                value3=value11;
+                                client.BuildClientEducation(value11);
+
+                            }
+                        }
+
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                } else {
+                    System.out.println(response.errorBody());
 
                 }
             }
 
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            @Override
+            public void onFailure(Call<RetroItem> call, Throwable t) {
+                System.out.println("I failed!!:(");
+                t.printStackTrace();
             }
         });
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////Button//////////////////////////////////////////////////
+
         //button for Home
         btn=view.findViewById(R.id.btn_home);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -202,5 +311,8 @@ public class UserAdditionalInfo extends Fragment {
 
         return view;
     }
+
+
+
 
 }

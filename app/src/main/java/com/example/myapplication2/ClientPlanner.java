@@ -19,7 +19,7 @@ public interface ClientPlanner {
     public void setClientHomePhone(String home);
     public void setClientEmail(String[] email);
     public void setClientWebsite(String[] w);
-    public void setClientDistrictCode(String dc);
+    public void setClientGovernmentCode(String dc);
     public void setClientCellCode(String cc);
     public void setClientNumFullTimeWorkers(int n);
     public void setClientNumTempWorkers(int n);
@@ -42,10 +42,10 @@ public interface ClientPlanner {
     public void setClientCommercialRecord(String cr);
     public void setClientIndustrialRecord(String ir);
     public void setClientTaxCard(String tc);
-    public void setClientDistrict(String district);
-    public void setClientCenter(String c);
+    public void setClientGovernment(String district);
+    public void setClientDistrict(String c);
     public void setClientVillage(String v);
-    public void setClientDistrictCodeWork(String dcw);
+    public void setClientGovernmentCodeWork(String dcw);
     public void setClientWorkSector(String ws);
     public void setClientJobType(String jt);
     public void setClientSpeciality(String s);
@@ -68,7 +68,7 @@ public interface ClientPlanner {
     public String getClientHomePhone();
     public String[] getClientEmail();
     public String[] getClientWebsite();
-    public String getClientDistrictCode();
+    public String getClientGovernmentCode();
     public String getClientCellCode();
     public int getClientNumFullTimeWorkers();
     public int getClientNumTempWorkers();
@@ -91,10 +91,10 @@ public interface ClientPlanner {
     public String getClientCommercialRecord();
     public String getClientIndustrialRecord();
     public String getClientTaxCard();
+    public String getClientGovernment();
     public String getClientDistrict();
-    public String getClientCenter();
     public String getClientVillage();
-    public String getClientDistrictCodeWork();
+    public String getClientGovernmentCodeWork();
     public String getClientWorkSector();
     public String getClientJobType();
     public String getClientSpeciality();

@@ -18,9 +18,12 @@ import android.widget.Toast;
 
 
 
-import com.example.myapplication2.RepeatedRetroItems.RetroItem;
-import com.example.myapplication2.RepeatedRetroItems.RetroItemContent;
-import com.example.myapplication2.RepeatedRetroItems.RetroItemInterface;
+import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItem;
+import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemContent;
+import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemInterface;
+import com.example.myapplication2.RetrofitGeo.GeoContent;
+import com.example.myapplication2.RetrofitGeo.GeoInterface;
+import com.example.myapplication2.RetrofitGeo.GeoItem;
 
 import java.util.List;
 
@@ -31,25 +34,25 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserAdditionalInfo extends Fragment {
-    Spinner spin_geo,spin_deleg,spin_social_stat,spin_edu;
-    String[] geo={"أختر المكان*","لا ينطبق","فرع امبابا","تقسيم أول","أخر"};
-    String[] delegates={"أختر المندوب*","داليا محمد","رفعة اسماعيل","نادين عمر","اندرو رأفت"};
-    String[] social_stat;
-    String[] education;
-    Button btn,btn_submit;
-    String value="";
-    String value1="";
-    String value2="";
-    String value3="";
-    String value4="";
+    private Spinner spin_geo,spin_deleg,spin_social_stat,spin_edu;
+    private String[] geo;
+    private String[] delegates={"أختر المندوب*","داليا محمد","رفعة اسماعيل","نادين عمر","اندرو رأفت"};
+    private String[] social_stat;
+    private String[] education;
+    private Button btn,btn_submit;
+    private String value="";
+    private String value1="";
+    private String value2="";
+    private String value3="";
+    private String value4="";
 
-    Boolean is_submitted=false;
+    private Boolean is_submitted=false;
 
-    BasicClientBuilder client;
+    private BasicClientBuilder client;
 
-    TextView etxt10;
+    private TextView etxt10;
 
-    EditText etxt3,etxt4,etxt5,etxt6,etxt7;
+    private EditText etxt3,etxt4,etxt5,etxt6,etxt7;
 
 
 
@@ -58,13 +61,13 @@ public class UserAdditionalInfo extends Fragment {
 
 
 ///////////////////////////////Retrofit Constants//////////////////////////////////////////////////////////////////
-
-    Retrofit.Builder builder=new Retrofit.Builder().baseUrl("http://192.168.255.19:1233/MohassilService.svc/").addConverterFactory(GsonConverterFactory.create());
+    private String URL="http://192.168.255.19:1233/MohassilService.svc/";
+    Retrofit.Builder builder=new Retrofit.Builder().baseUrl(URL).addConverterFactory(GsonConverterFactory.create());
     Retrofit retrofit=builder.build();
-    String username="x";
-    String password="x";
-    String base=username+":"+password;
-    String auth="Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
+    private String username="x";
+    private String password="x";
+    private String base=username+":"+password;
+    private String auth="Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
 
 
 
@@ -93,30 +96,69 @@ public class UserAdditionalInfo extends Fragment {
 ////////////////////////////////////////////Spinners//////////////////////////////////////////////
         //Custom Spinner Geo
         spin_geo = view.findViewById(R.id.spin1);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,geo);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin_geo.setAdapter(adapter);
-        spin_geo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
-                    String value11 = String.valueOf(adapterView.getItemAtPosition(i));
-                    value=value11;
-                    client.BuildClientGeographicSector(value11);
+
+        ///////Retrofit//////////////////////////////////////////////////////////////////////
+
+        GeoInterface retroClienta =retrofit.create(GeoInterface.class);
+        Call<GeoItem> calla=retroClienta.getAllGeoAreas(auth);
+
+        calla.enqueue(new Callback<GeoItem>() {
+
+            @Override
+            public void onResponse(Call<GeoItem>  call, Response<GeoItem> response) {
+                if(response.isSuccessful()) {
+                    GeoItem changesList = response.body();
+
+                    //System.out.println("It worked !!:)");
+                    //System.out.println(changesList);
+                    List<GeoContent> l=changesList.getList();
+                    geo=new String[l.size()+1];
+                    geo[0]="أختر المكان*";
+                    for(int i=0;i<l.size();i++){
+                        geo[i+1]=l.get(i).getGeoAreaName();
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_spinner_item,geo);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin_geo.setAdapter(adapter);
+                    spin_geo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            if(i!=0){
+                                String value11 = String.valueOf(adapterView.getItemAtPosition(i));
+                                value=value11;
+                                client.BuildClientGeographicSector(value11);
+                            }
+                        }
+
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+
+                } else {
+                    System.out.println(response.errorBody());
+
                 }
             }
 
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            @Override
+            public void onFailure(Call <GeoItem> call, Throwable t) {
+                System.out.println("I failed!!:(");
+                t.printStackTrace();
             }
         });
+
+
+
 
         //Custom Spinner deleg
 
         spin_deleg = view.findViewById(R.id.spin2);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item,delegates);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin_deleg.setAdapter(adapter1);
         spin_deleg.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -155,9 +197,10 @@ public class UserAdditionalInfo extends Fragment {
                         social_stat[i+1]=l.get(i).getDescription();
 
                     }
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spin_social_stat.setAdapter(new ArrayAdapter<String>(getContext(),
-                            android.R.layout.simple_spinner_item,social_stat));
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_spinner_item,social_stat);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin_social_stat.setAdapter(adapter2);
                     spin_social_stat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                             if(i!=0){
@@ -211,7 +254,7 @@ public class UserAdditionalInfo extends Fragment {
                     }
                     ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(),
                             android.R.layout.simple_spinner_item,education);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spin_edu.setAdapter(adapter3);
                     spin_edu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

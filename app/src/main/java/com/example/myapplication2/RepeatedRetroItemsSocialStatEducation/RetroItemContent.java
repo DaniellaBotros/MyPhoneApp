@@ -1,4 +1,4 @@
-package com.example.myapplication2.RepeatedRetroItems;
+package com.example.myapplication2.RepeatedRetroItemsSocialStatEducation;
 
 import com.google.gson.annotations.SerializedName;
 

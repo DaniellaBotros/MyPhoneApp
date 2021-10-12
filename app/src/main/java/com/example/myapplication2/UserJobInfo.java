@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,28 +16,62 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.myapplication2.RetrofitDistrict.DistrictContent;
+import com.example.myapplication2.RetrofitDistrict.DistrictInterface;
+import com.example.myapplication2.RetrofitDistrict.DistrictItem;
+import com.example.myapplication2.RetrofitGeo.GeoContent;
+import com.example.myapplication2.RetrofitGoverment.GovernmentContent;
+import com.example.myapplication2.RetrofitGoverment.GovernmentInterface;
+import com.example.myapplication2.RetrofitGoverment.GovernmentItem;
+import com.example.myapplication2.RetrofitVillage.VillageContent;
+import com.example.myapplication2.RetrofitVillage.VillageInterface;
+import com.example.myapplication2.RetrofitVillage.VillageItem;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserJobInfo extends Fragment {
-    Spinner s1,s2,s3,s4,s5,s6,s7,s8;
-    String[] districts= {"اختر المحافظة*","القاهرة","كفر الشيخ"};
-    String[] centers={"اختر المركز*","النزها","الجيزة"};
-    String[] village={"اختر القرية*","شبرا","الساحل"};
-    String[] is_from_city={" ","حضري","ريفي"};
-    String[] dist_code={" ","01","02","03"};
-    String[] work_sector= {"*","لا ينطبق","تجاري","صناعي"};
-    String[] work_type= {"*","لا ينطبق","حكومي","خاص"};
-    String[] speciality= {" ","طب","هندسة","تجارة"};
-    String value="";
-    String value1="";
-    String value2="";
-    String value3="";
-    String value4="";
-    Button add_info_btn;
+    private Spinner s1,s2,s3,s4,s5,s6,s7,s8;
+    private GovernmentContent[] governments;
+    private String Gov_test[];
+    private String gcode="0";
+    private DistrictContent[] districts ;
+    private String[] Dist_test;
+    private String dcode="0";
+    private String[] village;
+    private String[] is_from_city={" حضري/ريفي","حضري","ريفي"};
+    private String[] government_code;
+    private String[] work_sector= {"*","لا ينطبق","تجاري","صناعي"};
+    private String[] work_type= {"*","لا ينطبق","حكومي","خاص"};
+    private String[] speciality= {" ","طب","هندسة","تجارة"};
+    private String value="";
+    private String value1="";
+    private String value2="";
+    private String value3="";
+    private String value4="";
+    private Button add_info_btn;
+
+    Boolean gov_picked=false;
+    Boolean dist_picked=false;
 
 
-    EditText etext1,etext2,etext7,etext9,etext13,etext14,etext15,etext16,etext17,etext18;
-    BasicClientBuilder client;
 
+    private EditText etext1,etext2,etext7,etext9,etext13,etext14,etext15,etext16,etext17,etext18;
+    private BasicClientBuilder client;
+
+    ///////////////////////////////Retrofit Constants//////////////////////////////////////////////////////////////////
+    private String URL="http://192.168.255.19:1233/MohassilService.svc/";
+    Retrofit.Builder builder=new Retrofit.Builder().baseUrl(URL).addConverterFactory(GsonConverterFactory.create());
+    Retrofit retrofit=builder.build();
+    private String username="x";
+    private String password="x";
+    private String base=username+":"+password;
+    private String auth="Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,67 +109,54 @@ public class UserJobInfo extends Fragment {
         s7=view.findViewById(R.id.s7);
         s8=view.findViewById(R.id.s8);
 
+        //Custom Spinner Governments
+
+        ///////Retrofit//////////////////////////////////////////////////////////////////////
+
+                GovSpinnerAPI();
+
+        ////////////////////////////////////////////////////////////////////////
+
+
         //Custom Spinner Districts
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,districts);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s1.setAdapter(adapter);
-        s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
-                    value=districts[i];
-                    client.BuildClientDistrict(districts[i]);
-                }
+
+        ///////Retrofit//////////////////////////////////////////////////////////////////////
+
+        Handler handler1 = new Handler();
+
+        final Runnable r1 = new Runnable() {
+            public void run() {
+
+                DistSpinnerAPI();
+
+                handler1.postDelayed(this, 1000);
             }
+        };
 
-            public void onNothingSelected(AdapterView<?> adapterView) {
+        handler1.postDelayed(r1, 1000);
 
-            }
-        });
-
-        //Custom Spinner Centers
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,centers);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s2.setAdapter(adapter1);
-        s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
-                    value1=centers[i];
-                    client.BuildClientCenter(centers[i]);
-
-                }
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         //Custom Spinner Village
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,village);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s3.setAdapter(adapter2);
-        s3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        ///////Retrofit//////////////////////////////////////////////////////////////////////
+        Handler handler = new Handler();
 
-                if(i!=0){
-                    value2=village[i];
-                    client.BuildClientVillage(village[i]);
+        final Runnable r = new Runnable() {
+            public void run() {
 
-                }
+                VillageSpinnerAPI();
+
+                handler.postDelayed(this, 1000);
             }
+        };
 
-            public void onNothingSelected(AdapterView<?> adapterView) {
+        handler.postDelayed(r, 1000);
 
-            }
-        });
 
+        /////////////////////////////////////////////////////////////////////////////////////
         //Custom Spinner is_city_folk
         ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item,is_from_city);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s4.setAdapter(adapter3);
         s4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -156,29 +179,65 @@ public class UserJobInfo extends Fragment {
             }
         });
 
-        //Custom Spinner District Code
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,dist_code);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s5.setAdapter(adapter4);
-        s5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
+        //Custom Spinner government Code
+        ///////Retrofit//////////////////////////////////////////////////////////////////////
 
-                    client.BuildClientDistrictCodeWork( dist_code[i]);
+
+        GovernmentInterface retroClient4=retrofit.create(GovernmentInterface.class);
+        Call<GovernmentItem> call4=retroClient4.getAllGovernments(auth);
+
+        call4.enqueue(new Callback<GovernmentItem>() {
+
+            @Override
+            public void onResponse(Call<GovernmentItem>  call, Response<GovernmentItem> response) {
+                if(response.isSuccessful()) {
+                    GovernmentItem changesList = response.body();
+
+                    //System.out.println("It worked !!:)");
+                    //System.out.println(changesList);
+                    List<GovernmentContent> l=changesList.getList();
+                    government_code =new String[l.size()+1];
+                    government_code[0]="أختر كود المحافظة";
+                    for(int i=0;i<l.size();i++){
+                        government_code[i+1]=l.get(i).getGovernmentCode();
+                    }
+
+                    ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_spinner_item, government_code);
+                    adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    s5.setAdapter(adapter4);
+                    s5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            if(i!=0){
+
+                                client.BuildClientGovernmentCodeWork( government_code[i]);
+
+                            }
+                        }
+
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                } else {
+                    System.out.println(response.errorBody());
 
                 }
             }
 
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            @Override
+            public void onFailure(Call <GovernmentItem> call, Throwable t) {
+                System.out.println("I failed!!:(");
+                t.printStackTrace();
             }
         });
+
 
         //Custom Spinner Work sector
         ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item,work_sector);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s6.setAdapter(adapter5);
         s6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -197,7 +256,7 @@ public class UserJobInfo extends Fragment {
         //custom Spinner Work Type
         ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item,work_type);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s7.setAdapter(adapter6);
         s7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -216,7 +275,7 @@ public class UserJobInfo extends Fragment {
         //Custom Spinner Speciality
         ArrayAdapter<String> adapter7 = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item,speciality);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s8.setAdapter(adapter7);
         s8.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -282,5 +341,176 @@ public class UserJobInfo extends Fragment {
 
 
         return view;
+    }
+    public void GovSpinnerAPI()
+    {
+        GovernmentInterface retroClient=retrofit.create(GovernmentInterface.class);
+        Call<GovernmentItem> call=retroClient.getAllGovernments(auth);
+
+        call.enqueue(new Callback<GovernmentItem>() {
+
+
+            @Override
+            public void onResponse(Call<GovernmentItem>  call, Response<GovernmentItem> response) {
+                if(response.isSuccessful()) {
+                    GovernmentItem changesList = response.body();
+
+                    //System.out.println("It worked !!:)");
+                    //System.out.println(changesList);
+                    List<GovernmentContent> l=changesList.getList();
+                    governments=new GovernmentContent[l.size()];
+                    Gov_test=new String[l.size()+1];
+                    Gov_test[0]="اختر المحافظة*";
+                    for(int i=0;i<l.size();i++){
+                        governments[i]=l.get(i);
+                        Gov_test[i+1]=l.get(i).getGovernmentName();
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_spinner_item,Gov_test);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    s1.setAdapter(adapter);
+                    s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            if(i!=0){
+                                gcode=governments[i-1].getGovernmentCode();
+                                client.BuildClientGovernment(Gov_test[i]);
+                                gov_picked=true;
+                            }
+                        }
+
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+                } else {
+                    System.out.println(response.errorBody());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call <GovernmentItem> call, Throwable t) {
+                System.out.println("I failed!!:(");
+                t.printStackTrace();
+            }
+        });
+    }
+    public void DistSpinnerAPI(){
+        if(gov_picked) {
+            DistrictInterface retroClient1 = retrofit.create(DistrictInterface.class);
+            Call<DistrictItem> call1 = retroClient1.getAllDistrictsByGovId(auth, Integer.parseInt(gcode));
+
+            call1.enqueue(new Callback<DistrictItem>() {
+
+                @Override
+                public void onResponse(Call<DistrictItem> call, Response<DistrictItem> response) {
+                    if (response.isSuccessful()) {
+                        DistrictItem changesList = response.body();
+
+                        //System.out.println("It worked !!:)");
+                        //System.out.println(changesList);
+                        List<DistrictContent> l = changesList.getList();
+                        districts = new DistrictContent[l.size()];
+                        Dist_test = new String[l.size() + 1];
+                        Dist_test[0] = "اختر المركز*";
+                        for (int i = 0; i < l.size(); i++) {
+                            districts[i] = l.get(i);
+                            Dist_test[i + 1] = l.get(i).getDistrictName();
+                        }
+
+
+                        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_spinner_item, Dist_test);
+                        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        s2.setAdapter(adapter1);
+                        s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                if (i != 0) {
+                                    dcode = districts[i - 1].getDistrictCode();
+                                    client.BuildClientDistrict(Dist_test[i]);
+                                    dist_picked=true;
+                                }
+                            }
+
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+
+
+                    } else {
+                        System.out.println(response.errorBody());
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DistrictItem> call, Throwable t) {
+                    System.out.println("I failed!!:(");
+                    t.printStackTrace();
+                }
+            });
+
+        }
+    }
+    public void VillageSpinnerAPI(){
+        if(dist_picked) {
+            VillageInterface retroClient2 = retrofit.create(VillageInterface.class);
+            Call<VillageItem> call2 = retroClient2.getAllVillagesByDistId(auth, Integer.parseInt(dcode));
+
+            call2.enqueue(new Callback<VillageItem>() {
+
+                @Override
+                public void onResponse(Call<VillageItem> call, Response<VillageItem> response) {
+                    if (response.isSuccessful()) {
+                        VillageItem changesList = response.body();
+
+                        //System.out.println("It worked !!:)");
+                        //System.out.println(changesList);
+                        List<VillageContent> l = changesList.getList();
+                        village = new String[l.size() + 1];
+                        village[0] = "اختر القرية*";
+                        for (int i = 0; i < l.size(); i++) {
+
+                            village[i + 1] = l.get(i).getVillagelName();
+
+                        }
+                        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_spinner_item, village);
+                        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        s3.setAdapter(adapter2);
+                        s3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                                if (i != 0) {
+                                    value2 = village[i];
+                                    client.BuildClientVillage(village[i]);
+
+                                }
+                            }
+
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+
+
+                    } else {
+                        System.out.println(response.errorBody());
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<VillageItem> call, Throwable t) {
+                    System.out.println("I failed!!:(");
+                    t.printStackTrace();
+                }
+            });
+
+
+        }
+
     }
 }

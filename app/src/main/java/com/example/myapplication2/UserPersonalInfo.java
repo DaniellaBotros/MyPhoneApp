@@ -16,17 +16,17 @@ import android.widget.Toast;
 
 
 public class UserPersonalInfo extends Fragment {
-    Spinner spinn1,spinn2;
-    String[] dist_code={" ","01","02","03"};
-    String[] phone_code={" ","010","012","011"};
-    Button to_job;
-    BasicClientBuilder client;
+    private Spinner spinn1,spinn2;
+    private String[] dist_code={" ","01","02","03"};
+    private String[] phone_code={" ","010","012","011"};
+    private Button to_job;
+    private BasicClientBuilder client;
 
-    String value="";
-    String value1="";
-    String value2="";
+    private String value="";
+    private String value1="";
+    private String value2="";
 
-    EditText etextv1,etextv2,etextv3,etextv4,etextv5,etextv6,etextv8,etextv10,etextv11,etextv12,etextv13;
+    private EditText etextv1,etextv2,etextv3,etextv4,etextv5,etextv6,etextv8,etextv10,etextv11,etextv12,etextv13;
 
 
     @Override
@@ -70,7 +70,7 @@ public class UserPersonalInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
 
-                client.BuildClientDistrictCode(dist_code[i]);
+                client.BuildClientGovernmentCode(dist_code[i]);
                 }
             }
 

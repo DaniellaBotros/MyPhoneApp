@@ -28,7 +28,7 @@ public interface ClientBuilder extends Serializable {
     public String getBuilderClientHomePhone();
     public String[] getBuilderClientEmail();
     public String[] getBuilderClientWebsite();
-    public String getBuilderClientDistrictCode();
+    public String getBuilderClientGovernmentCode();
     public String getBuilderClientCellCode();
     public int getBuilderClientNumFullTimeWorkers();
     public int getBuilderClientNumTempWorkers();
@@ -51,10 +51,10 @@ public interface ClientBuilder extends Serializable {
     public String getBuilderClientCommercialRecord();
     public String getBuilderClientIndustrialRecord();
     public String getBuilderClientTaxCard();
+    public String getBuilderClientGovernment();
     public String getBuilderClientDistrict();
-    public String getBuilderClientCenter();
     public String getBuilderClientVillage();
-    public String getBuilderClientDistrictCodeWork();
+    public String getBuilderClientGovernmentCodeWork();
     public String getBuilderClientWorkSector();
     public String getBuilderClientJobType();
     public String getBuilderClientSpeciality();
@@ -76,7 +76,7 @@ public interface ClientBuilder extends Serializable {
     public void BuildClientHomePhone(String home);
     public void BuildClientEmail(String[] email);
     public void BuildClientWebsite(String[] w);
-    public void BuildClientDistrictCode(String dc);
+    public void BuildClientGovernmentCode(String dc);
     public void BuildClientCellCode(String cc);
     public void BuildClientNumFullTimeWorkers(int n);
     public void BuildClientNumTempWorkers(int n);
@@ -99,10 +99,10 @@ public interface ClientBuilder extends Serializable {
     public void BuildClientCommercialRecord(String cr);
     public void BuildClientIndustrialRecord(String ir);
     public void BuildClientTaxCard(String tc);
-    public void BuildClientDistrict(String district);
-    public void BuildClientCenter(String c);
+    public void BuildClientGovernment(String district);
+    public void BuildClientDistrict(String c);
     public void BuildClientVillage(String v);
-    public void BuildClientDistrictCodeWork(String dcw);
+    public void BuildClientGovernmentCodeWork(String dcw);
     public void BuildClientWorkSector(String ws);
     public void BuildClientJobType(String jt);
     public void BuildClientSpeciality(String s);

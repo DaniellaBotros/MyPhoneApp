@@ -1,19 +1,19 @@
-package com.example.myapplication2.RepeatedRetroItems;
+package com.example.myapplication2.RetrofitDistrict;
+
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class RetroItem {
-
+public class DistrictItem {
     @SerializedName("List")
-    private List<RetroItemContent> list;
+    private List<DistrictContent> list;
     @SerializedName("Message")
     private String Message;
     @SerializedName("Status")
     private int Status;
 
-    public List<RetroItemContent> getList() {
+    public List<DistrictContent> getList() {
         return this.list;
     }
     public String getMessage(){

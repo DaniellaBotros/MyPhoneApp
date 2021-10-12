@@ -87,8 +87,8 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public String getBuilderClientDistrictCode() {
-        return client.getClientDistrictCode();
+    public String getBuilderClientGovernmentCode() {
+        return client.getClientGovernmentCode();
     }
 
     @Override
@@ -202,13 +202,13 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public String getBuilderClientDistrict() {
-        return client.getClientDistrict();
+    public String getBuilderClientGovernment() {
+        return client.getClientGovernment();
     }
 
     @Override
-    public String getBuilderClientCenter() {
-        return client.getClientCenter();
+    public String getBuilderClientDistrict() {
+        return client.getClientDistrict();
     }
 
     @Override
@@ -217,8 +217,8 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public String getBuilderClientDistrictCodeWork() {
-        return client.getClientDistrictCodeWork();
+    public String getBuilderClientGovernmentCodeWork() {
+        return client.getClientGovernmentCodeWork();
     }
 
     @Override
@@ -323,8 +323,8 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public void BuildClientDistrictCode(String dc) {
-        this.client.setClientDistrictCode(dc);
+    public void BuildClientGovernmentCode(String dc) {
+        this.client.setClientGovernmentCode(dc);
     }
 
     @Override
@@ -438,13 +438,13 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public void BuildClientDistrict(String district) {
-        this.client.setClientDistrict(district);
+    public void BuildClientGovernment(String Government) {
+        this.client.setClientGovernment(Government);
     }
 
     @Override
-    public void BuildClientCenter(String c) {
-        this.client.setClientCenter(c);
+    public void BuildClientDistrict(String c) {
+        this.client.setClientDistrict(c);
     }
 
     @Override
@@ -453,8 +453,8 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public void BuildClientDistrictCodeWork(String dcw) {
-        this.client.setClientDistrictCodeWork(dcw);
+    public void BuildClientGovernmentCodeWork(String dcw) {
+        this.client.setClientGovernmentCodeWork(dcw);
     }
 
     @Override
@@ -492,7 +492,7 @@ public class BasicClientBuilder implements  ClientBuilder{
     public String toString(){
         return "Client Name: "+client.getClientName()+"\n"+"User Account Type: "+client.getClientType()+"\n"+"Gender: "+client.getClientGender()+"\n"+
                 "National ID: "+client.getClientNationalID()+"\n"+"National ID Registration Date: "+client.getClientNationalIdDate()+"\n"+"Birthdate: "+client.getClientBirthdate()
-                +"District: "+client.getClientDistrict()+"\n"+"Center: "+client.getClientCenter()+"\n"+"village: "+client.getClientVillage()+"\n"+
+                +"Government: "+client.getClientGovernment()+"\n"+"District: "+client.getClientDistrict()+"\n"+"village: "+client.getClientVillage()+"\n"+
                 "Work Sector: "+client.getClientWorkSector()+'\n'+"Work Type: "+client.getClientJobType()+"\n"+"Geographic Sector: "+client.getClientGeographicSector()+"\n"+
                 "Delegate: "+client.getClientDelegate()+"\n"+"Social Status: "+client.getClientSocialStatus()+"\n"+"Education: "+client.getClientEducation()+"\n";
     }

@@ -1,4 +1,4 @@
-package com.example.myapplication2.RepeatedRetroItems;
+package com.example.myapplication2.RepeatedRetroItemsSocialStatEducation;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

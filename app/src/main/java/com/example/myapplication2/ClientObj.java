@@ -1,10 +1,5 @@
 package com.example.myapplication2;
 
-import android.icu.text.SimpleDateFormat;
-
-import java.util.Calendar;
-import java.util.Locale;
-
 enum Gender{
     female{ @Override public String toString() { return "Female"; } }
     , male{ @Override public String toString() { return "Male"; } }
@@ -30,7 +25,7 @@ private String phone_home;
 private String[] email;
 private String[] websites;
 //// may change the bottom option's data type
-private String dist_code;
+private String gov_code;
 private String cell_code;
 private String fax;
 private String admission_date;
@@ -62,10 +57,10 @@ private String admission_date;
     private String industrial_record;
     private String tax_card;
     //// may change the bottom option's data type
+    private String government;
     private String district;
-    private String center;
     private String village;
-    private String district_code_work;
+    private String government_code_work;
     private String work_sector;
     private String job_type;
     private String speciality;
@@ -79,15 +74,15 @@ public ClientObj(){
 //Empty Constructor
 }
 
-public ClientObj(Gender gender,UserType user_type,String name,String name_lang_other, String fax,String admission_date,
-                 String national_id,String b_date,String national_id_date,String[] address,String postal,
-                 String cell,String phone_home,String[] email,String[] websites,String dist_code,String cell_code,
-                 int num_of_full_time_workers,int num_of_temp_workers,String active_account_num,String account_Branch,
-                 String notice,String delegate,String socialStat,String electronic_wallet,String geographic_sector,
-                 String registration_date, String education,String jname, String[] address_job, Boolean is_from_city,
+public ClientObj(Gender gender, UserType user_type, String name, String name_lang_other, String fax, String admission_date,
+                 String national_id, String b_date, String national_id_date, String[] address, String postal,
+                 String cell, String phone_home, String[] email, String[] websites, String goverment_code, String cell_code,
+                 int num_of_full_time_workers, int num_of_temp_workers, String active_account_num, String account_Branch,
+                 String notice, String delegate, String socialStat, String electronic_wallet, String geographic_sector,
+                 String registration_date, String education, String jname, String[] address_job, Boolean is_from_city,
                  String work_email, String work_Phone, String license_num,
                  String license_reg_Date, String commercial_record, String industrial_record, String tax_card,
-                 String district, String center, String village, String district_code, String work_sector, String job_type, String speciality,String licensing_address){
+                 String government, String district, String village, String government_code_work, String work_sector, String job_type, String speciality, String licensing_address){
 
 this.gender=gender;
 this.user_type=user_type;
@@ -102,7 +97,7 @@ this.cell=cell;
 this.phone_home=phone_home;
 this.email=email;
 this.websites=websites;
-this.dist_code=dist_code;
+this.gov_code =goverment_code;
 this.cell_code=cell_code;
 this.fax=fax;
 this.admission_date=admission_date;
@@ -130,9 +125,9 @@ this.admission_date=admission_date;
     this.commercial_record=commercial_record;
     this.industrial_record=industrial_record;
     this.tax_card=tax_card;
-    this.district=district;
-    this.district_code_work =district_code;
-    this.center=center;
+    this.government = government;
+    this.government_code_work =government_code_work;
+    this.district = district;
     this.village=village;
     this.work_sector=work_sector;
     this.job_type=job_type;
@@ -141,9 +136,9 @@ this.admission_date=admission_date;
 
 
 }
-public ClientObj(String name, UserType user_type,Gender gender, String national_id,String national_id_date,String b_date,
-                 String geographic_sector, String delegate, String registration_date,String social_stat, String education,
-                 String district,String center, String village, String work_sector, String job_type){
+public ClientObj(String name, UserType user_type, Gender gender, String national_id, String national_id_date, String b_date,
+                 String geographic_sector, String delegate, String registration_date, String social_stat, String education,
+                 String government, String district, String village, String work_sector, String job_type){
 this.name=name;
 this.user_type=user_type;
 this.gender=gender;
@@ -157,8 +152,8 @@ this.b_date=b_date;
     this.social_stat=social_stat;
     this.education=education;
 
-    this.district=district;
-    this.center=center;
+    this.government = government;
+    this.district = district;
     this.village=village;
     this.work_sector=work_sector;
     this.job_type=job_type;
@@ -237,8 +232,8 @@ this.b_date=b_date;
     }
 
     @Override
-    public void setClientDistrictCode(String dc) {
-        this.dist_code=dc;
+    public void setClientGovernmentCode(String dc) {
+        this.gov_code =dc;
     }
 
     @Override
@@ -352,13 +347,13 @@ this.b_date=b_date;
     }
 
     @Override
-    public void setClientDistrict(String district) {
-        this.district=district;
+    public void setClientGovernment(String government) {
+        this.government = government;
     }
 
     @Override
-    public void setClientCenter(String c) {
-        this.center=c;
+    public void setClientDistrict(String c) {
+        this.district =c;
     }
 
     @Override
@@ -367,8 +362,8 @@ this.b_date=b_date;
     }
 
     @Override
-    public void setClientDistrictCodeWork(String dcw) {
-        this.district_code_work=dcw;
+    public void setClientGovernmentCodeWork(String dcw) {
+        this.government_code_work =dcw;
     }
 
     @Override
@@ -474,8 +469,8 @@ this.b_date=b_date;
     }
 
     @Override
-    public String getClientDistrictCode() {
-        return dist_code;
+    public String getClientGovernmentCode() {
+        return gov_code;
     }
 
     @Override
@@ -589,13 +584,13 @@ this.b_date=b_date;
     }
 
     @Override
-    public String getClientDistrict() {
-        return district;
+    public String getClientGovernment() {
+        return government;
     }
 
     @Override
-    public String getClientCenter() {
-        return center;
+    public String getClientDistrict() {
+        return district;
     }
 
     @Override
@@ -604,8 +599,8 @@ this.b_date=b_date;
     }
 
     @Override
-    public String getClientDistrictCodeWork() {
-        return district_code_work;
+    public String getClientGovernmentCodeWork() {
+        return government_code_work;
     }
 
     @Override

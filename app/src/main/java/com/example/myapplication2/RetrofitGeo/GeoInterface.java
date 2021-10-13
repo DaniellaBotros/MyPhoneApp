@@ -10,6 +10,7 @@ import retrofit2.http.Query;
 public interface GeoInterface {
     @GET("GetAllGeoAreas")
     Call<GeoItem> getAllGeoAreas(@Header("Authorization") String credentials);
+
     @GET("GetGeoAreasByBranchId/{id}")
     Call<GeoItem> getGeoAreasByBranchId(@Header("Authorization") String credentials, @Path("id") int id);
 }

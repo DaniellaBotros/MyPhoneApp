@@ -16,6 +16,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.myapplication2.BusinessActionType.BusinessActionType;
+import com.example.myapplication2.BusinessActionType.BusinessActionTypeContent;
+import com.example.myapplication2.BusinessActionType.BusinessActionTypeInterface;
+import com.example.myapplication2.BusinessDevision.BusinessDevision;
+import com.example.myapplication2.BusinessDevision.BusinessDevisionContent;
+import com.example.myapplication2.BusinessDevision.BusinessDevisionInterface;
 import com.example.myapplication2.RetrofitDistrict.DistrictContent;
 import com.example.myapplication2.RetrofitDistrict.DistrictInterface;
 import com.example.myapplication2.RetrofitDistrict.DistrictItem;
@@ -46,8 +52,11 @@ public class UserJobInfo extends Fragment {
     private String[] village;
     private String[] is_from_city={" حضري/ريفي","حضري","ريفي"};
     private String[] government_code;
-    private String[] work_sector= {"*","لا ينطبق","تجاري","صناعي"};
-    private String[] work_type= {"*","لا ينطبق","حكومي","خاص"};
+    Boolean work_sector_picked=false;
+    private String[] work_sector_test;
+    private BusinessDevisionContent[] work_sector;
+    private String work_sector_code;
+    private String[] work_type;
     private String[] speciality= {" ","طب","هندسة","تجارة"};
     private String value="";
     private String value1="";
@@ -127,9 +136,9 @@ public class UserJobInfo extends Fragment {
         final Runnable r1 = new Runnable() {
             public void run() {
 
-                DistSpinnerAPI();
 
                 handler1.postDelayed(this, 1000);
+                DistSpinnerAPI();
             }
         };
 
@@ -143,9 +152,9 @@ public class UserJobInfo extends Fragment {
         final Runnable r = new Runnable() {
             public void run() {
 
-                VillageSpinnerAPI();
 
                 handler.postDelayed(this, 1000);
+                VillageSpinnerAPI();
             }
         };
 
@@ -162,10 +171,10 @@ public class UserJobInfo extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if(i!=0){
-                    String value1 = is_from_city[i];
+                    String value22 = is_from_city[i];
                             //String.valueOf(adapterView.getItemAtPosition(i));
                     Boolean flag=false;
-                    if(value1.equals("حضري")){
+                    if(value22.equals("حضري")){
                         flag=true;
                     }
 
@@ -180,97 +189,28 @@ public class UserJobInfo extends Fragment {
         });
 
         //Custom Spinner government Code
-        ///////Retrofit//////////////////////////////////////////////////////////////////////
 
-
-        GovernmentInterface retroClient4=retrofit.create(GovernmentInterface.class);
-        Call<GovernmentItem> call4=retroClient4.getAllGovernments(auth);
-
-        call4.enqueue(new Callback<GovernmentItem>() {
-
-            @Override
-            public void onResponse(Call<GovernmentItem>  call, Response<GovernmentItem> response) {
-                if(response.isSuccessful()) {
-                    GovernmentItem changesList = response.body();
-
-                    //System.out.println("It worked !!:)");
-                    //System.out.println(changesList);
-                    List<GovernmentContent> l=changesList.getList();
-                    government_code =new String[l.size()+1];
-                    government_code[0]="أختر كود المحافظة";
-                    for(int i=0;i<l.size();i++){
-                        government_code[i+1]=l.get(i).getGovernmentCode();
-                    }
-
-                    ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getContext(),
-                            android.R.layout.simple_spinner_item, government_code);
-                    adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    s5.setAdapter(adapter4);
-                    s5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            if(i!=0){
-
-                                client.BuildClientGovernmentCodeWork( government_code[i]);
-
-                            }
-                        }
-
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-
-                        }
-                    });
-
-                } else {
-                    System.out.println(response.errorBody());
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call <GovernmentItem> call, Throwable t) {
-                System.out.println("I failed!!:(");
-                t.printStackTrace();
-            }
-        });
-
+       GovSpinnerAPI();
 
         //Custom Spinner Work sector
-        ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,work_sector);
-        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s6.setAdapter(adapter5);
-        s6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
-                    value3=work_sector[i];
-                    client.BuildClientWorkSector(work_sector[i]);
 
-                }
-            }
+        BusinessDevisionAPI();
 
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         //custom Spinner Work Type
-        ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,work_type);
-        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s7.setAdapter(adapter6);
-        s7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
-                    value4=work_type[i];
-                    client.BuildClientJobType(work_type[i]);
+        Handler handler3 = new Handler();
 
-                }
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
+        final Runnable r3 = new Runnable() {
+            public void run() {
+                handler3.postDelayed(this, 1000);
+                BusinessActivityTypeAPI();
 
             }
-        });
+        };
+
+       handler1.postDelayed(r3, 1000);
+
+
 
         //Custom Spinner Speciality
         ArrayAdapter<String> adapter7 = new ArrayAdapter<String>(getContext(),
@@ -372,6 +312,7 @@ public class UserJobInfo extends Fragment {
                     s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                             if(i!=0){
+                                value=Gov_test[i];
                                 gcode=governments[i-1].getGovernmentCode();
                                 client.BuildClientGovernment(Gov_test[i]);
                                 gov_picked=true;
@@ -428,8 +369,10 @@ public class UserJobInfo extends Fragment {
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                 if (i != 0) {
                                     dcode = districts[i - 1].getDistrictCode();
+                                    value1=Dist_test[i];
                                     client.BuildClientDistrict(Dist_test[i]);
                                     dist_picked=true;
+                                    gov_picked=false;
                                 }
                             }
 
@@ -486,6 +429,7 @@ public class UserJobInfo extends Fragment {
                                 if (i != 0) {
                                     value2 = village[i];
                                     client.BuildClientVillage(village[i]);
+                                    dist_picked=false;
 
                                 }
                             }
@@ -513,4 +457,127 @@ public class UserJobInfo extends Fragment {
         }
 
     }
+
+    public void BusinessDevisionAPI(){
+
+        BusinessDevisionInterface retroClient=retrofit.create(BusinessDevisionInterface.class);
+        Call<BusinessDevision> call=retroClient.getAllBusinessDivision(auth);
+
+        call.enqueue(new Callback<BusinessDevision>() {
+
+            @Override
+            public void onResponse(Call<BusinessDevision>  call, Response<BusinessDevision> response) {
+                if(response.isSuccessful()) {
+                    BusinessDevision changesList = response.body();
+
+                    //System.out.println("It worked !!:)");
+                    //System.out.println(changesList);
+                    List<BusinessDevisionContent> l=changesList.getList();
+                    work_sector=new BusinessDevisionContent[l.size()];
+                    work_sector_test=new String[l.size()+1];
+                    work_sector_test[0]="أختر قطاع العمل*";
+                    for(int i=0;i<l.size();i++){
+                        work_sector[i]=l.get(i);
+                        work_sector_test[i+1]=l.get(i).getBusinessDivisionName();
+                    }
+                    ArrayAdapter<String> adapter5 = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_spinner_item,work_sector_test);
+                    adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    s6.setAdapter(adapter5);
+                    s6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            if(i!=0){
+                                value3=work_sector_test[i];
+                                work_sector_code=work_sector[i-1].getBusinessDivisionCode();
+                                work_sector_picked=true;
+                                client.BuildClientWorkSector(work_sector_test[i]);
+
+
+                            }
+                        }
+
+                        public void onNothingSelected(AdapterView<?> adapterView) {
+
+                        }
+                    });
+
+
+                } else {
+                    System.out.println(response.errorBody());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call <BusinessDevision> call, Throwable t) {
+                System.out.println("I failed!!:(");
+                t.printStackTrace();
+            }
+        });
+
+
+
+
+    }
+
+    public void BusinessActivityTypeAPI(){
+        if(work_sector_picked) {
+            BusinessActionTypeInterface retroClient=retrofit.create(BusinessActionTypeInterface.class);
+            Call<BusinessActionType> call=retroClient.getBusinessActivityTypeByDivId(auth,Integer.parseInt(work_sector_code));
+
+            call.enqueue(new Callback<BusinessActionType>() {
+
+                @Override
+                public void onResponse(Call<BusinessActionType>  call, Response<BusinessActionType> response) {
+                    if(response.isSuccessful()) {
+                        BusinessActionType changesList = response.body();
+
+                        //System.out.println("It worked !!:)");
+                        System.out.println(changesList);
+                        List<BusinessActionTypeContent> l=changesList.getList();
+                        work_type=new String[l.size()+1];
+                        work_type[0]="أختر نوع العمل*";
+                        for(int i=0;i<l.size();i++){
+                            work_type[i+1]=l.get(i).getBusinessActivityTypeName();
+                        }
+                        ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(getContext(),
+                                android.R.layout.simple_spinner_item, work_type);
+                        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        s7.setAdapter(adapter6);
+                        s7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                if (i != 0) {
+                                    value4 = work_type[i];
+                                    client.BuildClientJobType(work_type[i]);
+                                    work_sector_picked=false;
+
+                                }
+                            }
+
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+
+
+
+                    } else {
+                        System.out.println(response.errorBody());
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call <BusinessActionType> call, Throwable t) {
+                    System.out.println("I failed!!:(");
+                    t.printStackTrace();
+                }
+            });
+
+        }
+    }
+
+
+
+
 }

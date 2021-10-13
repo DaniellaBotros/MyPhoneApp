@@ -17,7 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
+import com.example.myapplication2.Officer.Officer;
+import com.example.myapplication2.Officer.OfficerContent;
+import com.example.myapplication2.Officer.OfficerInterface;
 import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItem;
 import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemContent;
 import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemInterface;
@@ -36,7 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class UserAdditionalInfo extends Fragment {
     private Spinner spin_geo,spin_deleg,spin_social_stat,spin_edu;
     private String[] geo;
-    private String[] delegates={"أختر المندوب*","داليا محمد","رفعة اسماعيل","نادين عمر","اندرو رأفت"};
+    private String[] delegates;
     private String[] social_stat;
     private String[] education;
     private Button btn,btn_submit;
@@ -154,26 +156,9 @@ public class UserAdditionalInfo extends Fragment {
 
 
         //Custom Spinner deleg
-
         spin_deleg = view.findViewById(R.id.spin2);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item,delegates);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin_deleg.setAdapter(adapter1);
-        spin_deleg.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0){
-                    String value11 = String.valueOf(adapterView.getItemAtPosition(i));
-                    value1=value11;
-                    client.BuildClientDelegate(value11);
+        officerSpinnerAPI();
 
-                }
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
 /////////////////////////////////////////////////////////Custom Spinner Social Status
         spin_social_stat = view.findViewById(R.id.spin3);
@@ -354,7 +339,63 @@ public class UserAdditionalInfo extends Fragment {
 
         return view;
     }
+public void officerSpinnerAPI(){
 
+    OfficerInterface retroClient=retrofit.create(OfficerInterface.class);
+    Call<Officer> call=retroClient.getAllOfficers(auth);
+
+    call.enqueue(new Callback<Officer>() {
+
+        @Override
+        public void onResponse(Call<Officer>  call, Response<Officer> response) {
+            if(response.isSuccessful()) {
+                Officer changesList = response.body();
+
+                //System.out.println("It worked !!:)");
+                System.out.println(changesList);
+                List<OfficerContent> l=changesList.getList();
+                delegates=new String[l.size()+1];
+                delegates[0]="أختر المندوب*";
+                for(int i=0;i<l.size();i++){
+                    delegates[i+1]=l.get(i).getOfficerName();
+
+                }
+
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_spinner_item,delegates);
+                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spin_deleg.setAdapter(adapter1);
+                spin_deleg.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        if(i!=0){
+                            String value11 = String.valueOf(adapterView.getItemAtPosition(i));
+                            value1=value11;
+                            client.BuildClientDelegate(value11);
+
+                        }
+                    }
+
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+
+
+
+            } else {
+                System.out.println(response.errorBody());
+
+            }
+        }
+
+        @Override
+        public void onFailure(Call <Officer> call, Throwable t) {
+            System.out.println("I failed!!:(");
+            t.printStackTrace();
+        }
+    });
+}
 
 
 

@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 
+import com.example.myapplication2.Officer.Officer;
+import com.example.myapplication2.Officer.OfficerContent;
+import com.example.myapplication2.Officer.OfficerInterface;
+import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemContent;
 import com.example.myapplication2.RetrofitGeo.GeoContent;
 import com.example.myapplication2.RetrofitGeo.GeoInterface;
 import com.example.myapplication2.RetrofitGeo.GeoItem;
@@ -36,22 +40,27 @@ public class MainActivity extends AppCompatActivity {
 
         /*///////Retrofit//////////////////////////////////////////////////////////////////////
 
-        GeoInterface retroClient=retrofit.create(GeoInterface.class);
-        Call<GeoItem> call=retroClient.getGeoAreasByBranchId(auth,1);
 
-        call.enqueue(new Callback<GeoItem>() {
+
+
+
+        OfficerInterface retroClient=retrofit.create(OfficerInterface.class);
+        Call<Officer> call=retroClient.getAllOfficers(auth);
+
+        call.enqueue(new Callback<Officer>() {
 
             @Override
-            public void onResponse(Call<GeoItem>  call, Response<GeoItem> response) {
+            public void onResponse(Call<Officer>  call, Response<Officer> response) {
                 if(response.isSuccessful()) {
-                    GeoItem changesList = response.body();
+                    Officer changesList = response.body();
 
                     //System.out.println("It worked !!:)");
                     System.out.println(changesList);
-                    List<GeoContent> l=changesList.getList();
+                    List<OfficerContent> l=changesList.getList();
                     arr=new String[l.size()];
                     for(int i=0;i<l.size();i++){
-                        arr[i]=l.get(i).getGeoAreaName();
+                        arr[i]=l.get(i).getOfficerName();
+
                     }
 
 
@@ -63,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call <GeoItem> call, Throwable t) {
+            public void onFailure(Call <Officer> call, Throwable t) {
                 System.out.println("I failed!!:(");
                 t.printStackTrace();
             }

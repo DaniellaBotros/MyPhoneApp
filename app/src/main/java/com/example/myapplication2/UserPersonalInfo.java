@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 public class UserPersonalInfo extends Fragment {
     private Spinner spinn1,spinn2;
-    private String[] dist_code={" ","01","02","03"};
-    private String[] phone_code={" ","010","012","011"};
+    private String[] dist_code={" أختر كود المحافظة","01","02","03"};
+    private String[] phone_code={" أختر كود المحمول","010","012","011"};
     private Button to_job;
     private BasicClientBuilder client;
 

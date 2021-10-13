@@ -1,19 +1,19 @@
-package com.example.myapplication2.RepeatedRetroItemsSocialStatEducation;
+package com.example.myapplication2.Officer;
 
+import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemContent;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class RetroItem<T> {
-
+public class Officer {
     @SerializedName("List")
-    private List<RetroItemContent> list;
+    private List<OfficerContent> list;
     @SerializedName("Message")
     private String Message;
     @SerializedName("Status")
     private int Status;
 
-    public List<RetroItemContent> getList() {
+    public List<OfficerContent> getList() {
         return this.list;
     }
     public String getMessage(){

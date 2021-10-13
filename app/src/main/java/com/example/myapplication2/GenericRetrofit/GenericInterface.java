@@ -38,4 +38,13 @@ public interface GenericInterface {
 
     @GET("GetAllVillagesByDistId/{id}")
     Call<GenericItem<VillageContent>>getAllVillagesByDistId(@Header("Authorization") String credentials, @Path("id") int id);
+
+    @GET("GetAllBusinessActivityTypes")
+    Call<GenericItem<BusinessActionTypeContent>>getAllBusinessActivityTypes(@Header("Authorization") String credentials);
+
+    @GET("GetBusinessActivityTypeByDivId/{id}")
+    Call<GenericItem<BusinessActionTypeContent>> getBusinessActivityTypeByDivId(@Header("Authorization") String credentials, @Path("id") int id);
+
+    @GET("GetAllBusinessDivision")
+    Call<GenericItem<BusinessDevisionContent>> getAllBusinessDivision(@Header("Authorization") String credentials);
 }

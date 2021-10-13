@@ -16,12 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.myapplication2.BusinessActionType.BusinessActionType;
-import com.example.myapplication2.BusinessActionType.BusinessActionTypeContent;
-import com.example.myapplication2.BusinessActionType.BusinessActionTypeInterface;
-import com.example.myapplication2.BusinessDevision.BusinessDevision;
-import com.example.myapplication2.BusinessDevision.BusinessDevisionContent;
-import com.example.myapplication2.BusinessDevision.BusinessDevisionInterface;
+
+import com.example.myapplication2.GenericRetrofit.BusinessActionTypeContent;
+import com.example.myapplication2.GenericRetrofit.BusinessDevisionContent;
 import com.example.myapplication2.GenericRetrofit.DistrictContent;
 import com.example.myapplication2.GenericRetrofit.GenericInterface;
 import com.example.myapplication2.GenericRetrofit.GenericItem;
@@ -456,15 +453,15 @@ public class UserJobInfo extends Fragment {
 
     public void BusinessDevisionAPI(){
 
-        BusinessDevisionInterface retroClient=retrofit.create(BusinessDevisionInterface.class);
-        Call<BusinessDevision> call=retroClient.getAllBusinessDivision(auth);
+        GenericInterface retroClient=retrofit.create(GenericInterface.class);
+        Call<GenericItem<BusinessDevisionContent>> call=retroClient.getAllBusinessDivision(auth);
 
-        call.enqueue(new Callback<BusinessDevision>() {
+        call.enqueue(new Callback<GenericItem<BusinessDevisionContent>>() {
 
             @Override
-            public void onResponse(Call<BusinessDevision>  call, Response<BusinessDevision> response) {
+            public void onResponse(Call<GenericItem<BusinessDevisionContent>>  call, Response<GenericItem<BusinessDevisionContent>> response) {
                 if(response.isSuccessful()) {
-                    BusinessDevision changesList = response.body();
+                    GenericItem changesList = response.body();
 
                     //System.out.println("It worked !!:)");
                     //System.out.println(changesList);
@@ -505,7 +502,7 @@ public class UserJobInfo extends Fragment {
             }
 
             @Override
-            public void onFailure(Call <BusinessDevision> call, Throwable t) {
+            public void onFailure(Call <GenericItem<BusinessDevisionContent>> call, Throwable t) {
                 System.out.println("I failed!!:(");
                 t.printStackTrace();
             }
@@ -518,15 +515,15 @@ public class UserJobInfo extends Fragment {
 
     public void BusinessActivityTypeAPI(){
         if(work_sector_picked) {
-            BusinessActionTypeInterface retroClient=retrofit.create(BusinessActionTypeInterface.class);
-            Call<BusinessActionType> call=retroClient.getBusinessActivityTypeByDivId(auth,Integer.parseInt(work_sector_code));
+            GenericInterface retroClient=retrofit.create(GenericInterface.class);
+            Call<GenericItem<BusinessActionTypeContent>> call=retroClient.getBusinessActivityTypeByDivId(auth,Integer.parseInt(work_sector_code));
 
-            call.enqueue(new Callback<BusinessActionType>() {
+            call.enqueue(new Callback<GenericItem<BusinessActionTypeContent>>() {
 
                 @Override
-                public void onResponse(Call<BusinessActionType>  call, Response<BusinessActionType> response) {
+                public void onResponse(Call<GenericItem<BusinessActionTypeContent>> call, Response<GenericItem<BusinessActionTypeContent>> response) {
                     if(response.isSuccessful()) {
-                        BusinessActionType changesList = response.body();
+                        GenericItem changesList = response.body();
 
                         //System.out.println("It worked !!:)");
                         System.out.println(changesList);
@@ -564,7 +561,7 @@ public class UserJobInfo extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call <BusinessActionType> call, Throwable t) {
+                public void onFailure(Call <GenericItem<BusinessActionTypeContent>> call, Throwable t) {
                     System.out.println("I failed!!:(");
                     t.printStackTrace();
                 }

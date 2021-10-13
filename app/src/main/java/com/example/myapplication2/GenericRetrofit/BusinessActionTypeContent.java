@@ -1,4 +1,4 @@
-package com.example.myapplication2.BusinessActionType;
+package com.example.myapplication2.GenericRetrofit;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -14,7 +14,7 @@ public class BusinessActionTypeContent {
     @SerializedName("OrgCode")
     private String OrgCode;
 
-    public BusinessActionTypeContent(String BusinessActivityTypeCode,String BusinessActivityTypeName,String BusinessDivisionCode,String IsActive,String OrgCode){
+    public BusinessActionTypeContent(String BusinessActivityTypeCode, String BusinessActivityTypeName, String BusinessDivisionCode, String IsActive, String OrgCode){
         this.BusinessActivityTypeCode=BusinessActivityTypeCode;
         this.BusinessActivityTypeName=BusinessActivityTypeName;
         this.BusinessDivisionCode=BusinessDivisionCode;

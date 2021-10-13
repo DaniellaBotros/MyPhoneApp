@@ -1,5 +1,7 @@
 package com.example.myapplication2;
 
+import com.google.gson.annotations.SerializedName;
+
 enum Gender{
     female{ @Override public String toString() { return "Female"; } }
     , male{ @Override public String toString() { return "Male"; } }
@@ -10,6 +12,7 @@ enum UserType{
     , groupMember{ @Override public String toString() { return "Member Of A Group"; } }
 }
 public class ClientObj implements ClientPlanner {
+
 private String id;
 private Gender gender;
 private UserType user_type;

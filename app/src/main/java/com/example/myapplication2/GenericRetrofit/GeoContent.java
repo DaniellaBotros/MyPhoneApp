@@ -1,4 +1,4 @@
-package com.example.myapplication2.RetrofitGeo;
+package com.example.myapplication2.GenericRetrofit;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -14,7 +14,7 @@ public class GeoContent {
     @SerializedName("OrgCode")
     private String OrgCode;
 
-    public GeoContent(String BranchCode,String GeoAreaCode,String GeoAreaName,String GeoBoundaries,String OrgCode){
+    public GeoContent(String BranchCode, String GeoAreaCode, String GeoAreaName, String GeoBoundaries, String OrgCode){
         this.BranchCode=BranchCode;
         this.GeoAreaCode=GeoAreaCode;
         this.GeoAreaName=GeoAreaName;

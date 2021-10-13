@@ -17,15 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.myapplication2.Officer.Officer;
-import com.example.myapplication2.Officer.OfficerContent;
-import com.example.myapplication2.Officer.OfficerInterface;
-import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItem;
-import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemContent;
-import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemInterface;
-import com.example.myapplication2.RetrofitGeo.GeoContent;
-import com.example.myapplication2.RetrofitGeo.GeoInterface;
-import com.example.myapplication2.RetrofitGeo.GeoItem;
+import com.example.myapplication2.GenericRetrofit.GenericInterface;
+import com.example.myapplication2.GenericRetrofit.GenericItem;
+import com.example.myapplication2.GenericRetrofit.GenericItemContent;
+import com.example.myapplication2.GenericRetrofit.GeoContent;
+import com.example.myapplication2.GenericRetrofit.OfficerContent;
+
+
 
 import java.util.List;
 
@@ -101,15 +99,15 @@ public class UserAdditionalInfo extends Fragment {
 
         ///////Retrofit//////////////////////////////////////////////////////////////////////
 
-        GeoInterface retroClienta =retrofit.create(GeoInterface.class);
-        Call<GeoItem> calla=retroClienta.getAllGeoAreas(auth);
+        GenericInterface retroClienta =retrofit.create(GenericInterface.class);
+        Call<GenericItem<GeoContent>> calla=retroClienta.getAllGeoAreas(auth);
 
-        calla.enqueue(new Callback<GeoItem>() {
+        calla.enqueue(new Callback<GenericItem<GeoContent>>() {
 
             @Override
-            public void onResponse(Call<GeoItem>  call, Response<GeoItem> response) {
+            public void onResponse(Call<GenericItem<GeoContent>>  call, Response<GenericItem<GeoContent>> response) {
                 if(response.isSuccessful()) {
-                    GeoItem changesList = response.body();
+                    GenericItem changesList = response.body();
 
                     //System.out.println("It worked !!:)");
                     //System.out.println(changesList);
@@ -146,7 +144,7 @@ public class UserAdditionalInfo extends Fragment {
             }
 
             @Override
-            public void onFailure(Call <GeoItem> call, Throwable t) {
+            public void onFailure(Call<GenericItem<GeoContent>> call, Throwable t) {
                 System.out.println("I failed!!:(");
                 t.printStackTrace();
             }
@@ -164,18 +162,18 @@ public class UserAdditionalInfo extends Fragment {
         spin_social_stat = view.findViewById(R.id.spin3);
 
         ///////Retrofit//////////////////////////////////////////////////////////////////////
-        RetroItemInterface retroClient=retrofit.create(RetroItemInterface.class);
-        Call<RetroItem> call=retroClient.getAllMartialStatus(auth);
+        GenericInterface retroClient=retrofit.create(GenericInterface.class);
+        Call<GenericItem<GenericItemContent>> call=retroClient.getAllMartialStatus(auth);
 
-        call.enqueue(new Callback<RetroItem>() {
+        call.enqueue(new Callback<GenericItem<GenericItemContent>>() {
             @Override
-            public void onResponse(Call<RetroItem> call, Response<RetroItem> response) {
+            public void onResponse(Call<GenericItem<GenericItemContent>> call, Response<GenericItem<GenericItemContent>> response) {
                 if(response.isSuccessful()) {
-                    RetroItem changesList = response.body();
+                    GenericItem changesList = response.body();
 
                     //System.out.println("It worked !!:)");
                     //System.out.println(changesList);
-                    List<RetroItemContent> l=changesList.getList();
+                    List<GenericItemContent> l=changesList.getList();
                     social_stat=new String[l.size()+1];
                     social_stat[0]="أختر الحالة الاجتماعية*";
                     for(int i=0;i<l.size();i++){
@@ -208,7 +206,7 @@ public class UserAdditionalInfo extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<RetroItem> call, Throwable t) {
+            public void onFailure(Call<GenericItem<GenericItemContent>> call, Throwable t) {
                 System.out.println("I failed!!:(");
                 t.printStackTrace();
             }
@@ -221,17 +219,17 @@ public class UserAdditionalInfo extends Fragment {
         spin_edu = view.findViewById(R.id.spin4);
 ///////Retrofit//////////////////////////////////////////////////////////////////////
 
-        RetroItemInterface retroClient1 =retrofit.create(RetroItemInterface.class);
-        Call<RetroItem> call1=retroClient.getAllEducation(auth);
-        call1.enqueue(new Callback<RetroItem>() {
+        GenericInterface retroClient1 =retrofit.create(GenericInterface.class);
+        Call<GenericItem<GenericItemContent>> call1=retroClient.getAllEducation(auth);
+        call1.enqueue(new Callback<GenericItem<GenericItemContent>>() {
             @Override
-            public void onResponse(Call<RetroItem> call, Response<RetroItem> response) {
+            public void onResponse(Call<GenericItem<GenericItemContent>> call, Response<GenericItem<GenericItemContent>> response) {
                 if(response.isSuccessful()) {
-                    RetroItem changesList = response.body();
+                    GenericItem changesList = response.body();
 
                     //System.out.println("It worked !!:)");
                     //System.out.println(changesList);
-                    List<RetroItemContent> l=changesList.getList();
+                    List<GenericItemContent> l=changesList.getList();
                     education=new String[l.size()+1];
                     education[0]="أختر التعليم*";
                     for(int i=0;i<l.size();i++){
@@ -263,7 +261,7 @@ public class UserAdditionalInfo extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<RetroItem> call, Throwable t) {
+            public void onFailure(Call<GenericItem<GenericItemContent>> call, Throwable t) {
                 System.out.println("I failed!!:(");
                 t.printStackTrace();
             }
@@ -341,15 +339,15 @@ public class UserAdditionalInfo extends Fragment {
     }
 public void officerSpinnerAPI(){
 
-    OfficerInterface retroClient=retrofit.create(OfficerInterface.class);
-    Call<Officer> call=retroClient.getAllOfficers(auth);
+    GenericInterface retroClient=retrofit.create(GenericInterface.class);
+    Call<GenericItem<OfficerContent>> call=retroClient.getAllOfficers(auth);
 
-    call.enqueue(new Callback<Officer>() {
+    call.enqueue(new Callback<GenericItem<OfficerContent>>() {
 
         @Override
-        public void onResponse(Call<Officer>  call, Response<Officer> response) {
+        public void onResponse(Call<GenericItem<OfficerContent>>  call, Response<GenericItem<OfficerContent>> response) {
             if(response.isSuccessful()) {
-                Officer changesList = response.body();
+                GenericItem changesList = response.body();
 
                 //System.out.println("It worked !!:)");
                 System.out.println(changesList);
@@ -390,7 +388,7 @@ public void officerSpinnerAPI(){
         }
 
         @Override
-        public void onFailure(Call <Officer> call, Throwable t) {
+        public void onFailure(Call <GenericItem<OfficerContent>> call, Throwable t) {
             System.out.println("I failed!!:(");
             t.printStackTrace();
         }

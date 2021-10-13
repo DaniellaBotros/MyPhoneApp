@@ -1,19 +1,18 @@
-package com.example.myapplication2.RetrofitDistrict;
-
+package com.example.myapplication2.GenericRetrofit;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class DistrictItem {
+public class GenericItem<T>{
     @SerializedName("List")
-    private List<DistrictContent> list;
+    private List<T> list;
     @SerializedName("Message")
     private String Message;
     @SerializedName("Status")
     private int Status;
 
-    public List<DistrictContent> getList() {
+    public List<T> getList() {
         return this.list;
     }
     public String getMessage(){
@@ -25,9 +24,9 @@ public class DistrictItem {
 
     @Override
     public String toString(){
-        String val="Status: "+this.Status+"\n"+ "Message: "+this.Message+"\n"+"List Content:{ "+"\n";
+        String val="Status: "+this.Status+"\n"+ "Message: "+this.Message+"\n"+"List Content: "+this.list.size()+"\n";
         for(int i=0;i<this.list.size();i++){
-            val=val+list.get(i);
+            val=val+this.list.get(i);
         }
         val=val+"\t"+"}";
         return val;

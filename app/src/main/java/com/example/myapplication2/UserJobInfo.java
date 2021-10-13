@@ -22,16 +22,12 @@ import com.example.myapplication2.BusinessActionType.BusinessActionTypeInterface
 import com.example.myapplication2.BusinessDevision.BusinessDevision;
 import com.example.myapplication2.BusinessDevision.BusinessDevisionContent;
 import com.example.myapplication2.BusinessDevision.BusinessDevisionInterface;
-import com.example.myapplication2.RetrofitDistrict.DistrictContent;
-import com.example.myapplication2.RetrofitDistrict.DistrictInterface;
-import com.example.myapplication2.RetrofitDistrict.DistrictItem;
-import com.example.myapplication2.RetrofitGeo.GeoContent;
-import com.example.myapplication2.RetrofitGoverment.GovernmentContent;
-import com.example.myapplication2.RetrofitGoverment.GovernmentInterface;
-import com.example.myapplication2.RetrofitGoverment.GovernmentItem;
-import com.example.myapplication2.RetrofitVillage.VillageContent;
-import com.example.myapplication2.RetrofitVillage.VillageInterface;
-import com.example.myapplication2.RetrofitVillage.VillageItem;
+import com.example.myapplication2.GenericRetrofit.DistrictContent;
+import com.example.myapplication2.GenericRetrofit.GenericInterface;
+import com.example.myapplication2.GenericRetrofit.GenericItem;
+import com.example.myapplication2.GenericRetrofit.GovernmentContent;
+import com.example.myapplication2.GenericRetrofit.VillageContent;
+
 
 import java.util.List;
 
@@ -284,16 +280,16 @@ public class UserJobInfo extends Fragment {
     }
     public void GovSpinnerAPI()
     {
-        GovernmentInterface retroClient=retrofit.create(GovernmentInterface.class);
-        Call<GovernmentItem> call=retroClient.getAllGovernments(auth);
+        GenericInterface retroClient=retrofit.create(GenericInterface.class);
+        Call<GenericItem<GovernmentContent>> call=retroClient.getAllGovernments(auth);
 
-        call.enqueue(new Callback<GovernmentItem>() {
+        call.enqueue(new Callback<GenericItem<GovernmentContent>>() {
 
 
             @Override
-            public void onResponse(Call<GovernmentItem>  call, Response<GovernmentItem> response) {
+            public void onResponse(Call<GenericItem<GovernmentContent>>  call, Response<GenericItem<GovernmentContent>> response) {
                 if(response.isSuccessful()) {
-                    GovernmentItem changesList = response.body();
+                    GenericItem changesList = response.body();
 
                     //System.out.println("It worked !!:)");
                     //System.out.println(changesList);
@@ -331,7 +327,7 @@ public class UserJobInfo extends Fragment {
             }
 
             @Override
-            public void onFailure(Call <GovernmentItem> call, Throwable t) {
+            public void onFailure(Call<GenericItem<GovernmentContent>> call, Throwable t) {
                 System.out.println("I failed!!:(");
                 t.printStackTrace();
             }
@@ -339,15 +335,15 @@ public class UserJobInfo extends Fragment {
     }
     public void DistSpinnerAPI(){
         if(gov_picked) {
-            DistrictInterface retroClient1 = retrofit.create(DistrictInterface.class);
-            Call<DistrictItem> call1 = retroClient1.getAllDistrictsByGovId(auth, Integer.parseInt(gcode));
+            GenericInterface retroClient1 = retrofit.create(GenericInterface.class);
+            Call<GenericItem<DistrictContent>> call1 = retroClient1.getAllDistrictsByGovId(auth, Integer.parseInt(gcode));
 
-            call1.enqueue(new Callback<DistrictItem>() {
+            call1.enqueue(new Callback<GenericItem<DistrictContent>>() {
 
                 @Override
-                public void onResponse(Call<DistrictItem> call, Response<DistrictItem> response) {
+                public void onResponse(Call<GenericItem<DistrictContent>> call, Response<GenericItem<DistrictContent>> response) {
                     if (response.isSuccessful()) {
-                        DistrictItem changesList = response.body();
+                        GenericItem changesList = response.body();
 
                         //System.out.println("It worked !!:)");
                         //System.out.println(changesList);
@@ -389,7 +385,7 @@ public class UserJobInfo extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<DistrictItem> call, Throwable t) {
+                public void onFailure(Call<GenericItem<DistrictContent>> call, Throwable t) {
                     System.out.println("I failed!!:(");
                     t.printStackTrace();
                 }
@@ -399,15 +395,15 @@ public class UserJobInfo extends Fragment {
     }
     public void VillageSpinnerAPI(){
         if(dist_picked) {
-            VillageInterface retroClient2 = retrofit.create(VillageInterface.class);
-            Call<VillageItem> call2 = retroClient2.getAllVillagesByDistId(auth, Integer.parseInt(dcode));
+            GenericInterface retroClient2 = retrofit.create(GenericInterface.class);
+            Call<GenericItem<VillageContent>> call2 = retroClient2.getAllVillagesByDistId(auth, Integer.parseInt(dcode));
 
-            call2.enqueue(new Callback<VillageItem>() {
+            call2.enqueue(new Callback<GenericItem<VillageContent>>() {
 
                 @Override
-                public void onResponse(Call<VillageItem> call, Response<VillageItem> response) {
+                public void onResponse(Call<GenericItem<VillageContent>> call, Response<GenericItem<VillageContent>> response) {
                     if (response.isSuccessful()) {
-                        VillageItem changesList = response.body();
+                        GenericItem changesList = response.body();
 
                         //System.out.println("It worked !!:)");
                         //System.out.println(changesList);
@@ -447,7 +443,7 @@ public class UserJobInfo extends Fragment {
                 }
 
                 @Override
-                public void onFailure(Call<VillageItem> call, Throwable t) {
+                public void onFailure(Call<GenericItem<VillageContent>> call, Throwable t) {
                     System.out.println("I failed!!:(");
                     t.printStackTrace();
                 }

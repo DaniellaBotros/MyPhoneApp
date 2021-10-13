@@ -1,4 +1,4 @@
-package com.example.myapplication2.RetrofitDistrict;
+package com.example.myapplication2.GenericRetrofit;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -14,7 +14,7 @@ public class DistrictContent {
     @SerializedName("OrgCode")
     private String OrgCode;
 
-    public DistrictContent(String DistrictCode,String DistrictName,String GovernmentCode,String IsActive,String OrgCode){
+    public DistrictContent(String DistrictCode, String DistrictName, String GovernmentCode, String IsActive, String OrgCode){
         this.DistrictCode=DistrictCode;
         this.DistrictName=DistrictName;
         this.GovernmentCode=GovernmentCode;

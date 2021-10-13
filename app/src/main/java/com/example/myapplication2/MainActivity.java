@@ -5,14 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 
-import com.example.myapplication2.Officer.Officer;
-import com.example.myapplication2.Officer.OfficerContent;
-import com.example.myapplication2.Officer.OfficerInterface;
-import com.example.myapplication2.RepeatedRetroItemsSocialStatEducation.RetroItemContent;
-import com.example.myapplication2.RetrofitGeo.GeoContent;
-import com.example.myapplication2.RetrofitGeo.GeoInterface;
-import com.example.myapplication2.RetrofitGeo.GeoItem;
-
+import com.example.myapplication2.GenericRetrofit.GenericInterface;
+import com.example.myapplication2.GenericRetrofit.GenericItem;
+import com.example.myapplication2.GenericRetrofit.OfficerContent;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,21 +33,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        /*///////Retrofit//////////////////////////////////////////////////////////////////////
+      /*  ///////Retrofit//////////////////////////////////////////////////////////////////////
 
 
 
 
 
-        OfficerInterface retroClient=retrofit.create(OfficerInterface.class);
-        Call<Officer> call=retroClient.getAllOfficers(auth);
+        GenericInterface retroClient=retrofit.create(GenericInterface.class);
+        Call<GenericItem<OfficerContent>> call=retroClient.getAllOfficers(auth);
 
-        call.enqueue(new Callback<Officer>() {
+        call.enqueue(new Callback<GenericItem<OfficerContent>>() {
 
             @Override
-            public void onResponse(Call<Officer>  call, Response<Officer> response) {
+            public void onResponse(Call<GenericItem<OfficerContent>>  call, Response<GenericItem<OfficerContent>> response) {
                 if(response.isSuccessful()) {
-                    Officer changesList = response.body();
+                    GenericItem changesList = response.body();
 
                     //System.out.println("It worked !!:)");
                     System.out.println(changesList);
@@ -72,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call <Officer> call, Throwable t) {
+            public void onFailure(Call <GenericItem<OfficerContent>> call, Throwable t) {
                 System.out.println("I failed!!:(");
                 t.printStackTrace();
             }

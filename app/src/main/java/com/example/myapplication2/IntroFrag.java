@@ -81,7 +81,7 @@ public class IntroFrag extends Fragment {
                     value1=type_of_user[i]+" ";
                     UserType ut;
                     if(type_of_user[i].equals("فردي")){
-                        ut=UserType.single;
+                        ut= UserType.single;
                     }
                     else if(type_of_user[i].equals("مجموعة")){
                         ut=UserType.group;

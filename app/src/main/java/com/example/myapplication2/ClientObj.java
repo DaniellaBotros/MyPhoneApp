@@ -13,25 +13,31 @@ enum UserType{
 }
 public class ClientObj implements ClientPlanner {
 
-private String id;
-private Gender gender;
-private UserType user_type;
-private String name;
-private String name_lang_other;
-private String national_id;
-private String b_date;
-private String national_id_date;
-private String[] address;
-private String postal;
-private String cell;
-private String phone_home;
-private String[] email;
-private String[] websites;
+    private String id;
+    private Gender gender;
+    private UserType user_type;
+    private String name;
+    private String name_lang_other;
+    private String national_id;
+    private String b_date;
+    private String national_id_date;
+    private String[] address;
+    private String postal;
+    private String cell;
+    private String phone_home;
+    private String email;
+    private String website;
+    private String email1;
+    private String website1;
+    private String email2;
+    private String website2;
+    private String email3;
+    private String website3;
 //// may change the bottom option's data type
-private String gov_code;
-private String cell_code;
-private String fax;
-private String admission_date;
+    private String gov_code;
+    private String cell_code;
+    private String fax;
+    private String admission_date;
 //////////////////////////////////////////////////DataObj/////////////////////////////////////////////////////////////////////
 
     private int num_of_full_time_workers;
@@ -79,7 +85,8 @@ public ClientObj(){
 
 public ClientObj(Gender gender, UserType user_type, String name, String name_lang_other, String fax, String admission_date,
                  String national_id, String b_date, String national_id_date, String[] address, String postal,
-                 String cell, String phone_home, String[] email, String[] websites, String goverment_code, String cell_code,
+                 String cell, String phone_home, String email, String website, String website1,String email1,String email2, String website2,
+                 String email3, String website3,String websites, String goverment_code, String cell_code,
                  int num_of_full_time_workers, int num_of_temp_workers, String active_account_num, String account_Branch,
                  String notice, String delegate, String socialStat, String electronic_wallet, String geographic_sector,
                  String registration_date, String education, String jname, String[] address_job, Boolean is_from_city,
@@ -87,23 +94,29 @@ public ClientObj(Gender gender, UserType user_type, String name, String name_lan
                  String license_reg_Date, String commercial_record, String industrial_record, String tax_card,
                  String government, String district, String village, String government_code_work, String work_sector, String job_type, String speciality, String licensing_address){
 
-this.gender=gender;
-this.user_type=user_type;
-this.name=name;
-this.name_lang_other=name_lang_other;
-this.national_id=national_id;
-this.b_date=b_date;
-this.national_id_date=national_id_date;
-this.address=address;
-this.postal=postal;
-this.cell=cell;
-this.phone_home=phone_home;
-this.email=email;
-this.websites=websites;
-this.gov_code =goverment_code;
-this.cell_code=cell_code;
-this.fax=fax;
-this.admission_date=admission_date;
+    this.gender=gender;
+    this.user_type=user_type;
+    this.name=name;
+    this.name_lang_other=name_lang_other;
+    this.national_id=national_id;
+    this.b_date=b_date;
+    this.national_id_date=national_id_date;
+    this.address=address;
+    this.postal=postal;
+    this.cell=cell;
+    this.phone_home=phone_home;
+    this.email=email;
+    this.website=website;
+    this.email1=email1;
+    this.website1=website1;
+    this.email2=email2;
+    this.website2=website2;
+    this.email3=email3;
+    this.website3=website3;
+    this.gov_code =goverment_code;
+    this.cell_code=cell_code;
+    this.fax=fax;
+    this.admission_date=admission_date;
 
     this.num_of_full_time_workers=num_of_full_time_workers;
     this.num_of_temp_workers=num_of_temp_workers;
@@ -225,13 +238,43 @@ this.b_date=b_date;
     }
 
     @Override
-    public void setClientEmail(String[] email) {
+    public void setClientEmail(String email) {
         this.email=email;
     }
 
     @Override
-    public void setClientWebsite(String[] w) {
-        this.websites=w;
+    public void setClientWebsite(String w) {
+        this.website=w;
+    }
+
+    @Override
+    public void setClientEmail1(String email) {
+        this.email1=email;
+    }
+
+    @Override
+    public void setClientWebsite1(String w) {
+        this.website1=website;
+    }
+
+    @Override
+    public void setClientEmail2(String email) {
+        this.email2=email;
+    }
+
+    @Override
+    public void setClientWebsite2(String w) {
+        this.website2=website;
+    }
+
+    @Override
+    public void setClientEmail3(String email) {
+        this.email3=email;
+    }
+
+    @Override
+    public void setClientWebsite3(String w) {
+        this.website3=website;
     }
 
     @Override
@@ -462,13 +505,43 @@ this.b_date=b_date;
     }
 
     @Override
-    public String[] getClientEmail() {
+    public String getClientEmail() {
         return email;
     }
 
     @Override
-    public String[] getClientWebsite() {
-        return websites;
+    public String getClientWebsite() {
+        return website;
+    }
+
+    @Override
+    public String getClientEmail1() {
+        return email1;
+    }
+
+    @Override
+    public String getClientWebsite1() {
+        return website1;
+    }
+
+    @Override
+    public String getClientEmail2() {
+        return email2;
+    }
+
+    @Override
+    public String getClientWebsite2() {
+        return email2;
+    }
+
+    @Override
+    public String getClientEmail3() {
+        return email3;
+    }
+
+    @Override
+    public String getClientWebsite3() {
+        return website3;
     }
 
     @Override

@@ -134,11 +134,11 @@ public class UserPersonalInfo extends Fragment {
                 client.BuildClientFaxNum(etextv11.getText().toString());
 
 
-                String[] email = {etextv12.getText().toString()};
+                String email = etextv12.getText().toString();
                 client.BuildClientEmail(email);
 
 
-                String[] web = {etextv13.getText().toString()};
+                String web = etextv13.getText().toString();
                 client.BuildClientWebsite(web);
 
                 if (value.equals("")||value1.equals("")||value2.equals("")) {

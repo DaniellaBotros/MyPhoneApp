@@ -77,13 +77,43 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public String[] getBuilderClientEmail() {
+    public String getBuilderClientEmail() {
         return client.getClientEmail();
     }
 
     @Override
-    public String[] getBuilderClientWebsite() {
+    public String getBuilderClientWebsite() {
         return client.getClientWebsite();
+    }
+
+    @Override
+    public String getBuilderClientEmail1() {
+        return client.getClientEmail1();
+    }
+
+    @Override
+    public String getBuilderClientWebsite1() {
+        return client.getClientWebsite1();
+    }
+
+    @Override
+    public String getBuilderClientEmail2() {
+        return client.getClientEmail2();
+    }
+
+    @Override
+    public String getBuilderClientWebsite2() {
+        return client.getClientWebsite2();
+    }
+
+    @Override
+    public String getBuilderClientEmail3() {
+        return client.getClientEmail3();
+    }
+
+    @Override
+    public String getBuilderClientWebsite3() {
+        return client.getClientWebsite3();
     }
 
     @Override
@@ -313,13 +343,43 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
-    public void BuildClientEmail(String[] email) {
+    public void BuildClientEmail(String email) {
         this.client.setClientEmail(email);
     }
 
     @Override
-    public void BuildClientWebsite(String[] w) {
+    public void BuildClientWebsite(String w) {
         this.client.setClientWebsite(w);
+    }
+
+    @Override
+    public void BuildClientEmail1(String email) {
+        this.client.setClientEmail1(email);
+    }
+
+    @Override
+    public void BuildClientWebsite1(String w) {
+        this.client.setClientWebsite1(w);
+    }
+
+    @Override
+    public void BuildClientEmail2(String email) {
+        this.client.setClientEmail2(email);
+    }
+
+    @Override
+    public void BuildClientWebsite2(String w) {
+        this.client.setClientWebsite2(w);
+    }
+
+    @Override
+    public void BuildClientEmail3(String email) {
+        this.client.setClientEmail3(email);
+    }
+
+    @Override
+    public void BuildClientWebsite3(String w) {
+        this.client.setClientWebsite3(w);
     }
 
     @Override

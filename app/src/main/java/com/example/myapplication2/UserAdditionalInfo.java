@@ -350,7 +350,7 @@ public void officerSpinnerAPI(){
                 GenericItem changesList = response.body();
 
                 //System.out.println("It worked !!:)");
-                System.out.println(changesList);
+               // System.out.println(changesList);
                 List<OfficerContent> l=changesList.getList();
                 delegates=new String[l.size()+1];
                 delegates[0]="أختر المندوب*";

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     //System.out.println("It worked !!:)");
                     //System.out.println(changesList);
                     OfficerLoginContent l=changesList.getList();
-                    System.out.println(l);
+                    //System.out.println(l);
                     //c.BuildBranchID(l.getBranchCode());
 
                     ;

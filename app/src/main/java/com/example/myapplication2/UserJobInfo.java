@@ -23,6 +23,8 @@ import com.example.myapplication2.GenericRetrofit.DistrictContent;
 import com.example.myapplication2.GenericRetrofit.GenericInterface;
 import com.example.myapplication2.GenericRetrofit.GenericItem;
 import com.example.myapplication2.GenericRetrofit.GovernmentContent;
+import com.example.myapplication2.GenericRetrofit.OfficerLoginContent;
+import com.example.myapplication2.GenericRetrofit.OfficerLoginItem;
 import com.example.myapplication2.GenericRetrofit.VillageContent;
 
 
@@ -270,13 +272,12 @@ public class UserJobInfo extends Fragment {
         });
 
 
-
+        gettingBranchID();
 
 
         return view;
     }
-    public void GovSpinnerAPI()
-    {
+    public void GovSpinnerAPI() {
         GenericInterface retroClient=retrofit.create(GenericInterface.class);
         Call<GenericItem<GovernmentContent>> call=retroClient.getAllGovernments(auth);
 
@@ -526,7 +527,7 @@ public class UserJobInfo extends Fragment {
                         GenericItem changesList = response.body();
 
                         //System.out.println("It worked !!:)");
-                        System.out.println(changesList);
+                       // System.out.println(changesList);
                         List<BusinessActionTypeContent> l=changesList.getList();
                         work_type=new String[l.size()+1];
                         work_type[0]="أختر نوع العمل*";
@@ -570,7 +571,46 @@ public class UserJobInfo extends Fragment {
         }
     }
 
+    public void gettingBranchID(){
 
+        GenericInterface retroClient=retrofit.create(GenericInterface.class);
+        Call<OfficerLoginItem> call=retroClient.OfficerLogin(auth);
+
+        call.enqueue(new Callback<OfficerLoginItem>() {
+
+            @Override
+            public void onResponse(Call<OfficerLoginItem>  call, Response<OfficerLoginItem>response) {
+                if(response.isSuccessful()) {
+                    OfficerLoginItem changesList = response.body();
+
+                    //System.out.println("It worked !!:)");
+                    //System.out.println(changesList);
+                    OfficerLoginContent l=changesList.getList();
+                    System.out.println(l);
+                    //client.BuildBranchID(l.getBranchCode());
+
+                    ;
+                   /* arr=new String[l.size()];
+                    for(int i=0;i<l.size();i++){
+                        arr[i]=l.get(i).getBranchCode();
+
+                    }*/
+
+
+
+                } else {
+                    System.out.println(response.errorBody());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call <OfficerLoginItem> call, Throwable t) {
+                System.out.println("I failed!!:(");
+                t.printStackTrace();
+            }
+        });
+    }
 
 
 }

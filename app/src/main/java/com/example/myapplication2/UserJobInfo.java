@@ -201,7 +201,7 @@ public class UserJobInfo extends Fragment {
             }
         };
 
-       handler1.postDelayed(r3, 1000);
+       handler3.postDelayed(r3, 1000);
 
 
 

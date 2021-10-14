@@ -6,11 +6,15 @@ package com.example.myapplication2.GenericRetrofit;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface GenericInterface {
     @GET("GetAllOfficers")
     Call<GenericItem<OfficerContent>> getAllOfficers(@Header("Authorization") String credentials);
+
+    @POST("OfficerLogin")
+    Call<OfficerLoginItem> OfficerLogin(@Header("Authorization") String credentials);
 
     @GET("GetAllMartialStatues")
     Call<GenericItem<GenericItemContent>> getAllMartialStatus(@Header("Authorization") String credentials);

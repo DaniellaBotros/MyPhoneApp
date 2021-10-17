@@ -45,6 +45,10 @@ public class UserAdditionalInfo extends Fragment {
     private String value2="";
     private String value3="";
     private String value4="";
+    private GenericItemContent[] ss_code;
+    private GenericItemContent[] edu_code;
+    private GeoContent[] geo_code;
+    private OfficerContent[] off_code;
 
     private Boolean is_submitted=false;
 
@@ -100,7 +104,7 @@ public class UserAdditionalInfo extends Fragment {
         ///////Retrofit//////////////////////////////////////////////////////////////////////
 
         GenericInterface retroClienta =retrofit.create(GenericInterface.class);
-        Call<GenericItem<GeoContent>> calla=retroClienta.getAllGeoAreas(auth);
+        Call<GenericItem<GeoContent>> calla=retroClienta.getGeoAreasByBranchId(auth,Integer.parseInt(client.getBuilderBranchID()));
 
         calla.enqueue(new Callback<GenericItem<GeoContent>>() {
 
@@ -114,7 +118,9 @@ public class UserAdditionalInfo extends Fragment {
                     List<GeoContent> l=changesList.getList();
                     geo=new String[l.size()+1];
                     geo[0]="أختر المكان*";
+                    geo_code=new GeoContent[l.size()];
                     for(int i=0;i<l.size();i++){
+                        geo_code[i]=l.get(i);
                         geo[i+1]=l.get(i).getGeoAreaName();
                     }
 
@@ -127,7 +133,7 @@ public class UserAdditionalInfo extends Fragment {
                             if(i!=0){
                                 String value11 = String.valueOf(adapterView.getItemAtPosition(i));
                                 value=value11;
-                                client.BuildClientGeographicSector(value11);
+                                client.BuildClientGeographicSector(geo_code[i-1].getGeoAreaCode());
                             }
                         }
 
@@ -176,7 +182,9 @@ public class UserAdditionalInfo extends Fragment {
                     List<GenericItemContent> l=changesList.getList();
                     social_stat=new String[l.size()+1];
                     social_stat[0]="أختر الحالة الاجتماعية*";
+                    ss_code=new GenericItemContent[l.size()];
                     for(int i=0;i<l.size();i++){
+                        ss_code[i]=l.get(i);
                         social_stat[i+1]=l.get(i).getDescription();
 
                     }
@@ -189,7 +197,7 @@ public class UserAdditionalInfo extends Fragment {
                             if(i!=0){
                                 String value11 = String.valueOf(adapterView.getItemAtPosition(i));
                                 value2=value11;
-                                client.BuildClientSocialStatus(value11);
+                                client.BuildClientSocialStatus(ss_code[i-1].getCode());
 
                             }
                         }
@@ -231,8 +239,10 @@ public class UserAdditionalInfo extends Fragment {
                     //System.out.println(changesList);
                     List<GenericItemContent> l=changesList.getList();
                     education=new String[l.size()+1];
+                    edu_code=new GenericItemContent[l.size()];
                     education[0]="أختر التعليم*";
                     for(int i=0;i<l.size();i++){
+                        edu_code[i]=l.get(i);
                         education[i+1]=l.get(i).getDescription();
                     }
                     ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getContext(),
@@ -244,7 +254,7 @@ public class UserAdditionalInfo extends Fragment {
                             if(i!=0){
                                 String value11 = String.valueOf(adapterView.getItemAtPosition(i));
                                 value3=value11;
-                                client.BuildClientEducation(value11);
+                                client.BuildClientEducation(edu_code[i-1].getCode());
 
                             }
                         }
@@ -354,7 +364,9 @@ public void officerSpinnerAPI(){
                 List<OfficerContent> l=changesList.getList();
                 delegates=new String[l.size()+1];
                 delegates[0]="أختر المندوب*";
+                off_code=new OfficerContent[l.size()];
                 for(int i=0;i<l.size();i++){
+                    off_code[i]=l.get(i);
                     delegates[i+1]=l.get(i).getOfficerName();
 
                 }
@@ -368,7 +380,7 @@ public void officerSpinnerAPI(){
                         if(i!=0){
                             String value11 = String.valueOf(adapterView.getItemAtPosition(i));
                             value1=value11;
-                            client.BuildClientDelegate(value11);
+                            client.BuildClientDelegate(off_code[i-1].getOfficerKey());
 
                         }
                     }

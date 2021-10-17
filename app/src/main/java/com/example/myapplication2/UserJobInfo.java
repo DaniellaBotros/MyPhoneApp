@@ -45,6 +45,7 @@ public class UserJobInfo extends Fragment {
     private String[] Dist_test;
     private String dcode="0";
     private String[] village;
+    private VillageContent[] vcode;
     private String[] is_from_city={" حضري/ريفي","حضري","ريفي"};
     private String[] government_code;
     Boolean work_sector_picked=false;
@@ -52,6 +53,7 @@ public class UserJobInfo extends Fragment {
     private BusinessDevisionContent[] work_sector;
     private String work_sector_code;
     private String[] work_type;
+    private  BusinessActionTypeContent[] work_type_code;
     private String[] speciality= {" ","طب","هندسة","تجارة"};
     private String value="";
     private String value1="";
@@ -308,7 +310,7 @@ public class UserJobInfo extends Fragment {
                             if(i!=0){
                                 value=Gov_test[i];
                                 gcode=governments[i-1].getGovernmentCode();
-                                client.BuildClientGovernment(Gov_test[i]);
+                                client.BuildClientGovernment(gcode);
                                 gov_picked=true;
                             }
                         }
@@ -364,7 +366,7 @@ public class UserJobInfo extends Fragment {
                                 if (i != 0) {
                                     dcode = districts[i - 1].getDistrictCode();
                                     value1=Dist_test[i];
-                                    client.BuildClientDistrict(Dist_test[i]);
+                                    client.BuildClientDistrict(dcode);
                                     dist_picked=true;
                                     gov_picked=false;
                                 }
@@ -408,8 +410,9 @@ public class UserJobInfo extends Fragment {
                         List<VillageContent> l = changesList.getList();
                         village = new String[l.size() + 1];
                         village[0] = "اختر القرية*";
+                        vcode=new VillageContent[l.size()];
                         for (int i = 0; i < l.size(); i++) {
-
+                            vcode[i]=l.get(i);
                             village[i + 1] = l.get(i).getVillagelName();
 
                         }
@@ -422,7 +425,7 @@ public class UserJobInfo extends Fragment {
 
                                 if (i != 0) {
                                     value2 = village[i];
-                                    client.BuildClientVillage(village[i]);
+                                    client.BuildClientVillage(vcode[i].getVillageCode());
                                     dist_picked=false;
 
                                 }
@@ -484,7 +487,7 @@ public class UserJobInfo extends Fragment {
                                 value3=work_sector_test[i];
                                 work_sector_code=work_sector[i-1].getBusinessDivisionCode();
                                 work_sector_picked=true;
-                                client.BuildClientWorkSector(work_sector_test[i]);
+                                client.BuildClientWorkSector(work_sector_code);
 
 
                             }
@@ -531,7 +534,9 @@ public class UserJobInfo extends Fragment {
                         List<BusinessActionTypeContent> l=changesList.getList();
                         work_type=new String[l.size()+1];
                         work_type[0]="أختر نوع العمل*";
+                        work_type_code=new BusinessActionTypeContent[l.size()];
                         for(int i=0;i<l.size();i++){
+                            work_type_code[i]=l.get(i);
                             work_type[i+1]=l.get(i).getBusinessActivityTypeName();
                         }
                         ArrayAdapter<String> adapter6 = new ArrayAdapter<String>(getContext(),
@@ -542,7 +547,7 @@ public class UserJobInfo extends Fragment {
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                 if (i != 0) {
                                     value4 = work_type[i];
-                                    client.BuildClientJobType(work_type[i]);
+                                    client.BuildClientJobType(work_type_code[i].getBusinessActivityTypeCode());
                                     work_sector_picked=false;
 
                                 }
@@ -587,7 +592,7 @@ public class UserJobInfo extends Fragment {
                     //System.out.println(changesList);
                     OfficerLoginContent l=changesList.getList();
                     System.out.println(l);
-                    //client.BuildBranchID(l.getBranchCode());
+                    client.BuildBranchID(l.getBranchCode());
 
                     ;
                    /* arr=new String[l.size()];

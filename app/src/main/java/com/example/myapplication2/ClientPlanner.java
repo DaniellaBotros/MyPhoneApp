@@ -5,10 +5,12 @@ import java.util.Calendar;
 public interface ClientPlanner {
 
 ///////////////////////////////////Setters//////////////////////////////////////////////
+
     public void setID(int id);
+    public void setBranchID(String id);
     public void setClientName(String name);
-    public void setClientGender(Gender g);
-    public void setClientType(UserType ut);
+    public void setClientGender(String g);
+    public void setClientType(String ut);
     public void setClientOtherLangName(String n);
     public void setClientNationalID(String id);
     public void setClientBirthdate(String date);
@@ -61,6 +63,7 @@ public interface ClientPlanner {
 
     ////////////////////////////////////////////////////////Getters////////////////////////////////////////////////////////////
     public String getID();
+    public String getBranchID();
     public String getClientName();
     public String getClientGender();
     public String getClientType();

@@ -55,12 +55,12 @@ public class IntroFrag extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     value=gender_of_user[i]+" ";
-                    Gender g;
+                    String g;
                     if(gender_of_user[i].equals("أنثى")){
-                        g=Gender.female;
+                        g="1";
                     }
                     else{
-                        g=Gender.male;
+                        g="2";
                     }
 
                     client.BuildClientGender(g);
@@ -79,15 +79,15 @@ public class IntroFrag extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0){
                     value1=type_of_user[i]+" ";
-                    UserType ut;
+                    String ut;
                     if(type_of_user[i].equals("فردي")){
-                        ut= UserType.single;
+                        ut= "1";
                     }
                     else if(type_of_user[i].equals("مجموعة")){
-                        ut=UserType.group;
+                        ut="2";
                     }
                     else{
-                        ut=UserType.groupMember;
+                        ut="3";
                     }
                     client.BuildClientType(ut);
                 }

@@ -1,10 +1,13 @@
 package com.example.myapplication2;
 
+import android.widget.Switch;
+
 import com.google.gson.annotations.SerializedName;
 
 enum Gender{
     female{ @Override public String toString() { return "Female"; } }
-    , male{ @Override public String toString() { return "Male"; } }
+    , male{ @Override public String toString() { return "Male"; }}
+    ,undefined{@Override public String toString() { return "This is a group, so gender is Undefined!"; }}
 }
 enum UserType{
     single{ @Override public String toString() { return "Single"; } }
@@ -14,6 +17,7 @@ enum UserType{
 public class ClientObj implements ClientPlanner {
 
     private String id;
+    private String branch_ID;
     private Gender gender;
     private UserType user_type;
     private String name;
@@ -33,7 +37,7 @@ public class ClientObj implements ClientPlanner {
     private String website2;
     private String email3;
     private String website3;
-//// may change the bottom option's data type
+    //// may change the bottom option's data type
     private String gov_code;
     private String cell_code;
     private String fax;
@@ -76,126 +80,153 @@ public class ClientObj implements ClientPlanner {
     private String licensing_address;
 
 
-
     ///////////////////////////Constructors////////////////////////////////////////////////////////////////////
 
-public ClientObj(){
+    public ClientObj() {
 //Empty Constructor
-}
+    }
 
-public ClientObj(Gender gender, UserType user_type, String name, String name_lang_other, String fax, String admission_date,
-                 String national_id, String b_date, String national_id_date, String[] address, String postal,
-                 String cell, String phone_home, String email, String website, String website1,String email1,String email2, String website2,
-                 String email3, String website3,String websites, String goverment_code, String cell_code,
-                 int num_of_full_time_workers, int num_of_temp_workers, String active_account_num, String account_Branch,
-                 String notice, String delegate, String socialStat, String electronic_wallet, String geographic_sector,
-                 String registration_date, String education, String jname, String[] address_job, Boolean is_from_city,
-                 String work_email, String work_Phone, String license_num,
-                 String license_reg_Date, String commercial_record, String industrial_record, String tax_card,
-                 String government, String district, String village, String government_code_work, String work_sector, String job_type, String speciality, String licensing_address){
+    public ClientObj(Gender gender, UserType user_type, String name, String name_lang_other, String fax, String admission_date,
+                     String national_id, String b_date, String national_id_date, String[] address, String postal,
+                     String cell, String phone_home, String email, String website, String website1, String email1, String email2, String website2,
+                     String email3, String website3, String websites, String goverment_code, String cell_code,
+                     int num_of_full_time_workers, int num_of_temp_workers, String active_account_num, String account_Branch,
+                     String notice, String delegate, String socialStat, String electronic_wallet, String geographic_sector,
+                     String registration_date, String education, String jname, String[] address_job, Boolean is_from_city,
+                     String work_email, String work_Phone, String license_num,
+                     String license_reg_Date, String commercial_record, String industrial_record, String tax_card,
+                     String government, String district, String village, String government_code_work, String work_sector, String job_type, String speciality, String licensing_address) {
 
-    this.gender=gender;
-    this.user_type=user_type;
-    this.name=name;
-    this.name_lang_other=name_lang_other;
-    this.national_id=national_id;
-    this.b_date=b_date;
-    this.national_id_date=national_id_date;
-    this.address=address;
-    this.postal=postal;
-    this.cell=cell;
-    this.phone_home=phone_home;
-    this.email=email;
-    this.website=website;
-    this.email1=email1;
-    this.website1=website1;
-    this.email2=email2;
-    this.website2=website2;
-    this.email3=email3;
-    this.website3=website3;
-    this.gov_code =goverment_code;
-    this.cell_code=cell_code;
-    this.fax=fax;
-    this.admission_date=admission_date;
+        this.gender = gender;
+        this.user_type = user_type;
+        this.name = name;
+        this.name_lang_other = name_lang_other;
+        this.national_id = national_id;
+        this.b_date = b_date;
+        this.national_id_date = national_id_date;
+        this.address = address;
+        this.postal = postal;
+        this.cell = cell;
+        this.phone_home = phone_home;
+        this.email = email;
+        this.website = website;
+        this.email1 = email1;
+        this.website1 = website1;
+        this.email2 = email2;
+        this.website2 = website2;
+        this.email3 = email3;
+        this.website3 = website3;
+        this.gov_code = goverment_code;
+        this.cell_code = cell_code;
+        this.fax = fax;
+        this.admission_date = admission_date;
 
-    this.num_of_full_time_workers=num_of_full_time_workers;
-    this.num_of_temp_workers=num_of_temp_workers;
-    this.active_account_num=active_account_num;
-    this.account_Branch=account_Branch;
-    this.notice=notice;
-    this.delegate=delegate;
-    this.social_stat= socialStat;
-    this.electronic_wallet=electronic_wallet;
-    this.geographic_sector=geographic_sector;
-    this.registration_date=registration_date;
-    this.education=education;
-
-
-    this.jname=jname;
-    this.address_job=address_job;
-    this.is_from_city=is_from_city;
-    this.work_email=work_email;
-    this.work_Phone=work_Phone;
-    this.license_num=license_num;
-    this.license_reg_Date=license_reg_Date;
-    this.commercial_record=commercial_record;
-    this.industrial_record=industrial_record;
-    this.tax_card=tax_card;
-    this.government = government;
-    this.government_code_work =government_code_work;
-    this.district = district;
-    this.village=village;
-    this.work_sector=work_sector;
-    this.job_type=job_type;
-    this.speciality=speciality;
-    this.licensing_address=licensing_address;
+        this.num_of_full_time_workers = num_of_full_time_workers;
+        this.num_of_temp_workers = num_of_temp_workers;
+        this.active_account_num = active_account_num;
+        this.account_Branch = account_Branch;
+        this.notice = notice;
+        this.delegate = delegate;
+        this.social_stat = socialStat;
+        this.electronic_wallet = electronic_wallet;
+        this.geographic_sector = geographic_sector;
+        this.registration_date = registration_date;
+        this.education = education;
 
 
-}
-public ClientObj(String name, UserType user_type, Gender gender, String national_id, String national_id_date, String b_date,
-                 String geographic_sector, String delegate, String registration_date, String social_stat, String education,
-                 String government, String district, String village, String work_sector, String job_type){
-this.name=name;
-this.user_type=user_type;
-this.gender=gender;
-this.national_id=national_id;
-this.national_id_date=national_id_date;
-this.b_date=b_date;
+        this.jname = jname;
+        this.address_job = address_job;
+        this.is_from_city = is_from_city;
+        this.work_email = work_email;
+        this.work_Phone = work_Phone;
+        this.license_num = license_num;
+        this.license_reg_Date = license_reg_Date;
+        this.commercial_record = commercial_record;
+        this.industrial_record = industrial_record;
+        this.tax_card = tax_card;
+        this.government = government;
+        this.government_code_work = government_code_work;
+        this.district = district;
+        this.village = village;
+        this.work_sector = work_sector;
+        this.job_type = job_type;
+        this.speciality = speciality;
+        this.licensing_address = licensing_address;
 
-    this.geographic_sector=geographic_sector;
-    this.delegate=delegate;
-    this.registration_date=registration_date;
-    this.social_stat=social_stat;
-    this.education=education;
 
-    this.government = government;
-    this.district = district;
-    this.village=village;
-    this.work_sector=work_sector;
-    this.job_type=job_type;
+    }
 
-}
+    public ClientObj(String name, UserType user_type, Gender gender, String national_id, String national_id_date, String b_date,
+                     String geographic_sector, String delegate, String registration_date, String social_stat, String education,
+                     String government, String district, String village, String work_sector, String job_type) {
+        this.name = name;
+        this.user_type = user_type;
+        this.gender = gender;
+        this.national_id = national_id;
+        this.national_id_date = national_id_date;
+        this.b_date = b_date;
+
+        this.geographic_sector = geographic_sector;
+        this.delegate = delegate;
+        this.registration_date = registration_date;
+        this.social_stat = social_stat;
+        this.education = education;
+
+        this.government = government;
+        this.district = district;
+        this.village = village;
+        this.work_sector = work_sector;
+        this.job_type = job_type;
+
+    }
 
     ///////////////////////////////////////////////////////////Setters////////////////////////////////////////////////////
     @Override
     public void setID(int id) {
-        this.id=Integer.toString(id);
+        this.id = Integer.toString(id);
+    }
+
+    @Override
+    public void setBranchID(String id) {
+        this.branch_ID = id;
     }
 
     @Override
     public void setClientName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     @Override
-    public void setClientGender(Gender g) {
-        this.gender=g;
+    public void setClientGender(String g) {
+        if (g.equals("1")) {
+            this.gender = Gender.male;
+        }  else if(g.equals("2")){
+            this.gender=Gender.female;
+        }
+        else {
+            this.gender=Gender.undefined;
+        }
     }
 
     @Override
-    public void setClientType(UserType ut) {
-        this.user_type=ut;
+    public void setClientType(String ut) {
+
+    if(ut.equals("1"))
+
+    {
+        this.user_type = UserType.single;
     }
+        else if(ut.equals("2"))
+
+    {
+        this.user_type = UserType.group;
+    }
+        else
+
+    {
+        this.user_type = UserType.groupMember;
+    }
+}
 
     @Override
     public void setClientOtherLangName(String n) {
@@ -447,6 +478,11 @@ this.b_date=b_date;
     @Override
     public String getID() {
         return id;
+    }
+
+    @Override
+    public String getBranchID() {
+        return this.branch_ID;
     }
 
     @Override

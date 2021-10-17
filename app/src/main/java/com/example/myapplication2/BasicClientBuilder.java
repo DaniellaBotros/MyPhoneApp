@@ -22,6 +22,11 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
+    public String getBuilderBranchID() {
+        return client.getBranchID();
+    }
+
+    @Override
     public String getBuilderClientName() {
         return client.getClientName();
     }
@@ -288,17 +293,22 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
+    public void BuildBranchID(String id) {
+        this.client.setBranchID(id);
+    }
+
+    @Override
     public void BuildClientName(String name) {
         this.client.setClientName(name);
     }
 
     @Override
-    public void BuildClientGender(Gender g) {
+    public void BuildClientGender(String g) {
         this.client.setClientGender(g);
     }
 
     @Override
-    public void BuildClientType(UserType ut) {
+    public void BuildClientType(String ut) {
         this.client.setClientType(ut);
     }
 
@@ -550,7 +560,7 @@ public class BasicClientBuilder implements  ClientBuilder{
     /////////////////////////Print Functions//////////////////////////
     @Override
     public String toString(){
-        return "Client Name: "+client.getClientName()+"\n"+"User Account Type: "+client.getClientType()+"\n"+"Gender: "+client.getClientGender()+"\n"+
+        return "Branch Code: "+client.getBranchID()+"\n"+"Client Name: "+client.getClientName()+"\n"+"User Account Type: "+client.getClientType()+"\n"+"Gender: "+client.getClientGender()+"\n"+
                 "National ID: "+client.getClientNationalID()+"\n"+"National ID Registration Date: "+client.getClientNationalIdDate()+"\n"+"Birthdate: "+client.getClientBirthdate()
                 +"Government: "+client.getClientGovernment()+"\n"+"District: "+client.getClientDistrict()+"\n"+"village: "+client.getClientVillage()+"\n"+
                 "Work Sector: "+client.getClientWorkSector()+'\n'+"Work Type: "+client.getClientJobType()+"\n"+"Geographic Sector: "+client.getClientGeographicSector()+"\n"+

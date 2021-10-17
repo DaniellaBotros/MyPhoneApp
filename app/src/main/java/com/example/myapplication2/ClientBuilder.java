@@ -15,6 +15,7 @@ public interface ClientBuilder extends Serializable {
     public ClientObj getClient();
 
     public String getBuilderID();
+    public String getBuilderOrgCode();
     public String getBuilderBranchID();
     public String getBuilderClientName();
     public String getBuilderClientGender();
@@ -70,6 +71,7 @@ public interface ClientBuilder extends Serializable {
     public String getBuilderClientLicensingAddress();
     //////////////////////////////////////////Builders or Setters//////////////////////////////////////////////////////
     public void BuildID(int id);
+    public void BuildOrgCode(String code);
     public void BuildBranchID(String id);
     public void BuildClientName(String name);
     public void BuildClientGender(String g);

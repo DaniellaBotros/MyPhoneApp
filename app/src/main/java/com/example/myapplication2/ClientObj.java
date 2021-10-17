@@ -17,6 +17,7 @@ enum UserType{
 public class ClientObj implements ClientPlanner {
 
     private String id;
+    private String org_code;
     private String branch_ID;
     private Gender gender;
     private UserType user_type;
@@ -184,6 +185,11 @@ public class ClientObj implements ClientPlanner {
     @Override
     public void setID(int id) {
         this.id = Integer.toString(id);
+    }
+
+    @Override
+    public void setOrgCode(String code) {
+        this.org_code=code;
     }
 
     @Override
@@ -478,6 +484,11 @@ public class ClientObj implements ClientPlanner {
     @Override
     public String getID() {
         return id;
+    }
+
+    @Override
+    public String getOrgCode() {
+        return this.org_code;
     }
 
     @Override

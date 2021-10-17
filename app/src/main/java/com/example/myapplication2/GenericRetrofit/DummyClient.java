@@ -1,5 +1,6 @@
 package com.example.myapplication2.GenericRetrofit;
 
+import com.example.myapplication2.BasicClientBuilder;
 import com.example.myapplication2.ClientObj;
 import com.google.gson.annotations.SerializedName;
 
@@ -124,6 +125,49 @@ public class DummyClient extends ClientObj {
     }
 
     public DummyClient(){
+
+    }
+
+    public DummyClient (BasicClientBuilder c){
+
+        this.OrgCode=c.getBuilderOrgCode();
+        this.BranchCode=c.getBuilderBranchID();
+        this.ClientName=c.getBuilderClientName();
+        if(c.getBuilderClientType().equals("Single")){
+            this.ClientTypeCode="1";
+        }
+        else if(c.getBuilderClientType().equals("Group")){
+            this.ClientTypeCode="2";
+        }
+        else {
+            this.ClientTypeCode="3";
+        }
+
+        this.Gender=(c.getBuilderClientGender().equals("Male"))? "1":"2";
+        this.NationalId=c.getBuilderClientNationalID();
+        this.IdDisbursementDate=c.getBuilderClientNationalIdDate();
+        this.BirthDate=c.getBuilderClientBirthdate();
+        this.GovernmentCode=c.getBuilderClientGovernment();
+        this.DistrictCode=c.getBuilderClientDistrict();
+        this.VillageCode=c.getBuilderClientVillage();
+        this.BusinessDivisionCode=c.getBuilderClientWorkSector();
+        this.BusinessActivityTypeCode=c.getBuilderClientJobType();
+        this.GeographicalAreaCode=c.getBuilderClientGeographicSector();
+        this.MartialStatus=c.getBuilderClientSocialStatus();
+        this.EducationLevelCode=c.getBuilderClientEducation();
+
+        this.BusinessName=c.getBuilderClientJobName();
+        this.BusinessAddress1=c.getBuilderClientJobAddress()[0];
+        this.BusinessTelephone=c.getBuilderClientWorkPhone();
+        this.HomeTelephone=c.getBuilderClientHomePhone();
+        this.HomeAddress1=c.getBuilderClientAddress()[0];
+        this.Email1=c.getBuilderClientEmail1();
+        this.WebPageAdd1=c.getBuilderClientWebsite1();
+        this.Notes=c.getBuilderClientNotice();
+        this.FaxNo=c.getBuilderClientFaxNum();
+
+
+
 
     }
 

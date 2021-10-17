@@ -22,6 +22,11 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
+    public String getBuilderOrgCode() {
+        return client.getOrgCode();
+    }
+
+    @Override
     public String getBuilderBranchID() {
         return client.getBranchID();
     }
@@ -290,6 +295,11 @@ public class BasicClientBuilder implements  ClientBuilder{
     @Override
     public void BuildID(int id) {
         this.client.setID(id);
+    }
+
+    @Override
+    public void BuildOrgCode(String code) {
+        client.setOrgCode(code);
     }
 
     @Override

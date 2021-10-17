@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.myapplication2.GenericRetrofit.DummyClient;
 import com.example.myapplication2.GenericRetrofit.GenericInterface;
 import com.example.myapplication2.GenericRetrofit.GenericItem;
 import com.example.myapplication2.GenericRetrofit.GenericItemContent;
@@ -50,9 +51,13 @@ public class UserAdditionalInfo extends Fragment {
     private GeoContent[] geo_code;
     private OfficerContent[] off_code;
 
+
+
     private Boolean is_submitted=false;
 
     private BasicClientBuilder client;
+
+    private DummyClient tosend;
 
     private TextView etxt10;
 
@@ -339,6 +344,7 @@ public class UserAdditionalInfo extends Fragment {
                 }
                 else{
                 System.out.println(client.toString());
+                tosend=new DummyClient(client);
                 Toast.makeText(getContext(),"Form Submitted!! :)", Toast.LENGTH_SHORT).show();
                 is_submitted=true;
             }

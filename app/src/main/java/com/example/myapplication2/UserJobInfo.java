@@ -593,7 +593,7 @@ public class UserJobInfo extends Fragment {
                     OfficerLoginContent l=changesList.getList();
                     System.out.println(l);
                     client.BuildBranchID(l.getBranchCode());
-
+                    client.BuildOrgCode(l.getOrgCode());
                     ;
                    /* arr=new String[l.size()];
                     for(int i=0;i<l.size();i++){

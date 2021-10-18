@@ -4,14 +4,20 @@ package com.example.myapplication2.GenericRetrofit;
 
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface GenericInterface {
+
+    //Add Client
+    @POST("AddClient")
+    Call<RecievedItem> addClient(@Header("Authorization") String credentials,@Body DummyClientToSend client);
+
     @GET("GetAllOfficers")
-    Call<GenericItem<OfficerContent>> getAllOfficers(@Header("Authorization") String credentials);
+    Call<GenericItem<OfficerContent>> getAllOfficers(@Header("Authorization") String Scredentials);
 
     @POST("OfficerLogin")
     Call<OfficerLoginItem> OfficerLogin(@Header("Authorization") String credentials);
@@ -51,4 +57,5 @@ public interface GenericInterface {
 
     @GET("GetAllBusinessDivision")
     Call<GenericItem<BusinessDevisionContent>> getAllBusinessDivision(@Header("Authorization") String credentials);
+
 }

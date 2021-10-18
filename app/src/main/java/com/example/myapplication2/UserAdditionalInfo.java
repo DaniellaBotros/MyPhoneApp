@@ -1,5 +1,6 @@
 package com.example.myapplication2;
 
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,15 +18,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.myapplication2.GenericRetrofit.ClientKey;
 import com.example.myapplication2.GenericRetrofit.DummyClient;
+import com.example.myapplication2.GenericRetrofit.DummyClientToSend;
 import com.example.myapplication2.GenericRetrofit.GenericInterface;
 import com.example.myapplication2.GenericRetrofit.GenericItem;
 import com.example.myapplication2.GenericRetrofit.GenericItemContent;
 import com.example.myapplication2.GenericRetrofit.GeoContent;
 import com.example.myapplication2.GenericRetrofit.OfficerContent;
+import com.example.myapplication2.GenericRetrofit.RecievedItem;
 
 
+import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -50,6 +58,7 @@ public class UserAdditionalInfo extends Fragment {
     private GenericItemContent[] edu_code;
     private GeoContent[] geo_code;
     private OfficerContent[] off_code;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 
 
@@ -58,6 +67,7 @@ public class UserAdditionalInfo extends Fragment {
     private BasicClientBuilder client;
 
     private DummyClient tosend;
+    private DummyClientToSend send;
 
     private TextView etxt10;
 
@@ -335,17 +345,32 @@ public class UserAdditionalInfo extends Fragment {
                 client.BuildClientActiveAccountNum( etxt6.getText().toString());
                 client.BuildClientAccountBranch(etxt7.getText().toString());
                 client.BuildClientNotice( etxt10.getText().toString());
+                String userDate=etxt3.getText().toString();
+                if(etxt3.getText().toString().indexOf("/")==-1){
                 client.BuildClientAdmissionDate(etxt3.getText().toString());
-                value4=etxt3.getText().toString();
+                value4=etxt3.getText().toString();}
+                else if(etxt3.getText().toString().indexOf("/")!=-1){
+                    Toast.makeText(getContext(),"Use - instead of / in dates!!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    /////do nothing
+                }
 
 
                 if(value.equals("")||value1.equals("")||value2.equals("")||value3.equals("")||value4.equals("")){
                     Toast.makeText(getContext(),"You must fill the entries marked with *!!", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                System.out.println(client.toString());
-                tosend=new DummyClient(client);
+                //System.out.println(client.toString());
+                    tosend=new DummyClient(client);
+                    send=  new DummyClientToSend(tosend);
+                    //System.out.println(send);
+
+                    sendingClient(send,client);
+
+
                 Toast.makeText(getContext(),"Form Submitted!! :)", Toast.LENGTH_SHORT).show();
+                System.out.println();
                 is_submitted=true;
             }
             }
@@ -411,7 +436,36 @@ public void officerSpinnerAPI(){
             t.printStackTrace();
         }
     });
+
+
 }
+ public void sendingClient(DummyClientToSend c, BasicClientBuilder cc){
+     GenericInterface retroClientaa=retrofit.create(GenericInterface.class);
+     Call<RecievedItem> callaa=retroClientaa.addClient(auth,c);
+
+
+     callaa.enqueue(new Callback<RecievedItem>() {
+         @Override
+         public void onResponse(Call<RecievedItem> call, Response<RecievedItem> response) {
+             RecievedItem changesList = response.body();
+             if(changesList==null){
+                    System.out.println("Error!!!:(");
+             }
+             else{
+
+             ClientKey recieved=changesList.getList();
+             System.out.println(recieved.getKey());
+             cc.BuildID(recieved.getKey());
+            }
+         }
+
+         @Override
+         public void onFailure(Call<RecievedItem> call, Throwable t) {
+             System.out.println("I failed!!:(");
+             t.printStackTrace();
+         }
+     });
+ }
 
 
 

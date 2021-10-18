@@ -6,7 +6,7 @@ public interface ClientPlanner {
 
 ///////////////////////////////////Setters//////////////////////////////////////////////
 
-    public void setID(int id);
+    public void setID(String id);
     public void setOrgCode(String code);
     public void setBranchID(String id);
     public void setClientName(String name);

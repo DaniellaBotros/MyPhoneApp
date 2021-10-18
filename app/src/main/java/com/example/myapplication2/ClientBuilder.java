@@ -70,7 +70,7 @@ public interface ClientBuilder extends Serializable {
     public String getBuilderClientAdmissionDate();
     public String getBuilderClientLicensingAddress();
     //////////////////////////////////////////Builders or Setters//////////////////////////////////////////////////////
-    public void BuildID(int id);
+    public void BuildID(String id);
     public void BuildOrgCode(String code);
     public void BuildBranchID(String id);
     public void BuildClientName(String name);

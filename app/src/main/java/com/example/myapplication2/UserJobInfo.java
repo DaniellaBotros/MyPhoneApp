@@ -425,7 +425,7 @@ public class UserJobInfo extends Fragment {
 
                                 if (i != 0) {
                                     value2 = village[i];
-                                    client.BuildClientVillage(vcode[i].getVillageCode());
+                                    client.BuildClientVillage(vcode[i-1].getVillageCode());
                                     dist_picked=false;
 
                                 }
@@ -547,7 +547,7 @@ public class UserJobInfo extends Fragment {
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                 if (i != 0) {
                                     value4 = work_type[i];
-                                    client.BuildClientJobType(work_type_code[i].getBusinessActivityTypeCode());
+                                    client.BuildClientJobType(work_type_code[i-1].getBusinessActivityTypeCode());
                                     work_sector_picked=false;
 
                                 }
@@ -591,7 +591,7 @@ public class UserJobInfo extends Fragment {
                     //System.out.println("It worked !!:)");
                     //System.out.println(changesList);
                     OfficerLoginContent l=changesList.getList();
-                    System.out.println(l);
+                    //System.out.println(l);
                     client.BuildBranchID(l.getBranchCode());
                     client.BuildOrgCode(l.getOrgCode());
                     ;

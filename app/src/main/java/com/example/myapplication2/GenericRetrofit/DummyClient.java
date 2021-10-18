@@ -2,107 +2,108 @@ package com.example.myapplication2.GenericRetrofit;
 
 import com.example.myapplication2.BasicClientBuilder;
 import com.example.myapplication2.ClientObj;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
-public class DummyClient extends ClientObj {
+public class DummyClient {
     @SerializedName("BirthDate")
-    private String BirthDate;
+    private String BirthDate="";
     @SerializedName("BranchCode")
-    private String BranchCode;
+    private String BranchCode="";
     @SerializedName("BusinessActivityTypeCode")
-    private String BusinessActivityTypeCode;
+    private String BusinessActivityTypeCode="";
     @SerializedName("BusinessAddress1")
-    private String BusinessAddress1;
+    private String BusinessAddress1="";
     @SerializedName("BusinessAddress2")
-    private String BusinessAddress2;
+    private String BusinessAddress2="";
     @SerializedName("BusinessAddress3")
-    private String BusinessAddress3;
+    private String BusinessAddress3="";
     @SerializedName("BusinessDivisionCode")
-    private String BusinessDivisionCode;
+    private String BusinessDivisionCode="";
     @SerializedName("BusinessLongitude")
-    private String BusinessLongitude;
+    private String BusinessLongitude="";
     @SerializedName("BusinessName")
-    private String BusinessName;
+    private String BusinessName="";
     @SerializedName("BusinessTelephone")
-    private String BusinessTelephone;
+    private String BusinessTelephone="";
     @SerializedName("BusinessZip")
-    private String BusinessZip;
+    private String BusinessZip="";
     @SerializedName("BusinessZoom")
-    private String BusinessZoom;
+    private String BusinessZoom="";
     @SerializedName("ClientName")
-    private String ClientName;
+    private String ClientName="";
     @SerializedName("ClientTypeCode")
-    private String ClientTypeCode;
+    private String ClientTypeCode="";
     @SerializedName("CommercialRegistrationNumber")
-    private String CommercialRegistrationNumber;
+    private String CommercialRegistrationNumber="";
     @SerializedName("DistrictCode")
-    private String DistrictCode;
+    private String DistrictCode="";
     @SerializedName("Email1")
-    private String Email1;
+    private String Email1="";
     @SerializedName("Email2")
-    private String Email2;
+    private String Email2="";
     @SerializedName("Email3")
-    private String Email3;
+    private String Email3="";
     @SerializedName("Email4")
-    private String Email4;
+    private String Email4="";
     @SerializedName("FaxNo")
-    private String FaxNo;
+    private String FaxNo="";
     @SerializedName("Gender")
-    private String Gender;
+    private String Gender="";
     @SerializedName("GeographicalAreaCode")
-    private String GeographicalAreaCode;
+    private String GeographicalAreaCode="";
     @SerializedName("GovernmentCode")
-    private String GovernmentCode;
+    private String GovernmentCode="";
     @SerializedName("HomeAddress1")
-    private String HomeAddress1;
+    private String HomeAddress1="";
     @SerializedName("HomeAddress2")
-    private String HomeAddress2;
+    private String HomeAddress2="";
     @SerializedName("HomeAddress3")
-    private String HomeAddress3;
+    private String HomeAddress3="";
     @SerializedName("HomeLatitude")
-    private String HomeLatitude;
+    private String HomeLatitude="";
     @SerializedName("HomeLongitude")
-    private String HomeLongitude;
+    private String HomeLongitude="";
     @SerializedName("HomeTelephone")
-    private String HomeTelephone;
+    private String HomeTelephone="";
     @SerializedName("HomeZip")
-    private String HomeZip;
+    private String HomeZip="";
     @SerializedName("HomeZoom")
-    private String HomeZoom;
+    private String HomeZoom="";
     @SerializedName("IdDisbursementDate")
-    private String IdDisbursementDate;
+    private String IdDisbursementDate="";
     @SerializedName("MobileNumber1")
-    private String MobileNumber1;
+    private String MobileNumber1="";
     @SerializedName("MobileNumber2")
-    private String MobileNumber2;
+    private String MobileNumber2="";
     @SerializedName("MobileNumber3")
-    private String MobileNumber3;
+    private String MobileNumber3="";
     @SerializedName("MobileNumber4")
-    private String MobileNumber4;
+    private String MobileNumber4="";
     @SerializedName("NationalId")
-    private String NationalId;
+    private String NationalId="";
     @SerializedName("Notes")
-    private String Notes;
+    private String Notes="";
     @SerializedName("OfficerKey")
-    private String OfficerKey;
+    private String OfficerKey="";
     @SerializedName("OrgCode")
-    private String OrgCode;
+    private String OrgCode="";
     @SerializedName("VillageCode")
-    private String VillageCode;
+    private String VillageCode="";
     @SerializedName("WebPageAdd1")
-    private String WebPageAdd1;
+    private String WebPageAdd1="";
     @SerializedName("WebPageAdd2")
-    private String WebPageAdd2;
+    private String WebPageAdd2="";
     @SerializedName("WebPageAdd3")
-    private String WebPageAdd3;
+    private String WebPageAdd3="";
     @SerializedName("WebPageAdd4")
-    private String WebPageAdd4;
+    private String WebPageAdd4="";
     @SerializedName("busLatitude")
-    private String busLatitude;
+    private String busLatitude="";
     @SerializedName("MartialStatus")
-    private String MartialStatus;
+    private String MartialStatus="";
     @SerializedName("EducationLevelCode")
-    private String EducationLevelCode;
+    private String EducationLevelCode="";
 
     public DummyClient(String BranchCode,String ClientName,String ClientTypeCode,String Gender,String NationalId,String IdDisbursementDate,String BirthDate,
                        String GovernmentCode,String DistrictCode,String VillageCode,String BusinessDivisionCode,String BusinessActivityTypeCode
@@ -124,12 +125,28 @@ public class DummyClient extends ClientObj {
         this.EducationLevelCode=EducationLevelCode;
     }
 
+  @Override
+    public String toString(){
+     /* return "BranchCode: "+this.BranchCode+"\n"+"Client Name: "+this.ClientName+"\n"+"OrgCode: "+this.OrgCode+"\n"+"Officer Key: "+this.OfficerKey+"\n"+
+                "Gender: "+this.Gender+"\n"+"Client Type Code: "+this.ClientTypeCode+"\n"+"National ID: "+this.NationalId+"\n"+
+                "National ID Date: "+this.IdDisbursementDate+"\n"+"Birth Date: "+this.BirthDate+"\n"+"Government Code: "+this.GovernmentCode+"\n"+
+                "District Code: "+this.DistrictCode+"\n"+"Village Code: "+this.VillageCode+"\n"+"Business Division Code: "+this.BusinessDivisionCode+"\n"+
+                "Business Activity Type Code: "+this.BusinessActivityTypeCode+"\n"+"Geographical Area Code: "+this.GeographicalAreaCode+"\n"+
+                "Marital Status: "+this.MartialStatus+"\n"+"Education Level Code: "+this.EducationLevelCode+"\n";*/
+        return new GsonBuilder().create().toJson(this, DummyClient.class);
+
+    }
+
+
+
+
     public DummyClient(){
 
     }
 
     public DummyClient (BasicClientBuilder c){
 
+        this.OfficerKey=c.getBuilderClientDelegate();
         this.OrgCode=c.getBuilderOrgCode();
         this.BranchCode=c.getBuilderBranchID();
         this.ClientName=c.getBuilderClientName();
@@ -143,7 +160,7 @@ public class DummyClient extends ClientObj {
             this.ClientTypeCode="3";
         }
 
-        this.Gender=(c.getBuilderClientGender().equals("Male"))? "1":"2";
+        this.Gender=(c.getBuilderClientGender().equals("Male"))? "2":"1";
         this.NationalId=c.getBuilderClientNationalID();
         this.IdDisbursementDate=c.getBuilderClientNationalIdDate();
         this.BirthDate=c.getBuilderClientBirthdate();
@@ -156,15 +173,16 @@ public class DummyClient extends ClientObj {
         this.MartialStatus=c.getBuilderClientSocialStatus();
         this.EducationLevelCode=c.getBuilderClientEducation();
 
-        this.BusinessName=c.getBuilderClientJobName();
-        this.BusinessAddress1=c.getBuilderClientJobAddress()[0];
-        this.BusinessTelephone=c.getBuilderClientWorkPhone();
-        this.HomeTelephone=c.getBuilderClientHomePhone();
-        this.HomeAddress1=c.getBuilderClientAddress()[0];
-        this.Email1=c.getBuilderClientEmail1();
-        this.WebPageAdd1=c.getBuilderClientWebsite1();
-        this.Notes=c.getBuilderClientNotice();
-        this.FaxNo=c.getBuilderClientFaxNum();
+        this.BusinessName=(c.getBuilderClientJobName()!=null)?"":c.getBuilderClientJobName();
+
+        this.BusinessAddress1=(c.getBuilderClientJobAddress()[0]!=null)?"":c.getBuilderClientJobAddress()[0];
+        this.BusinessTelephone=(c.getBuilderClientWorkPhone()!=null)?"":c.getBuilderClientWorkPhone();
+        this.HomeTelephone=(c.getBuilderClientHomePhone()!=null)?"":c.getBuilderClientHomePhone();
+        this.HomeAddress1=(c.getBuilderClientAddress()[0]!=null)?"":c.getBuilderClientAddress()[0];
+        this.Email1=(c.getBuilderClientEmail1()!=null)?"":c.getBuilderClientEmail1();
+        this.WebPageAdd1=(c.getBuilderClientWebsite1()!=null)?"":c.getBuilderClientWebsite1();
+        this.Notes=(c.getBuilderClientNotice()!=null)?"":c.getBuilderClientNotice();
+        this.FaxNo=(c.getBuilderClientFaxNum()!=null)?"":c.getBuilderClientFaxNum();
 
 
 
@@ -189,103 +207,101 @@ public class DummyClient extends ClientObj {
     //////////////////////////////////////Setters///////////////////////////////////////////////////
 
     public void setBirthDate(String d){
-        super.setClientBirthdate(d);
+
         this.BirthDate=d;
     }
     public void setBranchCode(String code){
-        super.setBranchID(code);
+
         this.BranchCode=code;
     }
     public void setBusinessActivityTypeCode(String code){
-        super.setClientJobType(code);
+
         this.BusinessActivityTypeCode=code;
     }
     public void setBusinessDivisionCode(String code){
-        super.setClientWorkSector(code);
+
         this.BusinessDivisionCode=code;
     }
     public void setClientTypeCode(String code){
-        super.setClientType(code);
+
         this.ClientTypeCode=code;
     }
     public void setBusinessName(String name){
-        super.setClientJobName(name);
+        ;
         this.BusinessName=name;
     }
 
-    @Override
+
     public void setBranchID(String id) {
-        super.setBranchID(id);
+
         this.BranchCode=id;
     }
 
     public void setDistrictCode(String code){
-        super.setClientDistrict(code);
+
         this.DistrictCode=code;
     }
 
     public void setGender(String g){
-        super.setClientGender(g);
+
         this.Gender=g;
     }
 
     public void setGovernmentCode(String code){
-        super.setClientGovernment(code);
+
         this.GovernmentCode=code;
     }
 
-    @Override
-    public void setID(int id) {
-        super.setID(id);
-    }
 
-    @Override
+
+
     public void setClientName(String clientName) {
-        super.setClientName(ClientName);
+
         this.ClientName = clientName;
     }
 
     public void setGeographicalAreaCode(String code){
-        super.setClientGeographicSector(code);
+
         this.GeographicalAreaCode=code;
     }
 
     public void setIdDisbursementDate(String date){
-        super.setClientNationalIdDate(date);
+
         this.IdDisbursementDate=date;
     }
 
     public void setNationalId(String id){
-        super.setClientNationalID(id);
+
         this.NationalId=id;
     }
 
     public void setOfficerKey(String key){
-        super.setClientDelegate(key);
+
         this.OfficerKey=key;
     }
 
     public void setVillageCode(String code){
-        super.setClientVillage(code);
+
         this.VillageCode=code;
     }
 
     public void setOrgCode(String code){
         this.OrgCode=code;
+
     }
 
     public void setNotes(String note){
-        super.setClientNotice(note);
+
         this.Notes=note;
     }
 
     public void setFaxNo(String fax){
-        super.setClientFaxNum(fax);
+
         this.FaxNo=fax;
     }
 
     public void setCommercialRegistrationNumber(String crn){
-        super.setClientCommercialRecord(crn);
+
         this.CommercialRegistrationNumber=crn;
     }
 
@@ -313,12 +329,12 @@ public class DummyClient extends ClientObj {
             arr[2]=this.BusinessAddress3;
         }
 
-        super.setClientJobAddress(arr);
+
 
     }
 
     public void setBusinessTelephone(String businessTelephone) {
-        super.setClientWorkPhone(businessTelephone);
+
         BusinessTelephone = businessTelephone;
     }
 
@@ -346,72 +362,72 @@ public class DummyClient extends ClientObj {
             arr[2]=this.HomeAddress3;
         }
 
-        super.setClientAddress(arr);
+
     }
 
     public void setEmail1(String email) {
         this.Email1 = email;
-        super.setClientEmail(email);
+
     }
 
     public void setEmail2(String email){
         this.Email2=email;
-        super.setClientEmail1(email);
+
     }
 
     public void setEmail3(String email) {
         this.Email3 = email;
-        super.setClientEmail2(email);
+
     }
 
     public void setEmail4(String email) {
         this.Email4 = email;
-        super.setClientEmail3(email);
+
     }
 
     public void setHomeTelephone(String ht){
-        super.setClientHomePhone(ht);
+
         this.HomeTelephone=ht;
     }
 
     public void setWebPageAdd1(String web){
         this.WebPageAdd1=web;
-        super.setClientWebsite(web);
+
     }
 
     public void setWebPageAdd2(String web){
         this.WebPageAdd2=web;
-        super.setClientWebsite1(web);
+
     }
 
     public void setWebPageAdd3(String web){
         this.WebPageAdd3=web;
-        super.setClientWebsite2(web);
+
     }
 
     public void setWebPageAdd4(String web){
         this.WebPageAdd4=web;
-        super.setClientWebsite3(web);
+
     }
 
     public void setMartialStatus(String status){
         this.MartialStatus=status;
-        super.setClientSocialStatus(status);
+
     }
 
     public void setEducationLevelCode(String education){
         this.EducationLevelCode=education;
-        super.setClientEducation(education);
+
     }
 
     public void setMobileNumber1(String cell){
         this.MobileNumber1=cell;
-        super.setClientCell(cell);
+
     }
 
     public void setHomeZip(String hz){
         this.HomeZip=hz;
-        super.setClientPostal(hz);
+
     }
 
     public void setMobileNumber2(String cell){
@@ -504,7 +520,7 @@ public class DummyClient extends ClientObj {
         return this.BusinessZoom;
     }
 
-    @Override
+
     public String getClientName() {
         return this.ClientName;
     }

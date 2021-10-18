@@ -293,7 +293,7 @@ public class BasicClientBuilder implements  ClientBuilder{
 
     /////////////////////////////////////////////Setters or Builders//////////////////////////////////////////////////////
     @Override
-    public void BuildID(int id) {
+    public void BuildID(String id) {
         this.client.setID(id);
     }
 
@@ -570,8 +570,8 @@ public class BasicClientBuilder implements  ClientBuilder{
     /////////////////////////Print Functions//////////////////////////
     @Override
     public String toString(){
-        return "Branch Code: "+client.getBranchID()+"\n"+"Client Name: "+client.getClientName()+"\n"+"User Account Type: "+client.getClientType()+"\n"+"Gender: "+client.getClientGender()+"\n"+
-                "National ID: "+client.getClientNationalID()+"\n"+"National ID Registration Date: "+client.getClientNationalIdDate()+"\n"+"Birthdate: "+client.getClientBirthdate()
+        return "OrgCode: "+client.getOrgCode()+"\n"+"Branch Code: "+client.getBranchID()+"\n"+"Client Name: "+client.getClientName()+"\n"+"User Account Type: "+client.getClientType()+"\n"+"Gender: "+client.getClientGender()+"\n"+
+                "National ID: "+client.getClientNationalID()+"\n"+"National ID Registration Date: "+client.getClientNationalIdDate()+"\n"+"Birthdate: "+client.getClientBirthdate()+"\n"
                 +"Government: "+client.getClientGovernment()+"\n"+"District: "+client.getClientDistrict()+"\n"+"village: "+client.getClientVillage()+"\n"+
                 "Work Sector: "+client.getClientWorkSector()+'\n'+"Work Type: "+client.getClientJobType()+"\n"+"Geographic Sector: "+client.getClientGeographicSector()+"\n"+
                 "Delegate: "+client.getClientDelegate()+"\n"+"Social Status: "+client.getClientSocialStatus()+"\n"+"Education: "+client.getClientEducation()+"\n";

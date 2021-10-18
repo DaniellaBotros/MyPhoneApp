@@ -16,69 +16,69 @@ enum UserType{
 }
 public class ClientObj implements ClientPlanner {
 
-    private String id;
-    private String org_code;
-    private String branch_ID;
+    private String id="";
+    private String org_code="";
+    private String branch_ID="";
     private Gender gender;
     private UserType user_type;
-    private String name;
-    private String name_lang_other;
-    private String national_id;
-    private String b_date;
-    private String national_id_date;
+    private String name="";
+    private String name_lang_other="";
+    private String national_id="";
+    private String b_date="";
+    private String national_id_date="";
     private String[] address;
-    private String postal;
-    private String cell;
-    private String phone_home;
-    private String email;
-    private String website;
-    private String email1;
-    private String website1;
-    private String email2;
-    private String website2;
-    private String email3;
-    private String website3;
+    private String postal="";
+    private String cell="";
+    private String phone_home="";
+    private String email="";
+    private String website="";
+    private String email1="";
+    private String website1="";
+    private String email2="";
+    private String website2="";
+    private String email3="";
+    private String website3="";
     //// may change the bottom option's data type
-    private String gov_code;
-    private String cell_code;
-    private String fax;
-    private String admission_date;
+    private String gov_code="";
+    private String cell_code="";
+    private String fax="";
+    private String admission_date="";
 //////////////////////////////////////////////////DataObj/////////////////////////////////////////////////////////////////////
 
     private int num_of_full_time_workers;
     private int num_of_temp_workers;
-    private String active_account_num;
-    private String account_Branch;
-    private String notice;
-    String registration_date;
+    private String active_account_num="";
+    private String account_Branch="";
+    private String notice="";
+    private String registration_date="";
     //// may change the bottom option's data type
-    private String delegate;
-    private String social_stat;
-    private String education;
-    private String electronic_wallet;
-    private String geographic_sector;
+    private String delegate="";
+    private String social_stat="";
+    private String education="";
+    private String electronic_wallet="";
+    private String geographic_sector="";
 
     ///////////////////////////////////////////////////////////////JobObj///////////////////////////////////////////////////////////
 
-    private String jname;
+    private String jname="";
     private String[] address_job;
     private Boolean is_from_city;
-    private String work_email;
-    private String work_Phone;
-    private String license_num;
-    private String license_reg_Date;
-    private String commercial_record;
-    private String industrial_record;
-    private String tax_card;
+    private String work_email="";
+    private String work_Phone="";
+    private String license_num="";
+    private String license_reg_Date="";
+    private String commercial_record="";
+    private String industrial_record="";
+    private String tax_card="";
     //// may change the bottom option's data type
-    private String government;
-    private String district;
-    private String village;
-    private String government_code_work;
-    private String work_sector;
-    private String job_type;
-    private String speciality;
-    private String licensing_address;
+    private String government="";
+    private String district="";
+    private String village="";
+    private String government_code_work="";
+    private String work_sector="";
+    private String job_type="";
+    private String speciality="";
+    private String licensing_address="";
 
 
     ///////////////////////////Constructors////////////////////////////////////////////////////////////////////
@@ -183,8 +183,8 @@ public class ClientObj implements ClientPlanner {
 
     ///////////////////////////////////////////////////////////Setters////////////////////////////////////////////////////
     @Override
-    public void setID(int id) {
-        this.id = Integer.toString(id);
+    public void setID(String id) {
+        this.id = id;
     }
 
     @Override

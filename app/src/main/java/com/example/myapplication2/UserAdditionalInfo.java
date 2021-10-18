@@ -1,11 +1,24 @@
 package com.example.myapplication2;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.icu.text.SimpleDateFormat;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationRequest;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +40,9 @@ import com.example.myapplication2.GenericRetrofit.GenericItemContent;
 import com.example.myapplication2.GenericRetrofit.GeoContent;
 import com.example.myapplication2.GenericRetrofit.OfficerContent;
 import com.example.myapplication2.GenericRetrofit.RecievedItem;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 
 
 import org.json.JSONObject;
@@ -43,26 +59,30 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserAdditionalInfo extends Fragment {
-    private Spinner spin_geo,spin_deleg,spin_social_stat,spin_edu;
+    private Spinner spin_geo, spin_deleg, spin_social_stat, spin_edu;
     private String[] geo;
     private String[] delegates;
     private String[] social_stat;
     private String[] education;
-    private Button btn,btn_submit;
-    private String value="";
-    private String value1="";
-    private String value2="";
-    private String value3="";
-    private String value4="";
+    private Button btn, btn_submit;
+    private String value = "";
+    private String value1 = "";
+    private String value2 = "";
+    private String value3 = "";
+    private String value4 = "";
     private GenericItemContent[] ss_code;
     private GenericItemContent[] edu_code;
     private GeoContent[] geo_code;
     private OfficerContent[] off_code;
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+
+    ///location stuff
+
+  
 
 
 
-    private Boolean is_submitted=false;
+    private Boolean is_submitted = false;
 
     private BasicClientBuilder client;
 
@@ -71,30 +91,28 @@ public class UserAdditionalInfo extends Fragment {
 
     private TextView etxt10;
 
-    private EditText etxt3,etxt4,etxt5,etxt6,etxt7;
+    private EditText etxt3, etxt4, etxt5, etxt6, etxt7;
 
 
-
-
-
-
-
-///////////////////////////////Retrofit Constants//////////////////////////////////////////////////////////////////
-    private String URL="http://192.168.255.19:1233/MohassilService.svc/";
-    Retrofit.Builder builder=new Retrofit.Builder().baseUrl(URL).addConverterFactory(GsonConverterFactory.create());
-    Retrofit retrofit=builder.build();
-    private String username="x";
-    private String password="x";
-    private String base=username+":"+password;
-    private String auth="Basic "+ Base64.encodeToString(base.getBytes(),Base64.NO_WRAP);
-
-
+    ///////////////////////////////Retrofit Constants//////////////////////////////////////////////////////////////////
+    private String URL = "http://192.168.255.19:1233/MohassilService.svc/";
+    Retrofit.Builder builder = new Retrofit.Builder().baseUrl(URL).addConverterFactory(GsonConverterFactory.create());
+    Retrofit retrofit = builder.build();
+    private String username = "x";
+    private String password = "x";
+    private String base = username + ":" + password;
+    private String auth = "Basic " + Base64.encodeToString(base.getBytes(), Base64.NO_WRAP);
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_user_aditional_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_aditional_info, container, false);
+
+        ////////////////////////////Location Stuff/////////////////////////////////////////////
+
+
+
 
         ////////////////////////////////Bundle////////////////////////////////////////////////
 
@@ -465,8 +483,13 @@ public void officerSpinnerAPI(){
              t.printStackTrace();
          }
      });
+
+
  }
 
+ public void getLocation(){
+
+ }
 
 
 }

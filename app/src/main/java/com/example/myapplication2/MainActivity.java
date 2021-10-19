@@ -66,15 +66,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private double latitude = 0.0;
     private double logitude = 0.0;
     private Location loc;
+    private GPSLocation gps;
 
     ////Location via get locationUpdate
     private LocationManager locationManager;
-    private LocationListener locationListener;
-    private Context context;
-    String lat;
-    String provider;
-    protected String latit, longit;
-    protected boolean gps_enabled, network_enabled;
+
 
     ///location via lastLocation
     private FusedLocationProviderClient fusedLocationClient;
@@ -112,8 +108,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         });
 
         //requestLastLocation();
-        //updateLocationMethod();//can't detect when permission is enabled in runtime.
-       // lastLocationAttempst2();
+        updateLocationMethod();
+        //lastLocationAttempst2();
+
+
 
 
         ////////////////////////Officer Test//////////////////////////////////////////
@@ -121,41 +119,25 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         ///////////////////////////////////////////////////////////////////////////*/
 
-        getSupportFragmentManager().beginTransaction().add(R.id.container1,new IntroFrag()).commit();
+
+        IntroFrag frag=new IntroFrag();
+
+       /* Bundle bundle = new Bundle();
+        bundle.putSerializable("location", gps);
+
+        frag.setArguments(bundle);*/
+        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
 
     }
 
 
 
-public void requestLastLocation(){
+    public void requestLastLocation(){
 
     fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
     if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-        ActivityResultLauncher<String[]> locationPermissionRequest =
-                registerForActivityResult(new ActivityResultContracts
-                                .RequestMultiplePermissions(), result -> {
-                            Boolean fineLocationGranted = result.getOrDefault(
-                                    ACCESS_FINE_LOCATION, false);
-                            Boolean coarseLocationGranted = result.getOrDefault(
-                                    ACCESS_COARSE_LOCATION,false);
-                            if (fineLocationGranted != null && fineLocationGranted) {
-                                // Precise location access granted.
-                                Toast.makeText(getApplicationContext(), "Precise location access granted!", Toast.LENGTH_LONG).show();
-                                System.out.println("Precise location access granted!");
-                            } else if (coarseLocationGranted != null && coarseLocationGranted) {
-                                // Only approximate location access granted.
-                                Toast.makeText(getApplicationContext(), "Only approximate location access granted!", Toast.LENGTH_LONG).show();
-                                System.out.println("Only approximate location access granted!");
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
-                                System.out.println("Give access to location please!");
-                            }
-                        }
-                );
-        locationPermissionRequest.launch(new String[] {
-                ACCESS_FINE_LOCATION,
-                ACCESS_COARSE_LOCATION
-        });
+        System.out.println("Give access to location please!");
+        Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
 
     }
 
@@ -169,8 +151,11 @@ public void requestLastLocation(){
                         latitude=location.getLatitude();
                         logitude=location.getLongitude();
                         loc=location;
-                        System.out.println("latitude: "+latitude+"\n"+"longitude: "+logitude+"\n"+"location: "+loc);
+                      //  gps.setLatitude(latitude);
+                       // gps.setLongitude(logitude);
+                      //  System.out.println("latitude: "+latitude+"\n"+"longitude: "+logitude+"\n"+"location: "+loc);
                     }
+
                 }
             });
 }
@@ -179,40 +164,15 @@ public void requestLastLocation(){
     public void updateLocationMethod(){
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityResultLauncher<String[]> locationPermissionRequest =
-                    registerForActivityResult(new ActivityResultContracts
-                                    .RequestMultiplePermissions(), result -> {
-                                Boolean fineLocationGranted = result.getOrDefault(
-                                        ACCESS_FINE_LOCATION, false);
-                                Boolean coarseLocationGranted = result.getOrDefault(
-                                        ACCESS_COARSE_LOCATION,false);
-                                if (fineLocationGranted != null && fineLocationGranted) {
-                                    // Precise location access granted.
-                                    Toast.makeText(getApplicationContext(), "Precise location access granted!", Toast.LENGTH_LONG).show();
-                                    System.out.println("Precise location access granted!");
-                                } else if (coarseLocationGranted != null && coarseLocationGranted) {
-                                    // Only approximate location access granted.
-                                    Toast.makeText(getApplicationContext(), "Only approximate location access granted!", Toast.LENGTH_LONG).show();
-                                    System.out.println("Only approximate location access granted!");
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
-                                    System.out.println("Give access to location please!");
-                                }
-                            }
-                    );
-            locationPermissionRequest.launch(new String[] {
-                    ACCESS_FINE_LOCATION,
-                    ACCESS_COARSE_LOCATION
-            });
 
+            System.out.println("Give access to location please!");
+            Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
 
         }
+        else {
 
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 100, this);
-
-
-
-
+        }
 
 
     }
@@ -220,7 +180,14 @@ public void requestLastLocation(){
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        System.out.println("Latit" + location.getLatitude() + ", Longit:" + location.getLongitude());
+
+        System.out.println("Latit" + location.getLatitude() + ", Longit:" + location.getLongitude()+"\n"+"location: "+location);
+        loc=location;
+        latitude=location.getLatitude();
+        logitude=location.getLongitude();
+        //gps.setLatitude(latitude);
+        //gps.setLongitude(logitude);
+
     }
 
     @Override
@@ -255,7 +222,9 @@ public void requestLastLocation(){
                                     latitude=location.getLatitude();
                                     logitude=location.getLongitude();
                                     loc=location;
-                                    System.out.println("latitude: "+latitude+"\n"+"longitude: "+logitude+"\n"+"location: "+loc);
+                                   // gps.setLatitude(latitude);
+                                   // gps.setLongitude(logitude);
+                                   // System.out.println("latitude: "+latitude+"\n"+"longitude: "+logitude+"\n"+"location: "+loc);
                                 }
 
                             }
@@ -271,32 +240,17 @@ public void requestLastLocation(){
 
         }
         else{
-            ActivityResultLauncher<String[]> locationPermissionRequest =
-                    registerForActivityResult(new ActivityResultContracts
-                                    .RequestMultiplePermissions(), result -> {
-                                Boolean fineLocationGranted = result.getOrDefault(
-                                        ACCESS_FINE_LOCATION, false);
-                                Boolean coarseLocationGranted = result.getOrDefault(
-                                        ACCESS_COARSE_LOCATION,false);
-                                if (fineLocationGranted != null && fineLocationGranted) {
-                                    // Precise location access granted.
-                                    Toast.makeText(getApplicationContext(), "Precise location access granted!", Toast.LENGTH_LONG).show();
-                                    System.out.println("Precise location access granted!");
-                                } else if (coarseLocationGranted != null && coarseLocationGranted) {
-                                    // Only approximate location access granted.
-                                    Toast.makeText(getApplicationContext(), "Only approximate location access granted!", Toast.LENGTH_LONG).show();
-                                    System.out.println("Only approximate location access granted!");
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
-                                    System.out.println("Give access to location please!");
-                                }
-                            }
-                    );
-            locationPermissionRequest.launch(new String[] {
-                    ACCESS_FINE_LOCATION,
-                    ACCESS_COARSE_LOCATION
-            });
+            System.out.println("Give access to location please!");
+            Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //requestLastLocation();
+        updateLocationMethod();
+        //lastLocationAttempst2();
     }
 
     public void getOfficer(){

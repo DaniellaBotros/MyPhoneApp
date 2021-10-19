@@ -1,5 +1,7 @@
 package com.example.myapplication2;
 
+import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,26 +25,31 @@ import java.util.UUID;
 
 public class IntroFrag extends Fragment {
 
-    BasicClientBuilder client;
-    View view;
-    Spinner spin_gender,spin_type;
-    String value="";
-    String value1="";
-    String value2="";
-    Button next;
-    String[] type_of_user= {"أختر نوع الحساب*","فردي","مجموعة","عضو في مجموعة"};
-    String[] gender_of_user= {"أختر النوع*","ذكر","أنثى"};
-    Integer[] images = { 0, R.drawable.single, R.drawable.group, R.drawable.member_of_group_1};
-    EditText user_name;
-
-
+    private BasicClientBuilder client;
+    private View view;
+    private Spinner spin_gender,spin_type;
+    private String value="";
+    private String value1="";
+    private String value2="";
+    private Button next;
+    private String[] type_of_user= {"أختر نوع الحساب*","فردي","مجموعة","عضو في مجموعة"};
+    private String[] gender_of_user= {"أختر النوع*","ذكر","أنثى"};
+    private Integer[] images = { 0, R.drawable.single, R.drawable.group, R.drawable.member_of_group_1};
+    private EditText user_name;
+    private GPSLocation gps;
+    private Double longitude;
+    private Double latitude;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_intro, container, false);
-
+        gps=new GPSLocation();
         client=new BasicClientBuilder();
+       /* gps=(GPSLocation)getArguments().getSerializable("location");
+        latitude=gps.getLatitude(latitude);
+        longitude=gps.getLongitude(logitude);
+        System.out.println(latitude+"--"+longitude);*/
 
         //////////////////////////EditText//////////////////////////
         user_name=view.findViewById(R.id.name);

@@ -328,7 +328,7 @@ public class UserJobInfo extends Fragment {
 
             @Override
             public void onFailure(Call<GenericItem<GovernmentContent>> call, Throwable t) {
-                System.out.println("I failed!!:(");
+                System.out.println("I failed Get Government!!:(");
                 t.printStackTrace();
             }
         });
@@ -386,7 +386,7 @@ public class UserJobInfo extends Fragment {
 
                 @Override
                 public void onFailure(Call<GenericItem<DistrictContent>> call, Throwable t) {
-                    System.out.println("I failed!!:(");
+                    System.out.println("I failed Get District!!:(");
                     t.printStackTrace();
                 }
             });
@@ -445,7 +445,7 @@ public class UserJobInfo extends Fragment {
 
                 @Override
                 public void onFailure(Call<GenericItem<VillageContent>> call, Throwable t) {
-                    System.out.println("I failed!!:(");
+                    System.out.println("I failed Get Village!!:(");
                     t.printStackTrace();
                 }
             });
@@ -507,7 +507,7 @@ public class UserJobInfo extends Fragment {
 
             @Override
             public void onFailure(Call <GenericItem<BusinessDevisionContent>> call, Throwable t) {
-                System.out.println("I failed!!:(");
+                System.out.println("I failed Get Business Devision!!:(");
                 t.printStackTrace();
             }
         });
@@ -568,7 +568,7 @@ public class UserJobInfo extends Fragment {
 
                 @Override
                 public void onFailure(Call <GenericItem<BusinessActionTypeContent>> call, Throwable t) {
-                    System.out.println("I failed!!:(");
+                    System.out.println("I failed Get Business Activity Type Code!!:(");
                     t.printStackTrace();
                 }
             });
@@ -611,7 +611,7 @@ public class UserJobInfo extends Fragment {
 
             @Override
             public void onFailure(Call <OfficerLoginItem> call, Throwable t) {
-                System.out.println("I failed!!:(");
+                System.out.println("I failed OfficerLogin!!:(");
                 t.printStackTrace();
             }
         });

@@ -76,9 +76,6 @@ public class UserAdditionalInfo extends Fragment {
     private OfficerContent[] off_code;
 
 
-    ///location stuff
-
-  
 
 
 
@@ -184,7 +181,7 @@ public class UserAdditionalInfo extends Fragment {
 
             @Override
             public void onFailure(Call<GenericItem<GeoContent>> call, Throwable t) {
-                System.out.println("I failed!!:(");
+                System.out.println("I failed Geographical Area!!:(");
                 t.printStackTrace();
             }
         });
@@ -248,7 +245,7 @@ public class UserAdditionalInfo extends Fragment {
 
             @Override
             public void onFailure(Call<GenericItem<GenericItemContent>> call, Throwable t) {
-                System.out.println("I failed!!:(");
+                System.out.println("I failed Social Status!!:(");
                 t.printStackTrace();
             }
         });
@@ -305,7 +302,7 @@ public class UserAdditionalInfo extends Fragment {
 
             @Override
             public void onFailure(Call<GenericItem<GenericItemContent>> call, Throwable t) {
-                System.out.println("I failed!!:(");
+                System.out.println("I failed Education!!:(");
                 t.printStackTrace();
             }
         });
@@ -450,7 +447,7 @@ public void officerSpinnerAPI(){
 
         @Override
         public void onFailure(Call <GenericItem<OfficerContent>> call, Throwable t) {
-            System.out.println("I failed!!:(");
+            System.out.println("I failed Officer Names!!:(");
             t.printStackTrace();
         }
     });
@@ -467,7 +464,7 @@ public void officerSpinnerAPI(){
          public void onResponse(Call<RecievedItem> call, Response<RecievedItem> response) {
              RecievedItem changesList = response.body();
              if(changesList==null){
-                    System.out.println("Error!!!:(");
+                    System.out.println("Error!!! Client Not Added:(");
              }
              else{
 
@@ -479,7 +476,7 @@ public void officerSpinnerAPI(){
 
          @Override
          public void onFailure(Call<RecievedItem> call, Throwable t) {
-             System.out.println("I failed!!:(");
+             System.out.println("I failed Getting Key!!:(");
              t.printStackTrace();
          }
      });
@@ -487,9 +484,7 @@ public void officerSpinnerAPI(){
 
  }
 
- public void getLocation(){
 
- }
 
 
 }

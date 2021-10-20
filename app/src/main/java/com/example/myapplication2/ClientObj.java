@@ -43,6 +43,8 @@ public class ClientObj implements ClientPlanner {
     private String cell_code="";
     private String fax="";
     private String admission_date="";
+    private String latitude="";
+    private String longitude="";
 //////////////////////////////////////////////////DataObj/////////////////////////////////////////////////////////////////////
 
     private int num_of_full_time_workers;
@@ -190,6 +192,16 @@ public class ClientObj implements ClientPlanner {
     @Override
     public void setOrgCode(String code) {
         this.org_code=code;
+    }
+
+    @Override
+    public void setLatitude(String l) {
+        this.latitude=l;
+    }
+
+    @Override
+    public void setLongitude(String l) {
+        this.longitude=l;
     }
 
     @Override
@@ -489,6 +501,16 @@ public class ClientObj implements ClientPlanner {
     @Override
     public String getOrgCode() {
         return this.org_code;
+    }
+
+    @Override
+    public String getLongitude() {
+        return this.longitude;
+    }
+
+    @Override
+    public String getLatitude() {
+        return this.latitude;
     }
 
     @Override

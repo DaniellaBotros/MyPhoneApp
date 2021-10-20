@@ -27,6 +27,16 @@ public class BasicClientBuilder implements  ClientBuilder{
     }
 
     @Override
+    public String getBuilderLongitude() {
+        return client.getLongitude();
+    }
+
+    @Override
+    public String getBuilderLatitude() {
+        return client.getLatitude();
+    }
+
+    @Override
     public String getBuilderBranchID() {
         return client.getBranchID();
     }
@@ -300,6 +310,16 @@ public class BasicClientBuilder implements  ClientBuilder{
     @Override
     public void BuildOrgCode(String code) {
         client.setOrgCode(code);
+    }
+
+    @Override
+    public void BuildLatitude(String l) {
+        client.setLatitude(l);
+    }
+
+    @Override
+    public void BuildLongitude(String l) {
+        client.setLongitude(l);
     }
 
     @Override

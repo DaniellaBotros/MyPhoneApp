@@ -36,20 +36,21 @@ public class IntroFrag extends Fragment {
     private String[] gender_of_user= {"أختر النوع*","ذكر","أنثى"};
     private Integer[] images = { 0, R.drawable.single, R.drawable.group, R.drawable.member_of_group_1};
     private EditText user_name;
-    private GPSLocation gps;
-    private Double longitude;
-    private Double latitude;
+    private String longitude;
+    private String latitude;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_intro, container, false);
-        gps=new GPSLocation();
+
         client=new BasicClientBuilder();
-       /* gps=(GPSLocation)getArguments().getSerializable("location");
-        latitude=gps.getLatitude(latitude);
-        longitude=gps.getLongitude(logitude);
-        System.out.println(latitude+"--"+longitude);*/
+        latitude=getArguments().getString("latitude","Failed :((");
+        longitude=getArguments().getString("logitude","Failed :((");
+        client.BuildLatitude(latitude);
+        client.BuildLongitude(longitude);
+        //System.out.println("IntroFrag: test= "+latitude+"\t"+longitude);
 
         //////////////////////////EditText//////////////////////////
         user_name=view.findViewById(R.id.name);

@@ -16,6 +16,8 @@ public interface ClientBuilder extends Serializable {
 
     public String getBuilderID();
     public String getBuilderOrgCode();
+    public String getBuilderLongitude();
+    public String getBuilderLatitude();
     public String getBuilderBranchID();
     public String getBuilderClientName();
     public String getBuilderClientGender();
@@ -72,6 +74,8 @@ public interface ClientBuilder extends Serializable {
     //////////////////////////////////////////Builders or Setters//////////////////////////////////////////////////////
     public void BuildID(String id);
     public void BuildOrgCode(String code);
+    public void BuildLatitude(String l);
+    public void BuildLongitude(String l);
     public void BuildBranchID(String id);
     public void BuildClientName(String name);
     public void BuildClientGender(String g);

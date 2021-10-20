@@ -8,6 +8,8 @@ public interface ClientPlanner {
 
     public void setID(String id);
     public void setOrgCode(String code);
+    public void setLatitude(String l);
+    public void setLongitude(String l);
     public void setBranchID(String id);
     public void setClientName(String name);
     public void setClientGender(String g);
@@ -65,6 +67,8 @@ public interface ClientPlanner {
     ////////////////////////////////////////////////////////Getters////////////////////////////////////////////////////////////
     public String getID();
     public String getOrgCode();
+    public String getLongitude();
+    public String getLatitude();
     public String getBranchID();
     public String getClientName();
     public String getClientGender();

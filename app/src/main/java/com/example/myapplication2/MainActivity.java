@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private double latitude = 0.0;
     private double logitude = 0.0;
     private Location loc;
-    private GPSLocation gps;
+    private String test1;
+    private String test2;
 
     ////Location via get locationUpdate
     private LocationManager locationManager;
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         //requestLastLocation();
         updateLocationMethod();
-        //lastLocationAttempst2();
+       //lastLocationAttempst2();
 
 
 
@@ -120,13 +121,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         ///////////////////////////////////////////////////////////////////////////*/
 
 
-        IntroFrag frag=new IntroFrag();
-
        /* Bundle bundle = new Bundle();
         bundle.putSerializable("location", gps);
 
         frag.setArguments(bundle);*/
-        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+
+       // IntroFrag frag=new IntroFrag();
+        //System.out.println(latitude+"---------"+logitude);
+
+      //  getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
 
     }
 
@@ -151,9 +154,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         latitude=location.getLatitude();
                         logitude=location.getLongitude();
                         loc=location;
-                      //  gps.setLatitude(latitude);
-                       // gps.setLongitude(logitude);
-                      //  System.out.println("latitude: "+latitude+"\n"+"longitude: "+logitude+"\n"+"location: "+loc);
+                        test1=Double.toString(latitude);
+                        test2=Double.toString(logitude);
+                       // System.out.println(test1+"\t"+test2);
+
+                        IntroFrag frag=new IntroFrag();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("latitude",test1);
+                        bundle.putString("logitude",test2);
+
+                        frag.setArguments(bundle);
+                        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+                       //System.out.println("latitude: "+latitude+"\n"+"longitude: "+logitude+"\n"+"location: "+loc);
                     }
 
                 }
@@ -181,12 +194,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onLocationChanged(@NonNull Location location) {
 
-        System.out.println("Latit" + location.getLatitude() + ", Longit:" + location.getLongitude()+"\n"+"location: "+location);
+        //System.out.println("Latit" + location.getLatitude() + ", Longit:" + location.getLongitude()+"\n"+"location: "+location);
         loc=location;
         latitude=location.getLatitude();
         logitude=location.getLongitude();
-        //gps.setLatitude(latitude);
-        //gps.setLongitude(logitude);
+        test1=Double.toString(latitude);
+        test2=Double.toString(logitude);
+        //System.out.println(test1+"\t"+test2);
+
+        IntroFrag frag=new IntroFrag();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("latitude",test1);
+        bundle.putString("logitude",test2);
+
+        frag.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+
 
     }
 
@@ -222,9 +246,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                     latitude=location.getLatitude();
                                     logitude=location.getLongitude();
                                     loc=location;
-                                   // gps.setLatitude(latitude);
-                                   // gps.setLongitude(logitude);
-                                   // System.out.println("latitude: "+latitude+"\n"+"longitude: "+logitude+"\n"+"location: "+loc);
+                                    test1=Double.toString(latitude);
+                                    test2=Double.toString(logitude);
+                                    //System.out.println(test1+"\t"+test2);
+                                    IntroFrag frag=new IntroFrag();
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("latitude",test1);
+                                    bundle.putString("logitude",test2);
+
+                                    frag.setArguments(bundle);
+                                    getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+
                                 }
 
                             }

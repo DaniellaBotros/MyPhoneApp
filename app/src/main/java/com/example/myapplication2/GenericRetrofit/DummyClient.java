@@ -174,15 +174,26 @@ public class DummyClient {
         this.EducationLevelCode=c.getBuilderClientEducation();
 
         this.BusinessName=(c.getBuilderClientJobName()!=null)?"":c.getBuilderClientJobName();
+         if(c.getBuilderClientJobAddress()[0]!=null){
+             this.BusinessAddress1= c.getBuilderClientJobAddress()[0];
+         }
+         if(c.getBuilderClientWorkPhone()!=null){
+             this.BusinessTelephone=c.getBuilderClientWorkPhone();
+         }
+       if(c.getBuilderClientHomePhone()!=null){
+           this.HomeTelephone=c.getBuilderClientHomePhone();
+       }
 
-        this.BusinessAddress1=(c.getBuilderClientJobAddress()[0]!=null)?"":c.getBuilderClientJobAddress()[0];
-        this.BusinessTelephone=(c.getBuilderClientWorkPhone()!=null)?"":c.getBuilderClientWorkPhone();
-        this.HomeTelephone=(c.getBuilderClientHomePhone()!=null)?"":c.getBuilderClientHomePhone();
-        this.HomeAddress1=(c.getBuilderClientAddress()[0]!=null)?"":c.getBuilderClientAddress()[0];
-        this.Email1=(c.getBuilderClientEmail1()!=null)?"":c.getBuilderClientEmail1();
-        this.WebPageAdd1=(c.getBuilderClientWebsite1()!=null)?"":c.getBuilderClientWebsite1();
-        this.Notes=(c.getBuilderClientNotice()!=null)?"":c.getBuilderClientNotice();
-        this.FaxNo=(c.getBuilderClientFaxNum()!=null)?"":c.getBuilderClientFaxNum();
+        if(c.getBuilderClientAddress()[0]!=null){
+            this.HomeAddress1=c.getBuilderClientAddress()[0];
+        }
+
+        this.Email1=c.getBuilderClientEmail1();
+        this.WebPageAdd1=c.getBuilderClientWebsite1();
+        this.Notes=c.getBuilderClientNotice();
+        this.FaxNo=c.getBuilderClientFaxNum();
+        this.HomeLongitude=c.getBuilderLongitude();
+        this.HomeLatitude=c.getBuilderLatitude();
 
 
 

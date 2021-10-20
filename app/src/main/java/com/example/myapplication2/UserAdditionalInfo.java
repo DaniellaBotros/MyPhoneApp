@@ -322,6 +322,7 @@ public class UserAdditionalInfo extends Fragment {
 
                 if(!(is_submitted)){
                     Toast.makeText(getContext(),"Submit First!!", Toast.LENGTH_SHORT).show();
+
                 }
 
                 else{
@@ -379,7 +380,7 @@ public class UserAdditionalInfo extends Fragment {
                 //System.out.println(client.toString());
                     tosend=new DummyClient(client);
                     send=  new DummyClientToSend(tosend);
-                    //System.out.println(send);
+                    System.out.println(tosend);
 
                     sendingClient(send,client);
 

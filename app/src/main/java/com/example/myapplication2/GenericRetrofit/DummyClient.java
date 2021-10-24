@@ -205,7 +205,7 @@ public class DummyClient {
             this.HomeLatitude=c.getBuilderLatitude();
         }
 
-
+        this.HomeZoom="1";
 
 
 

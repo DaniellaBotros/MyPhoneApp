@@ -109,9 +109,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 ACCESS_COARSE_LOCATION
         });
 
-        requestLastLocation();
-        // updateLocationMethod();
-        // lastLocationAttempst2();
+       //requestLastLocation();
+        //updateLocationMethod();
+         lastLocationAttempst2();
 
 
 
@@ -142,15 +142,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         System.out.println("Give access to location please!");
         Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
-        if(flage){
         IntroFrag frag=new IntroFrag();
 
         Bundle bundle = new Bundle();
         bundle.putString("latitude",test1);
         bundle.putString("logitude",test2);
-        flage=false;
+
         frag.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();}
+        if(flage){
+            getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+            flage=false;
+        }
     }
     else{
 
@@ -167,15 +169,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         test1=Double.toString(latitude);
                         test2=Double.toString(logitude);
                        // System.out.println(test1+"\t"+test2);
-                        if(flage){
+
                         IntroFrag frag=new IntroFrag();
 
                         Bundle bundle = new Bundle();
                         bundle.putString("latitude",test1);
                         bundle.putString("logitude",test2);
-                        flage=false;
+
                         frag.setArguments(bundle);
-                        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();}
+
+                        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+
                        //System.out.println("latitude: "+latitude+"\n"+"longitude: "+logitude+"\n"+"location: "+loc);
                     }
 
@@ -190,15 +194,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void updateLocationMethod(){
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if(flage){
-            IntroFrag frag=new IntroFrag();
 
-            Bundle bundle = new Bundle();
-            bundle.putString("latitude",test1);
-            bundle.putString("logitude",test2);
-            flage=false;
-            frag.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();}
             System.out.println("Give access to location please!");
             Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
 
@@ -222,21 +218,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         test1=Double.toString(latitude);
         test2=Double.toString(logitude);
         //System.out.println(test1+"\t"+test2);
-        if(flage){
+
         IntroFrag frag=new IntroFrag();
 
         Bundle bundle = new Bundle();
         bundle.putString("latitude",test1);
         bundle.putString("logitude",test2);
-        flage=false;
+
         frag.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();}
+        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
 
 
     }
 
     @Override
     public void onProviderDisabled(String provider) {
+
+
 
         Log.d("Latit","disable");
     }
@@ -270,16 +268,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                     test1=Double.toString(latitude);
                                     test2=Double.toString(logitude);
                                     //System.out.println(test1+"\t"+test2);
-                                    if(flage) {
+
                                         IntroFrag frag = new IntroFrag();
 
                                         Bundle bundle = new Bundle();
                                         bundle.putString("latitude", test1);
                                         bundle.putString("logitude", test2);
-                                        flage=false;
+
                                         frag.setArguments(bundle);
-                                        getSupportFragmentManager().beginTransaction().add(R.id.container1, frag).commit();
+                                    if(flage){
+                                        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+                                        flage=false;
                                     }
+
                                 }
 
                             }
@@ -288,8 +289,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             else{
 
                 Toast.makeText(this, "Please turn on" + " your location...", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
+
             }
 
 
@@ -297,25 +297,28 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         else{
             System.out.println("Give access to location please!");
             Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
-            if(flage){
+
             IntroFrag frag=new IntroFrag();
-            flage=false;
+
             Bundle bundle = new Bundle();
             bundle.putString("latitude",test1);
             bundle.putString("logitude",test2);
 
             frag.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
-            }
+                if(flage){
+                    getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+                    flage=false;
+                }
+
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        requestLastLocation();
+        //requestLastLocation();
         //updateLocationMethod();
-        //lastLocationAttempst2();
+        lastLocationAttempst2();
     }
 
     public void getOfficer(){

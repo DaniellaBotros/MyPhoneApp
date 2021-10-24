@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private String base = username + ":" + password;
     private String auth = "Basic " + Base64.encodeToString(base.getBytes(), Base64.NO_WRAP);
     String[] arr;
-    boolean flage=false;
+    boolean flage=true;
     private double latitude = 0.0;
     private double logitude = 0.0;
     private Location loc;
@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
        //requestLastLocation();
        // updateLocationMethod();
-        if(flage){
-       lastLocationAttempst2();}
+
+         lastLocationAttempst2();
 
 
 
@@ -262,15 +262,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                     test1=Double.toString(latitude);
                                     test2=Double.toString(logitude);
                                     //System.out.println(test1+"\t"+test2);
-                                    IntroFrag frag=new IntroFrag();
+                                    if(flage) {
+                                        IntroFrag frag = new IntroFrag();
 
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("latitude",test1);
-                                    bundle.putString("logitude",test2);
-
-                                    frag.setArguments(bundle);
-                                    getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
-
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("latitude", test1);
+                                        bundle.putString("logitude", test2);
+                                        flage=false;
+                                        frag.setArguments(bundle);
+                                        getSupportFragmentManager().beginTransaction().add(R.id.container1, frag).commit();
+                                    }
                                 }
 
                             }
@@ -288,14 +289,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         else{
             System.out.println("Give access to location please!");
             Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
+            if(flage){
             IntroFrag frag=new IntroFrag();
-            flage=true;
+            flage=false;
             Bundle bundle = new Bundle();
             bundle.putString("latitude",test1);
             bundle.putString("logitude",test2);
 
             frag.setArguments(bundle);
-            getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();}
         }
     }
 

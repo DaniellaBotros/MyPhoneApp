@@ -50,7 +50,7 @@ public class IntroFrag extends Fragment {
         longitude=getArguments().getString("logitude","Failed :((");
         client.BuildLatitude(latitude);
         client.BuildLongitude(longitude);
-        //System.out.println("IntroFrag: test= "+latitude+"\t"+longitude);
+        System.out.println("IntroFrag: test= "+latitude+"\t"+longitude);
 
         //////////////////////////EditText//////////////////////////
         user_name=view.findViewById(R.id.name);

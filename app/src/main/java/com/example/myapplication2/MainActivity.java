@@ -63,11 +63,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private String base = username + ":" + password;
     private String auth = "Basic " + Base64.encodeToString(base.getBytes(), Base64.NO_WRAP);
     String[] arr;
+    boolean flage=false;
     private double latitude = 0.0;
     private double logitude = 0.0;
     private Location loc;
-    private String test1;
-    private String test2;
+    private String test1="";
+    private String test2="";
 
     ////Location via get locationUpdate
     private LocationManager locationManager;
@@ -108,9 +109,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 ACCESS_COARSE_LOCATION
         });
 
-        //requestLastLocation();
-        updateLocationMethod();
-       //lastLocationAttempst2();
+       //requestLastLocation();
+       // updateLocationMethod();
+        if(flage){
+       lastLocationAttempst2();}
 
 
 
@@ -141,8 +143,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         System.out.println("Give access to location please!");
         Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
+        IntroFrag frag=new IntroFrag();
 
+        Bundle bundle = new Bundle();
+        bundle.putString("latitude",test1);
+        bundle.putString("logitude",test2);
+
+        frag.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
     }
+    else{
 
     fusedLocationClient.getLastLocation()
             .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -170,8 +180,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     }
 
                 }
-            });
+
+            });}
+
 }
+
 
 
     public void updateLocationMethod(){
@@ -275,6 +288,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         else{
             System.out.println("Give access to location please!");
             Toast.makeText(getApplicationContext(), "Give access to location please!", Toast.LENGTH_LONG).show();
+            IntroFrag frag=new IntroFrag();
+            flage=true;
+            Bundle bundle = new Bundle();
+            bundle.putString("latitude",test1);
+            bundle.putString("logitude",test2);
+
+            frag.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(R.id.container1,frag).commit();
         }
     }
 
@@ -282,8 +303,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //requestLastLocation();
-        updateLocationMethod();
-        //lastLocationAttempst2();
+        //updateLocationMethod();
+        lastLocationAttempst2();
     }
 
     public void getOfficer(){

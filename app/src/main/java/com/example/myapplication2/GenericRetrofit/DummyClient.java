@@ -192,8 +192,19 @@ public class DummyClient {
         this.WebPageAdd1=c.getBuilderClientWebsite1();
         this.Notes=c.getBuilderClientNotice();
         this.FaxNo=c.getBuilderClientFaxNum();
-        this.HomeLongitude=c.getBuilderLongitude();
-        this.HomeLatitude=c.getBuilderLatitude();
+        if(c.getBuilderLongitude()=="Failed :(("){
+            this.HomeLongitude="";
+        }
+        else{
+            this.HomeLongitude=c.getBuilderLongitude();
+        }
+        if(c.getBuilderLatitude()=="Failed :(("){
+            this.HomeLatitude="";
+        }
+        else{
+            this.HomeLatitude=c.getBuilderLatitude();
+        }
+
 
 
 

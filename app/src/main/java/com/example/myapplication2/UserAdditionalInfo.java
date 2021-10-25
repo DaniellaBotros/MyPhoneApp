@@ -106,7 +106,6 @@ public class UserAdditionalInfo extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_aditional_info, container, false);
 
-        ////////////////////////////Location Stuff/////////////////////////////////////////////
 
 
 
@@ -329,6 +328,11 @@ public class UserAdditionalInfo extends Fragment {
 
 
                 IntroFrag nextFrag= new IntroFrag();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("latitude",client.getBuilderLatitude());
+                    bundle.putString("logitude",client.getBuilderLongitude());
+
+                    nextFrag.setArguments(bundle);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .remove(UserAdditionalInfo.this)
                         .replace(((ViewGroup)getView().getParent()).getId(), nextFrag, "findThisFragment")

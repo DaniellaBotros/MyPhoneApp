@@ -188,8 +188,8 @@ public class DummyClient {
             this.HomeAddress1=c.getBuilderClientAddress()[0];
         }
 
-        this.Email1=c.getBuilderClientEmail1();
-        this.WebPageAdd1=c.getBuilderClientWebsite1();
+        this.Email1=c.getBuilderClientEmail();
+        this.WebPageAdd1=c.getBuilderClientWebsite();
         this.Notes=c.getBuilderClientNotice();
         this.FaxNo=c.getBuilderClientFaxNum();
         if(c.getBuilderLongitude()=="Failed :(("){

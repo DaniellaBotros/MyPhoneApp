@@ -160,7 +160,7 @@ public class DummyClient {
             this.ClientTypeCode="3";
         }
 
-        this.Gender=(c.getBuilderClientGender().equals("Male"))? "2":"1";
+        this.Gender=(c.getBuilderClientGender().equals("Male"))? "1":"2";
         this.NationalId=c.getBuilderClientNationalID();
         this.IdDisbursementDate=c.getBuilderClientNationalIdDate();
         this.BirthDate=c.getBuilderClientBirthdate();

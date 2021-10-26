@@ -65,10 +65,10 @@ public class IntroFrag extends Fragment {
                     value=gender_of_user[i]+" ";
                     String g;
                     if(gender_of_user[i].equals("أنثى")){
-                        g="1";
+                        g="2";
                     }
                     else{
-                        g="2";
+                        g="1";
                     }
 
                     client.BuildClientGender(g);

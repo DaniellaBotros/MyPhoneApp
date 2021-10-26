@@ -422,6 +422,7 @@ public void officerSpinnerAPI(){
 
                 }
 
+
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_spinner_item,delegates);
                 adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -440,8 +441,6 @@ public void officerSpinnerAPI(){
 
                     }
                 });
-
-
 
 
             } else {

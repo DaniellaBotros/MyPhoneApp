@@ -2,8 +2,10 @@ package com.example.myapplication2;
 
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -108,6 +110,7 @@ public class UserPersonalInfo extends Fragment {
         //button for job or work info
         to_job=view.findViewById(R.id.btn_to_job);
         to_job.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
 
@@ -245,6 +248,7 @@ public class UserPersonalInfo extends Fragment {
     }
 
 
+@RequiresApi(api = Build.VERSION_CODES.N)
 public Calendar convertStringToDate(String stringdate){
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     Date date = null;

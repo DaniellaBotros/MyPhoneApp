@@ -6,6 +6,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -21,6 +22,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationRequest;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private FusedLocationProviderClient fusedLocationClient;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
